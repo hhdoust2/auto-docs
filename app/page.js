@@ -30,7 +30,7 @@ export default async function Home() {
 
   return (
     <main dir="rtl" style={{ 
-      maxWidth: '900px', 
+      maxWidth: '1000px', 
       margin: '0 auto', 
       padding: '40px 20px', 
       fontFamily: 'Tahoma, Vazirmatn, sans-serif',
@@ -38,6 +38,44 @@ export default async function Home() {
       minHeight: '100vh',
       color: '#1e293b'
     }}>
+      {/* استایل‌های سراسری برای مرتب شدن جدول‌ها و محتوا */}
+      <style>{`
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 20px 0;
+          background-color: #ffffff;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        th, td {
+          border: 1px solid #e2e8f0;
+          padding: 12px 16px;
+          text-align: right;
+          font-size: 14px;
+        }
+        th {
+          background-color: #f1f5f9;
+          color: #0f172a;
+          font-weight: bold;
+        }
+        tr:nth-child(even) {
+          background-color: #f8fafc;
+        }
+        p {
+          margin-bottom: 14px;
+          line-height: 1.8;
+        }
+        ul, ol {
+          margin-right: 20px;
+          margin-bottom: 14px;
+        }
+        li {
+          margin-bottom: 6px;
+        }
+      `}</style>
+
       <header style={{ 
         background: '#ffffff', 
         padding: '24px', 
@@ -48,7 +86,7 @@ export default async function Home() {
       }}>
         <h1 style={{ margin: 0, fontSize: '24px', color: '#0f172a' }}>داشبورد مستندات خودکار 🚀</h1>
         <p style={{ margin: '8px 0 0 0', color: '#64748b', fontSize: '14px' }}>
-          مستندات و لینک‌های ذخیره شده به صورت خودکار بروز می‌شوند.
+          مستندات و اطلاعات ذخیره‌شده به همراه جدول‌ها و جزییات کامل.
         </p>
       </header>
 
@@ -64,7 +102,8 @@ export default async function Home() {
             borderRadius: '12px', 
             boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
             marginBottom: '30px',
-            border: '1px solid #e2e8f0'
+            border: '1px solid #e2e8f0',
+            overflowX: 'auto'
           }}>
             <h2 style={{ 
               marginTop: 0, 
@@ -77,12 +116,7 @@ export default async function Home() {
               {doc.title}
             </h2>
             
-            {/* استایل‌دهی تگ‌های داخلی برای جلوگیری از فشردگی */}
-            <div 
-              style={{ lineHeight: '2', fontSize: '15px' }}
-              className="markdown-body"
-              dangerouslySetInnerHTML={{ __html: doc.content }} 
-            />
+            <div dangerouslySetInnerHTML={{ __html: doc.content }} />
           </article>
         ))
       )}
