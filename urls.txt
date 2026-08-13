@@ -1,2 +1,4 @@
+https://console.groq.com/docs/models.md
 https://console.groq.com/docs/rate-limits.md
+
 https://raw.githubusercontent.com/.../some-other-file.md
