@@ -15,10 +15,9 @@ async function getDocs() {
       const filePath = path.join(contentDir, file);
       const fileContents = fs.readFileSync(filePath, 'utf8');
       
-      // تبدیل مارک‌داون به HTML
       const processedContent = await remark().use(html).process(fileContents);
       docs.push({
-        title: file.replace('.md', ''),
+        title: file.replace('.md', '').replace(/-/g, ' '),
         content: processedContent.toString()
       });
     }
@@ -30,20 +29,61 @@ export default async function Home() {
   const docs = await getDocs();
 
   return (
-    <main style={{ maxWidth: '800px', margin: '40px auto', padding: '0 20px', fontFamily: 'Vazirmatn, Tahoma, sans-serif', lineHeight: '1.8' }}>
-      <header style={{ borderBottom: '1px solid #ddd', paddingBottom: '20px', marginBottom: '30px' }}>
-        <h1 style={{ color: '#333' }}>داشبورد مستندات خودکار 🚀</h1>
-        <p style={{ color: '#666' }}>این صفحه مستقیماً از منابع خارجی به‌روز می‌شود.</p>
+    <main dir="rtl" style={{ 
+      maxWidth: '900px', 
+      margin: '0 auto', 
+      padding: '40px 20px', 
+      fontFamily: 'Tahoma, Vazirmatn, sans-serif',
+      backgroundColor: '#f8fafc',
+      minHeight: '100vh',
+      color: '#1e293b'
+    }}>
+      <header style={{ 
+        background: '#ffffff', 
+        padding: '24px', 
+        borderRadius: '12px', 
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+        marginBottom: '30px',
+        border: '1px solid #e2e8f0'
+      }}>
+        <h1 style={{ margin: 0, fontSize: '24px', color: '#0f172a' }}>داشبورد مستندات خودکار 🚀</h1>
+        <p style={{ margin: '8px 0 0 0', color: '#64748b', fontSize: '14px' }}>
+          مستندات و لینک‌های ذخیره شده به صورت خودکار بروز می‌شوند.
+        </p>
       </header>
 
       {docs.length === 0 ? (
-        <p>هنوز فایلی دانلود نشده است. منتظر اجرای اسکریپت بمانید یا گیت‌هاب اکشن را دستی اجرا کنید.</p>
+        <div style={{ textAlign: 'center', padding: '40px', background: '#fff', borderRadius: '12px' }}>
+          <p>هنوز فایلی در پوشه content یافت نشد.</p>
+        </div>
       ) : (
         docs.map((doc, index) => (
-          <section key={index} style={{ marginBottom: '50px', background: '#f9f9f9', padding: '20px', borderRadius: '8px', border: '1px solid #eee' }}>
-            <h2 style={{ color: '#0070f3', borderBottom: '1px solid #ddd', paddingBottom: '10px' }}>{doc.title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: doc.content }} />
-          </section>
+          <article key={index} style={{ 
+            background: '#ffffff', 
+            padding: '30px', 
+            borderRadius: '12px', 
+            boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+            marginBottom: '30px',
+            border: '1px solid #e2e8f0'
+          }}>
+            <h2 style={{ 
+              marginTop: 0, 
+              color: '#2563eb', 
+              borderBottom: '2px solid #f1f5f9', 
+              paddingBottom: '12px',
+              fontSize: '20px',
+              textTransform: 'capitalize'
+            }}>
+              {doc.title}
+            </h2>
+            
+            {/* استایل‌دهی تگ‌های داخلی برای جلوگیری از فشردگی */}
+            <div 
+              style={{ lineHeight: '2', fontSize: '15px' }}
+              className="markdown-body"
+              dangerouslySetInnerHTML={{ __html: doc.content }} 
+            />
+          </article>
         ))
       )}
     </main>
