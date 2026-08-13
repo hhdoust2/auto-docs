@@ -25,27 +25,49 @@ export default async function Home() {
   const docs = await getRawMarkdown();
 
   return (
-    <main style={{ maxWidth: '900px', margin: '40px auto', padding: '0 20px', fontFamily: 'monospace' }}>
-      <h1 style={{ fontSize: '20px', borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
-        محتوای خام فایل‌های پوشه content 📄
+    <main style={{ 
+      width: '100%', 
+      maxWidth: '900px', 
+      margin: '0 auto', 
+      padding: '16px', 
+      boxSizing: 'border-box',
+      fontFamily: 'monospace' 
+    }}>
+      <h1 style={{ 
+        fontSize: '18px', 
+        borderBottom: '1px solid #ccc', 
+        paddingBottom: '10px',
+        wordBreak: 'break-word'
+      }}>
+        محتوای خام فایل‌های پوشه content 📱💻
       </h1>
 
       {docs.length === 0 ? (
         <p style={{ marginTop: '20px' }}>هنوز فایلی در پوشه content یافت نشده است.</p>
       ) : (
         docs.map((doc, index) => (
-          <div key={index} style={{ marginTop: '30px' }}>
-            <h3 style={{ background: '#eee', padding: '8px', margin: '0 0 10px 0' }}>
+          <div key={index} style={{ marginTop: '20px', width: '100%' }}>
+            <h3 style={{ 
+              background: '#eee', 
+              padding: '10px', 
+              margin: '0 0 8px 0',
+              fontSize: '15px',
+              borderRadius: '4px',
+              wordBreak: 'break-word'
+            }}>
               📁 {doc.fileName}
             </h3>
             <pre style={{ 
               background: '#f4f4f4', 
-              padding: '15px', 
-              borderRadius: '5px', 
+              padding: '12px', 
+              borderRadius: '6px', 
               whiteSpace: 'pre-wrap', 
-              wordWrap: 'break-word',
-              fontSize: '14px',
-              border: '1px solid #ddd'
+              wordBreak: 'break-word',
+              overflowX: 'auto',
+              fontSize: '13px',
+              lineHeight: '1.6',
+              border: '1px solid #ddd',
+              margin: 0
             }}>
               {doc.content}
             </pre>
