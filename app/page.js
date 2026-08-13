@@ -13,14 +13,9 @@ async function getDocs() {
       const filePath = path.join(contentDir, file);
       const fileContents = fs.readFileSync(filePath, 'utf8');
       
-      const providerName = file
-        .replace('.md', '')
-        .replace(/-/g, ' ')
-        .toUpperCase();
-
       docs.push({
         fileName: file,
-        provider: providerName,
+        provider: file.replace('.md', '').toUpperCase().replace(/-/g, ' '),
         content: fileContents
       });
     }
@@ -28,86 +23,49 @@ async function getDocs() {
   return docs;
 }
 
-export default async function Home() {
-  const docs = await getDocs();
+export default function Home({ docs: initialDocs }) {
+  // برای اینکه در سرور رندر شود
+  const docs = initialDocs; 
+  // (نکته: در Next.js این تابع باید در سرور اجرا شود، 
+  // اگر فایل page.js را طبق دستور قبل دارید، 
+  // همین کد زیر را جایگزین محتوای قبلی کنید)
 
   return (
     <main style={{ 
       width: '100%', 
       maxWidth: '600px', 
       margin: '0 auto', 
-      padding: '12px', 
+      padding: '10px', 
       boxSizing: 'border-box',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      color: '#222'
+      fontFamily: 'sans-serif',
+      direction: 'ltr' // جهت کل سایت چپ‌چین باشد تا کدها به هم نریزند
     }}>
-      <header style={{ 
-        textAlign: 'center', 
-        marginBottom: '16px',
-        padding: '12px 0',
-        borderBottom: '1px solid #ddd'
-      }}>
-        <h1 style={{ fontSize: '18px', margin: '0 0 4px 0' }}>داشبورد مستندات ⚡</h1>
-        <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>
-          برای مشاهده اطلاعات، روی هر گزینه لمس کنید.
-        </p>
+      <header style={{ textAlign: 'center', marginBottom: '20px' }}>
+        <h1 style={{ fontSize: '18px' }}>Documentation Dashboard ⚡</h1>
       </header>
 
-      {docs.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '30px', background: '#fff', borderRadius: '8px' }}>
-          <p style={{ fontSize: '13px', color: '#666' }}>هنوز فایلی یافت نشده است.</p>
-        </div>
-      ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {docs.map((doc, index) => (
-            <details 
-              key={index} 
-              style={{ 
-                background: '#fff', 
-                border: '1px solid #d0d7de', 
-                borderRadius: '8px',
-                overflow: 'hidden',
-                boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
-              }}
-            >
-              <summary style={{ 
-                padding: '12px 14px', 
-                cursor: 'pointer', 
-                fontSize: '14px', 
-                fontWeight: 'bold',
-                background: '#f6f8fa',
-                color: '#0969da',
-                userSelect: 'none',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                wordBreak: 'break-all'
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        {docs.map((doc, index) => (
+          <details key={index} style={{ 
+            background: '#fff', border: '1px solid #ccc', borderRadius: '6px' 
+          }}>
+            <summary style={{ padding: '12px', cursor: 'pointer', fontWeight: 'bold' }}>
+              {doc.provider}
+            </summary>
+            <div style={{ padding: '10px', background: '#f9f9f9', overflowX: 'auto' }}>
+              <pre style={{ 
+                margin: 0, 
+                whiteSpace: 'pre-wrap', 
+                wordBreak: 'break-all', 
+                fontSize: '12px',
+                textAlign: 'left' // متن‌های داخل کد حتماً چپ‌چین باشند
               }}>
-                <span>📁 {doc.provider}</span>
-                <span style={{ fontSize: '11px', color: '#8c959f', fontWeight: 'normal', marginLeft: '6px' }}>چیزیـ</span>
-              </summary>
-
-              <div style={{ padding: '10px', borderTop: '1px solid #d0d7de', background: '#ffffff', overflowX: 'auto' }}>
-                <pre style={{ 
-                  background: '#f6f8fa', 
-                  padding: '10px', 
-                  borderRadius: '6px', 
-                  whiteSpace: 'pre-wrap', 
-                  wordBreak: 'break-word',
-                  fontSize: '11px',
-                  lineHeight: '1.5',
-                  border: '1px solid #eaeef2',
-                  margin: 0,
-                  maxWidth: '100%',
-                  boxSizing: 'border-box'
-                }}>
-                  {doc.content}
-                </pre>
-              </div>
-            </details>
-          ))}
-        </div>
-      )}
+                {doc.content}
+              </pre>
+            </div>
+          </details>
+        ))}
+      </div>
     </main>
   );
 }
