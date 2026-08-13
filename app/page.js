@@ -19,18 +19,29 @@ export default async function Home() {
   const docs = await getDocs();
 
   return (
-    <main style={{ padding: '10px' }}>
+    <main style={{ padding: '10px', fontFamily: 'sans-serif' }}>
       {docs.map((doc, i) => (
         <details key={i} style={{ marginBottom: '10px', border: '1px solid #ccc', borderRadius: '4px' }}>
           <summary style={{ padding: '10px', cursor: 'pointer', fontWeight: 'bold' }}>
             {doc.name}
           </summary>
-          <div style={{ padding: '10px', overflowX: 'auto' }}>
-            {/* 
-               whiteSpace: 'pre' یعنی دقیقا عین فایل اصلی نمایش بده (بدون شکستن خطوط)
-               overflowX: 'auto' یعنی اگر جدول از صفحه موبایل بیرون زد، خودش اسکرول افقی بده
-            */}
-            <pre style={{ margin: 0, whiteSpace: 'pre', fontSize: '12px' }}>
+          {/* 
+              استایل جدید:
+              1. fontFamily: 'monospace' باعث می‌شود ستون‌ها دقیقا زیر هم قرار بگیرند.
+              2. overflowX: 'auto' باعث اسکرول افقی در صورت بزرگ بودن جدول می‌شود.
+          */}
+          <div style={{ 
+            padding: '10px', 
+            overflowX: 'auto', 
+            background: '#f8f8f8' 
+          }}>
+            <pre style={{ 
+              margin: 0, 
+              whiteSpace: 'pre', 
+              fontSize: '12px', 
+              fontFamily: 'monospace',
+              lineHeight: '1.2'
+            }}>
               {doc.content}
             </pre>
           </div>
