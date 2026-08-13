@@ -4,51 +4,28 @@ import path from 'path';
 async function getDocs() {
   const contentDir = path.join(process.cwd(), 'content');
   if (!fs.existsSync(contentDir)) return [];
-
-  const files = fs.readdirSync(contentDir);
-  return files.filter(f => f.endsWith('.md')).map(file => {
-    const content = fs.readFileSync(path.join(contentDir, file), 'utf8');
-    return {
-      name: file.replace('.md', '').toUpperCase(),
-      content: content
-    };
-  });
+  return fs.readdirSync(contentDir).filter(f => f.endsWith('.md'));
 }
 
 export default async function Home() {
-  const docs = await getDocs();
+  const files = await getDocs();
+  // آدرس اصلی ریپازیتوری شما در گیت‌هاب
+  const GITHUB_REPO = "https://github.com/hhdoust2/auto-docs/blob/main/content";
 
   return (
     <main style={{ padding: '10px' }}>
-      {docs.map((doc, i) => (
-        <details key={i} style={{ marginBottom: '15px', border: '1px solid #999', borderRadius: '4px' }}>
-          <summary style={{ padding: '10px', cursor: 'pointer', fontWeight: 'bold', background: '#eee' }}>
-            {doc.name}
+      <h1 style={{ fontSize: '18px', textAlign: 'center' }}>مستندات گیت‌هاب ⚡</h1>
+      {files.map((file, i) => (
+        <details key={i} style={{ marginBottom: '15px', border: '1px solid #ccc', borderRadius: '4px' }}>
+          <summary style={{ padding: '12px', cursor: 'pointer', fontWeight: 'bold', background: '#f4f4f4' }}>
+            {file.toUpperCase()}
           </summary>
-          
-          {/* 
-            این بخش تضمین می‌کند که اسکرول بار ظاهر شود:
-            1. display: block و overflow-x: auto برای فعال کردن نوار اسکرول در موبایل
-            2. whiteSpace: 'pre' برای اینکه جدول‌های متنی به هم نریزند
-            3. min-width برای اینکه مرورگر مجبور شود نوار اسکرول را نشان دهد
-          */}
-          <div style={{ 
-            padding: '10px', 
-            overflowX: 'auto', 
-            WebkitOverflowScrolling: 'touch', // برای نرم‌تر شدن اسکرول در موبایل
-            background: '#fff' 
-          }}>
-            <pre style={{ 
-              margin: 0, 
-              whiteSpace: 'pre', 
-              fontSize: '12px', 
-              fontFamily: 'monospace',
-              lineHeight: '1.4',
-              display: 'inline-block' // باعث می‌شود عرض pre دقیقا به اندازه جدول باشد
-            }}>
-              {doc.content}
-            </pre>
-          </div>
+          {/* Iframe محتوا را مستقیماً از گیت‌هاب می‌کشد و تمام مشکلات نمایش را حل می‌کند */}
+          <iframe 
+            src={`https://github.com/hhdoust2/auto-docs/blob/main/content/${file}?plain=1`} 
+            style={{ width: '100%', height: '500px', border: 'none', marginTop: '10px' }}
+            title={file}
+          />
         </details>
       ))}
     </main>
