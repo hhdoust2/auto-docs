@@ -19,28 +19,32 @@ export default async function Home() {
   const docs = await getDocs();
 
   return (
-    <main style={{ padding: '10px', fontFamily: 'sans-serif' }}>
+    <main style={{ padding: '10px' }}>
       {docs.map((doc, i) => (
-        <details key={i} style={{ marginBottom: '10px', border: '1px solid #ccc', borderRadius: '4px' }}>
-          <summary style={{ padding: '10px', cursor: 'pointer', fontWeight: 'bold' }}>
+        <details key={i} style={{ marginBottom: '15px', border: '1px solid #999', borderRadius: '4px' }}>
+          <summary style={{ padding: '10px', cursor: 'pointer', fontWeight: 'bold', background: '#eee' }}>
             {doc.name}
           </summary>
+          
           {/* 
-              استایل جدید:
-              1. fontFamily: 'monospace' باعث می‌شود ستون‌ها دقیقا زیر هم قرار بگیرند.
-              2. overflowX: 'auto' باعث اسکرول افقی در صورت بزرگ بودن جدول می‌شود.
+            این بخش تضمین می‌کند که اسکرول بار ظاهر شود:
+            1. display: block و overflow-x: auto برای فعال کردن نوار اسکرول در موبایل
+            2. whiteSpace: 'pre' برای اینکه جدول‌های متنی به هم نریزند
+            3. min-width برای اینکه مرورگر مجبور شود نوار اسکرول را نشان دهد
           */}
           <div style={{ 
             padding: '10px', 
             overflowX: 'auto', 
-            background: '#f8f8f8' 
+            WebkitOverflowScrolling: 'touch', // برای نرم‌تر شدن اسکرول در موبایل
+            background: '#fff' 
           }}>
             <pre style={{ 
               margin: 0, 
               whiteSpace: 'pre', 
               fontSize: '12px', 
               fontFamily: 'monospace',
-              lineHeight: '1.2'
+              lineHeight: '1.4',
+              display: 'inline-block' // باعث می‌شود عرض pre دقیقا به اندازه جدول باشد
             }}>
               {doc.content}
             </pre>
