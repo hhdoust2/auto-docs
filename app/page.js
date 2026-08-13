@@ -13,7 +13,6 @@ async function getDocs() {
       const filePath = path.join(contentDir, file);
       const fileContents = fs.readFileSync(filePath, 'utf8');
       
-      // نام پروایدر را از روی نام فایل می‌سازیم (مثلا groq-limits.md تبدیل به Groq Limits می‌شود)
       const providerName = file
         .replace('.md', '')
         .replace(/-/g, ' ')
@@ -35,71 +34,72 @@ export default async function Home() {
   return (
     <main style={{ 
       width: '100%', 
-      maxWidth: '800px', 
+      maxWidth: '600px', 
       margin: '0 auto', 
-      padding: '16px', 
+      padding: '12px', 
       boxSizing: 'border-box',
-      fontFamily: 'system-ui, -apple-system, sans-serif',
-      color: '#333'
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      color: '#222'
     }}>
       <header style={{ 
         textAlign: 'center', 
-        marginBottom: '24px',
-        borderBottom: '1px solid #eaeaea',
-        paddingBottom: '16px'
+        marginBottom: '16px',
+        padding: '12px 0',
+        borderBottom: '1px solid #ddd'
       }}>
-        <h1 style={{ fontSize: '20px', margin: '0 0 8px 0' }}>داشبورد مستندات پروایدرها ⚡</h1>
-        <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>
-          برای مشاهده اطلاعات هر پروایدر، روی آن کلیک کنید.
+        <h1 style={{ fontSize: '18px', margin: '0 0 4px 0' }}>داشبورد مستندات ⚡</h1>
+        <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>
+          برای مشاهده اطلاعات، روی هر گزینه لمس کنید.
         </p>
       </header>
 
       {docs.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '40px', background: '#f9f9f9', borderRadius: '8px' }}>
-          <p style={{ fontSize: '14px', color: '#666' }}>هنوز فایلی در پوشه content یافت نشده است.</p>
+        <div style={{ textAlign: 'center', padding: '30px', background: '#fff', borderRadius: '8px' }}>
+          <p style={{ fontSize: '13px', color: '#666' }}>هنوز فایلی یافت نشده است.</p>
         </div>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           {docs.map((doc, index) => (
             <details 
               key={index} 
               style={{ 
                 background: '#fff', 
-                border: '1px solid #e1e4e8', 
+                border: '1px solid #d0d7de', 
                 borderRadius: '8px',
                 overflow: 'hidden',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
+                boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
               }}
             >
               <summary style={{ 
-                padding: '14px 16px', 
+                padding: '12px 14px', 
                 cursor: 'pointer', 
-                fontSize: '15px', 
+                fontSize: '14px', 
                 fontWeight: 'bold',
                 background: '#f6f8fa',
-                color: '#0366d6',
+                color: '#0969da',
                 userSelect: 'none',
-                outline: 'none',
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center'
+                alignItems: 'center',
+                wordBreak: 'break-all'
               }}>
                 <span>📁 {doc.provider}</span>
-                <span style={{ fontSize: '12px', color: '#586069', fontWeight: 'normal' }}>({doc.fileName})</span>
+                <span style={{ fontSize: '11px', color: '#8c959f', fontWeight: 'normal', marginLeft: '6px' }}>چیزیـ</span>
               </summary>
 
-              <div style={{ padding: '16px', borderTop: '1px solid #e1e4e8', background: '#fff' }}>
+              <div style={{ padding: '10px', borderTop: '1px solid #d0d7de', background: '#ffffff', overflowX: 'auto' }}>
                 <pre style={{ 
                   background: '#f6f8fa', 
-                  padding: '12px', 
+                  padding: '10px', 
                   borderRadius: '6px', 
                   whiteSpace: 'pre-wrap', 
                   wordBreak: 'break-word',
-                  overflowX: 'auto',
-                  fontSize: '12px',
-                  lineHeight: '1.6',
-                  border: '1px solid #e1e4e8',
-                  margin: 0
+                  fontSize: '11px',
+                  lineHeight: '1.5',
+                  border: '1px solid #eaeef2',
+                  margin: 0,
+                  maxWidth: '100%',
+                  boxSizing: 'border-box'
                 }}>
                   {doc.content}
                 </pre>
@@ -111,4 +111,3 @@ export default async function Home() {
     </main>
   );
 }
-
