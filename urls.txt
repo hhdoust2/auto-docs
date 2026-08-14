@@ -5,5 +5,8 @@ https://console.groq.com/docs/rate-limits.md
 [Mistral]
 https://github.com/hhdoust2/auto-docs/blob/main/content/mistral.md
 
+[together]
+https://docs.together.ai/docs/serverless/rate-limits.md
+
 [OpenAI]
 https://raw.githubusercontent.com/...
