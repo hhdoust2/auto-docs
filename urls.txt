@@ -9,5 +9,4 @@ https://github.com/hhdoust2/auto-docs/blob/main/content/mistral.md
 https://docs.together.ai/docs/serverless/models.md
 https://docs.together.ai/docs/serverless/rate-limits.md
 
-[OpenAI]
-https://raw.githubusercontent.com/...
+
