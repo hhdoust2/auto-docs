@@ -34,3 +34,7 @@ This document outlines the API rate limits for Mistral AI models [cite: 1].
 
 ---
 *Source: [cite: 1]*
+
+https://admin.mistral.ai/plateforme/limits
+
+https://docs.mistral.ai/inference/pricing
