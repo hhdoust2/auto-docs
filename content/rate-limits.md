@@ -1,82 +1,92 @@
----
-description: Understand Groq API rate limits, headers, and best practices for managing request and token quotas in your applications.
-title: Rate Limits - GroqDocs
-image: https://console.groq.com/og_cloudv5.jpg
----
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.together.ai/llms.txt
+> Use this file to discover all available pages before exploring further.
 
-# Rate Limits
+# Rate limits
 
-Rate limits act as control measures to regulate how frequently users and applications can access our API within specified timeframes. These limits help ensure service stability, fair access, and protection against misuse so that we can serve reliable and fast inference for all.
+> Together AI applies dynamic per-model rate limits that scale with your sustained traffic on serverless inference.
 
-## [Understanding Rate Limits](#understanding-rate-limits)
+Rate limits cap how often you can call Together AI [serverless models](/docs/serverless/models). They protect platform capacity and keep the service available across users. Limits are set per organization and per model, and they adjust based on your recent usage.
 
-Rate limits are measured in:
+Requests that exceed your limit return a `429 Too Many Requests` error.
 
-* **RPM:** Requests per minute
-* **RPD:** Requests per day
-* **TPM:** Tokens per minute
-* **TPD:** Tokens per day
-* **ASH:** Audio seconds per hour
-* **ASD:** Audio seconds per day
-* **ITPM:** Input tokens per minute
-* **OTPM:** Output tokens per minute
+## Dynamic rate limits
 
-[Cached tokens](https://console.groq.com/docs/prompt-caching) do not count towards your rate limits.
+Together uses dynamic rate limits instead of fixed thresholds. Each organization has a dynamic rate per model that adjusts based on:
 
-Rate limits apply at the organization level, not individual users. You can hit any limit type depending on which threshold you reach first.
+* The model's live capacity.
+* Your recent successful usage on that model.
 
-**Example:** Let's say your RPM = 50 and your TPM = 200K. If you were to send 50 requests with only 100 tokens within a minute, you would reach your limit even though you did not send 200K tokens within those 50 requests.
+Sustained, successful traffic raises your dynamic rate over time. Sudden spikes far above your recent usage may be throttled.
 
-### [Input and Output Token Rate Limits (ITPM / OTPM)](#input-and-output-token-rate-limits-itpm--otpm)
+The exact formula is evolving as Together tunes the system, but the practical takeaway is that steady, successful traffic raises your limit, and bursts well beyond your recent usage do not.
 
-In addition to the combined TPM limit, some organizations are also subject to separate per-minute limits on input tokens (ITPM) and output tokens (OTPM). For example, an OTPM limit caps how many completion tokens your organization can generate per minute, regardless of how many input tokens are sent.
+### How Together handles traffic spikes
 
-If these limits are configured on your account, you'll see your TPM value on the [Limits page](https://console.groq.com/settings/limits) — hover over it to see the **"X in / Y out"** breakdown. If no breakdown appears, your organization has a single combined TPM cap with no separate input/output limits.
+The Together platform buffers sudden traffic spikes so that every user keeps receiving timely responses. Best-effort smoothing absorbs most bursts before any limiting is applied.
 
-## [Rate Limits](#rate-limits)
+If a burst still produces failures, the error code you get back depends on whether the failed request was below or above your dynamic rate:
 
-The following is a high level summary and there may be exceptions to these limits. You can view the current, exact rate limits for your organization on the [limits page](https://console.groq.com/settings/limits) in your account settings.
+* **Requests at or below your dynamic rate** return `503 Service Unavailable`. These failures are attributed to platform capacity, i.e., the model is overloaded and unable to serve requests (not due to your usage).
+* **Requests above your dynamic rate** return `429 Too Many Requests` with one of these error types:
+  * `error_type: "dynamic_request_limited"` for request-based limiting.
+  * `error_type: "dynamic_token_limited"` for token-based limiting.
 
-**Need higher rate limits?** Upgrade to [Developer plan](https://console.groq.com/settings/billing/plans) to access higher limits, [Batch](https://console.groq.com/docs/batch) and [Flex](https://console.groq.com/docs/flex-processing) processing, and more. Note that the limits shown below are the base limits for the Developer plan, and higher limits are available for select workloads and enterprise use cases.
+### Rewards for sustained traffic
 
-|          |     |     |     |     |     |     |
-| -------- | --- | --- | --- | --- | --- | --- |
-| MODEL ID | RPM | RPD | TPM | TPD | ASH | ASD |
+Steady traffic helps Together predict demand and scale capacity over time. If your request rate increases gradually and stays consistent, your success rate will improve, which raises your dynamic rate (the burst cushion based on recent successful usage). The platform then ramps up capacity to match the new steady load, leaving more headroom for future bursts.
 
-| canopylabs/orpheus-arabic-saudi     | 10 | 100   | 1.2K | 3.6K | \-   | \-    |
-| ----------------------------------- | -- | ----- | ---- | ---- | ---- | ----- |
-| canopylabs/orpheus-v1-english       | 10 | 100   | 1.2K | 3.6K | \-   | \-    |
-| groq/compound                       | 30 | 250   | 70K  | \-   | \-   | \-    |
-| groq/compound-mini                  | 30 | 250   | 70K  | \-   | \-   | \-    |
-| llama-3.1-8b-instant                | 30 | 14.4K | 6K   | 500K | \-   | \-    |
-| llama-3.3-70b-versatile             | 30 | 1K    | 12K  | 100K | \-   | \-    |
-| meta-llama/llama-prompt-guard-2-22m | 30 | 14.4K | 15K  | 500K | \-   | \-    |
-| meta-llama/llama-prompt-guard-2-86m | 30 | 14.4K | 15K  | 500K | \-   | \-    |
-| openai/gpt-oss-120b                 | 30 | 1K    | 8K   | 200K | \-   | \-    |
-| openai/gpt-oss-20b                  | 30 | 1K    | 8K   | 200K | \-   | \-    |
-| openai/gpt-oss-safeguard-20b        | 30 | 1K    | 8K   | 200K | \-   | \-    |
-| qwen/qwen3.6-27b                    | 30 | 1K    | 8K   | 200K | \-   | \-    |
-| whisper-large-v3                    | 20 | 2K    | \-   | \-   | 7.2K | 28.8K |
-| whisper-large-v3-turbo              | 20 | 2K    | \-   | \-   | 7.2K | 28.8K |
+## Best practices
 
-## [Rate Limit Headers](#rate-limit-headers)
+To maximize successful requests on serverless models:
 
-In addition to viewing your limits on your account's [limits](https://console.groq.com/settings/limits) page, you can also view rate limit information such as remaining requests and tokens in HTTP response headers as follows:
+* Stay within your rate limit.
+* Send steady, consistent traffic. Avoid bursts.
 
-The following headers are set (values are illustrative):
+For example, if your limit is 60 requests per minute (RPM), send roughly 1 request per second (RPS) across the minute rather than 60 requests in a single second. The shorter the window you concentrate requests into, the burstier the traffic. Together does its best to serve bursty traffic, but success depends on the model's real-time load and available capacity at that moment.
 
-| Header                         | Value    | Notes                                    |
-| ------------------------------ | -------- | ---------------------------------------- |
-| retry-after                    | 2        | In seconds                               |
-| x-ratelimit-limit-requests     | 14400    | Always refers to Requests Per Day (RPD)  |
-| x-ratelimit-limit-tokens       | 18000    | Always refers to Tokens Per Minute (TPM) |
-| x-ratelimit-remaining-requests | 14370    | Always refers to Requests Per Day (RPD)  |
-| x-ratelimit-remaining-tokens   | 17997    | Always refers to Tokens Per Minute (TPM) |
-| x-ratelimit-reset-requests     | 2m59.56s | Always refers to Requests Per Day (RPD)  |
-| x-ratelimit-reset-tokens       | 7.66s    | Always refers to Tokens Per Minute (TPM) |
+When a request is rate limited, the `429` response includes `x-ratelimit-reset`, which reports the suggested retry interval for the model. Consider using **exponential backoff** so requests continue trying again with increasing wait times, instead of failing immediately. For spend and usage trends across keys and workloads, see your project's [cost analytics page](https://api.together.ai/settings/projects/~current/cost-analytics).
 
-## [Handling Rate Limits](#handling-rate-limits)
+### Inspect your current rate limit
 
-When you exceed rate limits, our API returns a `429 Too Many Requests` HTTP status code.
+Dynamic rate limits adjust with usage, so there are no fixed per-model limits published. The most reliable signal is the response itself: successful requests come back without rate-limit headers, and when you hit a `429` the response includes `x-ratelimit-reset` with the number of seconds to wait before retrying.
 
-**Note**: `retry-after` is only set if you hit the rate limit and status code 429 is returned. The other headers are always included.
+<CodeGroup>
+  ```python Python theme={null}
+  import os
+  from together import Together
+
+  client = Together(api_key=os.environ["TOGETHER_API_KEY"])
+
+  response = client.chat.completions.with_raw_response.create(
+      model="meta-llama/Llama-3.3-70B-Instruct-Turbo",
+      messages=[{"role": "user", "content": "ping"}],
+  )
+
+  reset = response.http_response.headers.get("x-ratelimit-reset")
+  if reset is None:
+      print("status:", response.http_response.status_code, "(not rate limited)")
+  else:
+      print("rate limited, retry in", reset, "seconds")
+  ```
+
+  ```bash cURL theme={null}
+  curl -i https://api.together.ai/v1/chat/completions \
+    -H "Authorization: Bearer $TOGETHER_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+      "messages": [{"role": "user", "content": "ping"}]
+    }' | grep -i "x-ratelimit-reset" || echo "not rate limited"
+  ```
+</CodeGroup>
+
+If you need a known, fixed limit (for capacity planning or strict SLAs), use a [dedicated endpoint](/docs/dedicated-endpoints/overview) instead.
+
+## Alternatives for high-volume or bursty workloads
+
+If your workload needs higher throughput or runs in large bursts, consider:
+
+* [Batch inference](/docs/inference/batch/overview) for high request or token volumes when latency is not critical. You pay for what you use, with discounts on most models.
+* [Provisioned throughput](/docs/inference/provisioned-throughput) for production workloads on stock models that need a defined SLA covering committed throughput (TPM) and reliability.
+* [Dedicated inference](/docs/dedicated-endpoints/overview) for predictable, reserved capacity that you control. Use it for fine-tuned models, or workloads that need direct control over hardware, latency, and throughput.
