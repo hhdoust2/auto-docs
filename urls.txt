@@ -1,6 +1,6 @@
 
 [Google]
-https://raw.githubusercontent.com/hhdoust2/auto-docs/main/content/Google_api_limits.md
+https://raw.githubusercontent.com/hhdoust2/auto-docs/main/content/gemini_rate_limit.md
 
 [Groq]
 https://console.groq.com/docs/models.md
