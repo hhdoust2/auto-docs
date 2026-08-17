@@ -2,6 +2,8 @@
 [Google]
 https://raw.githubusercontent.com/hhdoust2/auto-docs/main/content/gemini_rate_limit.md
 
+https://github.com/hhdoust2/auto-docs/blob/main/content/gemini_rate_limits.md
+
 [Groq]
 https://console.groq.com/docs/models.md
 https://console.groq.com/docs/rate-limits.md
