@@ -46,7 +46,7 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | Qwen              | Qwen3.7 Max                  | Qwen/Qwen3.7-Max                        | -              | \$1.25                        | -                                    | \$3.75                         | -            | -                | -                  |
 | Qwen              | Qwen3.6 Plus                 | Qwen/Qwen3.6-Plus                       | 1000000        | \$0.50                        | -                                    | \$3.00                         | -            | -                | -                  |
 | Qwen              | Qwen3.5 9B                   | Qwen/Qwen3.5-9B                         | 262144         | \$0.17                        | -                                    | \$0.25                         | FP8          | Yes              | Yes                |
-| Moonshot          | Kimi K3                      | moonshotai/Kimi-K3                      | 1000000        | \$3.00                        | \$0.30                               | \$15.00                        | -            | Yes              | Yes                |
+| Moonshot          | Kimi K3                      | moonshotai/Kimi-K3                      | 1048576        | \$3.00                        | \$0.30                               | \$15.00                        | -            | Yes              | Yes                |
 | Moonshot          | Kimi K2.7 Code               | moonshotai/Kimi-K2.7-Code               | 262144         | \$0.95                        | \$0.19                               | \$4.00                         | FP4          | Yes              | Yes                |
 | Moonshot          | Kimi K2.6                    | moonshotai/Kimi-K2.6                    | 262144         | \$1.20                        | \$0.20                               | \$4.50                         | FP4          | Yes              | Yes                |
 | Z.ai              | GLM-5.2                      | zai-org/GLM-5.2                         | 512000         | \$1.40                        | \$0.26                               | \$4.40                         | FP4          | Yes              | Yes                |
@@ -163,7 +163,7 @@ If you're not sure which vision model to use, we currently recommend **Qwen3.5 9
 | Qwen         | Qwen3.5 9B     | Qwen/Qwen3.5-9B           | 262144         | \$0.17                        | \$0.25                         |
 | Google       | Gemma 4 31B IT | google/gemma-4-31B-it     | 262144         | \$0.39                        | \$0.97                         |
 | Minimax      | Minimax M3     | MiniMaxAI/MiniMax-M3      | 524288         | \$0.30                        | \$1.20                         |
-| Moonshot     | Kimi K3        | moonshotai/Kimi-K3        | 1000000        | \$3.00                        | \$15.00                        |
+| Moonshot     | Kimi K3        | moonshotai/Kimi-K3        | 1048576        | \$3.00                        | \$15.00                        |
 | Moonshot     | Kimi K2.7 Code | moonshotai/Kimi-K2.7-Code | 262144         | \$0.95                        | \$4.00                         |
 | Moonshot     | Kimi K2.6      | moonshotai/Kimi-K2.6      | 262144         | \$1.20                        | \$4.50                         |
 
