@@ -48,7 +48,7 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | Qwen              | Qwen3.5 9B                   | Qwen/Qwen3.5-9B                         | 262144         | \$0.17                        | -                                    | \$0.25                         | FP8          | Yes              | Yes                |
 | Moonshot          | Kimi K3                      | moonshotai/Kimi-K3                      | 1048576        | \$3.00                        | \$0.30                               | \$15.00                        | -            | Yes              | Yes                |
 | Moonshot          | Kimi K2.7 Code               | moonshotai/Kimi-K2.7-Code               | 262144         | \$0.95                        | \$0.19                               | \$4.00                         | FP4          | Yes              | Yes                |
-| Z.ai              | GLM-5.2                      | zai-org/GLM-5.2                         | 512000         | \$1.40                        | \$0.26                               | \$4.40                         | FP4          | Yes              | Yes                |
+| Z.ai              | GLM-5.2                      | zai-org/GLM-5.2                         | 1000000        | \$1.40                        | \$0.26                               | \$4.40                         | FP4          | Yes              | Yes                |
 | OpenAI            | GPT-OSS 120B                 | openai/gpt-oss-120b                     | 128000         | \$0.15                        | -                                    | \$0.60                         | MXFP4        | Yes              | Yes                |
 | OpenAI            | GPT-OSS 20B                  | openai/gpt-oss-20b                      | 128000         | \$0.05                        | -                                    | \$0.20                         | MXFP4        | Yes              | Yes                |
 | DeepSeek          | DeepSeek-V4-Pro              | deepseek-ai/DeepSeek-V4-Pro             | 512000         | \$1.74                        | \$0.20                               | \$3.48                         | FP4          | Yes              | Yes                |
@@ -56,11 +56,9 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | DeepSeek          | DeepSeek V4 Pro 0813         | deepseek-ai/DeepSeek-V4-Pro-0813        | 1048576        | \$1.32                        | \$0.13                               | \$3.96                         | NVFP4        | Yes              | Yes                |
 | NVIDIA            | Nemotron 3 Ultra 550B A55B   | nvidia/nemotron-3-ultra-550b-a55b       | 512300         | \$0.60                        | \$0.20                               | \$3.60                         | NVFP4        | Yes              | Yes                |
 | Meta              | Llama 3.3 70B Instruct Turbo | meta-llama/Llama-3.3-70B-Instruct-Turbo | 131072         | \$1.04                        | -                                    | \$1.04                         | FP8          | Yes              | Yes                |
-| Qwen              | Qwen 2.5 7B Instruct Turbo   | Qwen/Qwen2.5-7B-Instruct-Turbo          | 32768          | \$0.30                        | -                                    | \$0.30                         | FP8          | Yes              | Yes                |
 | Google            | Gemma 4 31B Instruct         | google/gemma-4-31B-it                   | 262144         | \$0.39                        | -                                    | \$0.97                         | FP8          | Yes              | Yes                |
 | Pearl AI          | Gemma 4 31B Instruct         | pearl-ai/gemma-4-31b-it                 | 32000          | \$0.28                        | -                                    | \$0.86                         | INT8         | -                | -                  |
 | Qwen              | Qwen3.7 Plus                 | Qwen/Qwen3.7-Plus                       | 1000000        | \$0.32                        | -                                    | \$1.28                         | -            | -                | -                  |
-| Google            | Gemma 3N E4B Instruct        | google/gemma-3n-E4B-it                  | 32768          | \$0.06                        | -                                    | \$0.12                         | -            | -                | -                  |
 | Thinking Machines | Inkling Small                | thinkingmachines/Inkling-Small          | 524288         | \$0.50                        | -                                    | \$1.20                         | -            | -                | -                  |
 | Prism ML          | Ternary Bonsai 27B           | Prism-ML/Ternary-Bonsai-27B             | 262144         | Free                          | -                                    | Free                           | -            | -                | -                  |
 | Meta              | Muse Glimmer 30B             | meta-models/Muse-Glimmer-30B            | 131072         | \$0.35                        | \$0.04                               | \$1.50                         | FP8          | -                | -                  |
@@ -84,7 +82,6 @@ Use our [Images](/reference/post-images-generations) endpoint for image models.
 | Google            | Imagen 4.0 Ultra                                 | google/imagen-4.0-ultra                  | \$0.06       | -             |
 | Google            | Flash Image 2.5 (Nano Banana)                    | google/flash-image-2.5                   | \$0.039      | -             |
 | Google            | Gemini 3 Pro Image (Nano Banana Pro)             | google/gemini-3-pro-image                | \$0.134      | -             |
-| Black Forest Labs | Flux.1 \[schnell] (Turbo)                        | black-forest-labs/FLUX.1-schnell         | \$0.0027     | 4             |
 | Black Forest Labs | Flux1.1 \[pro]                                   | black-forest-labs/FLUX.1.1-pro           | \$0.04       | -             |
 | Black Forest Labs | Flux.1 Kontext \[pro]                            | black-forest-labs/FLUX.1-kontext-pro     | \$0.04       | 28            |
 | Black Forest Labs | Flux.1 Kontext \[max]                            | black-forest-labs/FLUX.1-kontext-max     | \$0.08       | 28            |
@@ -256,6 +253,5 @@ There are currently no rerank models offered via serverless. Rerank models like 
 
 ## Moderation models
 
-| Organization | Model name        | API model string             | Context length | Input pricing (per 1M tokens) | Output pricing (per 1M tokens) |
-| :----------- | :---------------- | :--------------------------- | :------------- | :---------------------------- | :----------------------------- |
-| Meta         | Llama Guard 4 12B | meta-llama/Llama-Guard-4-12B | 1048576        | \$0.20                        | \$0.20                         |
+| Organization | Model name | API model string | Context length | Input pricing (per 1M tokens) | Output pricing (per 1M tokens) |
+| :----------- | :--------- | :--------------- | :------------- | :---------------------------- | :----------------------------- |
