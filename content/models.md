@@ -253,5 +253,4 @@ There are currently no rerank models offered via serverless. Rerank models like 
 
 ## Moderation models
 
-| Organization | Model name | API model string | Context length | Input pricing (per 1M tokens) | Output pricing (per 1M tokens) |
-| :----------- | :--------- | :--------------- | :------------- | :---------------------------- | :----------------------------- |
+There are currently no moderation models offered via serverless.
