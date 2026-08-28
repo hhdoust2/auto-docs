@@ -47,17 +47,14 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | Qwen              | Qwen3.6 Plus                 | Qwen/Qwen3.6-Plus                       | 1000000        | \$0.50                        | -                                    | \$3.00                         | -            | -                | -                  |
 | Qwen              | Qwen3.5 9B                   | Qwen/Qwen3.5-9B                         | 262144         | \$0.17                        | -                                    | \$0.25                         | FP8          | Yes              | Yes                |
 | Moonshot          | Kimi K3                      | moonshotai/Kimi-K3                      | 1048576        | \$3.00                        | \$0.30                               | \$15.00                        | -            | Yes              | Yes                |
-| Moonshot          | Kimi K2.7 Code               | moonshotai/Kimi-K2.7-Code               | 262144         | \$0.95                        | \$0.19                               | \$4.00                         | FP4          | Yes              | Yes                |
+| Z.ai              | GLM-5.3 Flash                | zai-org/GLM-5.3-Flash                   | 1000000        | \$0.15                        | \$0.03                               | \$0.50                         | FP8          | Yes              | Yes                |
 | Z.ai              | GLM-5.2                      | zai-org/GLM-5.2                         | 1000000        | \$1.40                        | \$0.26                               | \$4.40                         | FP4          | Yes              | Yes                |
 | OpenAI            | GPT-OSS 120B                 | openai/gpt-oss-120b                     | 128000         | \$0.15                        | -                                    | \$0.60                         | MXFP4        | Yes              | Yes                |
 | OpenAI            | GPT-OSS 20B                  | openai/gpt-oss-20b                      | 128000         | \$0.05                        | -                                    | \$0.20                         | MXFP4        | Yes              | Yes                |
-| DeepSeek          | DeepSeek-V4-Pro              | deepseek-ai/DeepSeek-V4-Pro             | 512000         | \$1.74                        | \$0.20                               | \$3.48                         | FP4          | Yes              | Yes                |
 | DeepSeek          | DeepSeek-V4-Flash-0731       | deepseek-ai/DeepSeek-V4-Flash-0731      | 1000000        | \$0.14                        | \$0.03                               | \$0.28                         | FP4          | Yes              | Yes                |
 | DeepSeek          | DeepSeek V4 Pro 0813         | deepseek-ai/DeepSeek-V4-Pro-0813        | 1048576        | \$1.32                        | \$0.13                               | \$3.96                         | NVFP4        | Yes              | Yes                |
-| NVIDIA            | Nemotron 3 Ultra 550B A55B   | nvidia/nemotron-3-ultra-550b-a55b       | 512300         | \$0.60                        | \$0.20                               | \$3.60                         | NVFP4        | Yes              | Yes                |
 | Meta              | Llama 3.3 70B Instruct Turbo | meta-llama/Llama-3.3-70B-Instruct-Turbo | 131072         | \$1.04                        | -                                    | \$1.04                         | FP8          | Yes              | Yes                |
 | Google            | Gemma 4 31B Instruct         | google/gemma-4-31B-it                   | 262144         | \$0.39                        | -                                    | \$0.97                         | FP8          | Yes              | Yes                |
-| Pearl AI          | Gemma 4 31B Instruct         | pearl-ai/gemma-4-31b-it                 | 32000          | \$0.28                        | -                                    | \$0.86                         | INT8         | -                | -                  |
 | Qwen              | Qwen3.7 Plus                 | Qwen/Qwen3.7-Plus                       | 1000000        | \$0.32                        | -                                    | \$1.28                         | -            | -                | -                  |
 | Thinking Machines | Inkling Small                | thinkingmachines/Inkling-Small          | 524288         | \$0.50                        | -                                    | \$1.20                         | -            | -                | -                  |
 | Prism ML          | Ternary Bonsai 27B           | Prism-ML/Ternary-Bonsai-27B             | 262144         | Free                          | -                                    | Free                           | -            | -                | -                  |
@@ -152,13 +149,12 @@ Supported dimensions: 1K: 1024×1024 (1:1), 1264×848 (3:2), 848×1264 (2:3), 12
 
 If you're not sure which vision model to use, we currently recommend **Qwen3.5 9B** (`Qwen/Qwen3.5-9B`) to get started. For model specific rate limits, navigate [here](/docs/serverless/rate-limits).
 
-| Organization | Model name     | API model string          | Context length | Input pricing (per 1M tokens) | Output pricing (per 1M tokens) |
-| :----------- | :------------- | :------------------------ | :------------- | :---------------------------- | :----------------------------- |
-| Qwen         | Qwen3.5 9B     | Qwen/Qwen3.5-9B           | 262144         | \$0.17                        | \$0.25                         |
-| Google       | Gemma 4 31B IT | google/gemma-4-31B-it     | 262144         | \$0.39                        | \$0.97                         |
-| Minimax      | Minimax M3     | MiniMaxAI/MiniMax-M3      | 524288         | \$0.30                        | \$1.20                         |
-| Moonshot     | Kimi K3        | moonshotai/Kimi-K3        | 1048576        | \$3.00                        | \$15.00                        |
-| Moonshot     | Kimi K2.7 Code | moonshotai/Kimi-K2.7-Code | 262144         | \$0.95                        | \$4.00                         |
+| Organization | Model name     | API model string      | Context length | Input pricing (per 1M tokens) | Output pricing (per 1M tokens) |
+| :----------- | :------------- | :-------------------- | :------------- | :---------------------------- | :----------------------------- |
+| Qwen         | Qwen3.5 9B     | Qwen/Qwen3.5-9B       | 262144         | \$0.17                        | \$0.25                         |
+| Google       | Gemma 4 31B IT | google/gemma-4-31B-it | 262144         | \$0.39                        | \$0.97                         |
+| Minimax      | Minimax M3     | MiniMaxAI/MiniMax-M3  | 524288         | \$0.30                        | \$1.20                         |
+| Moonshot     | Kimi K3        | moonshotai/Kimi-K3    | 1048576        | \$3.00                        | \$15.00                        |
 
 ### **Vision model examples**
 
