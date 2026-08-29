@@ -1,8 +1,7 @@
 
-[ Google]
-[🔸 ]
+[🪧 Google]
 https://ai.google.dev/gemini-api/docs/models.md.txt
-[▪️ ]
+
 https://ai.google.dev/gemini-api/docs/rate-limits.md.txt
 
 https://raw.githubusercontent.com/hhdoust2/auto-docs/main/content/gemini_rate_limits.md
