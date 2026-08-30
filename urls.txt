@@ -17,4 +17,5 @@ https://raw.githubusercontent.com/hhdoust2/auto-docs/main/content/mistral_api_li
 https://docs.together.ai/docs/serverless/models.md
 https://docs.together.ai/docs/serverless/rate-limits.md
 
-
+[🔵 Cloudflare ]
+https://developers.cloudflare.com/workers-ai/platform/pricing/index.md
