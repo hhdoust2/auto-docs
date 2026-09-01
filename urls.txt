@@ -1,25 +1,29 @@
 
 [🔴 Google]
+
 https://ai.google.dev/gemini-api/docs/models.md.txt
-[🔸 ]
+
 https://ai.google.dev/gemini-api/docs/rate-limits.md.txt
 
 https://raw.githubusercontent.com/hhdoust2/auto-docs/main/content/gemini_rate_limits.md
 
 [🟠 Groq]
+
 https://console.groq.com/docs/models.md
 https://console.groq.com/docs/rate-limits.md
 
 [🟡 Mistral]
+
 https://raw.githubusercontent.com/hhdoust2/auto-docs/main/content/mistral_api_limits.md
 
 [🟢 together]
+
 https://docs.together.ai/docs/serverless/models.md
 https://docs.together.ai/docs/serverless/rate-limits.md
 
 [🔵 Cloudflare ]
+
 https://developers.cloudflare.com/workers-ai/platform/pricing/index.md
 
 [🟣 Anymodel]
-[🔸 ]
 https://anymodel.org/api-docs.md
