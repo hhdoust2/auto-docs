@@ -21,4 +21,5 @@ https://docs.together.ai/docs/serverless/rate-limits.md
 https://developers.cloudflare.com/workers-ai/platform/pricing/index.md
 
 [🟣 Anymodel]
+[🔸 ]
 https://anymodel.org/api-docs.md
