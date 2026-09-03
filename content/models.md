@@ -42,16 +42,16 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | :---------------- | :--------------------------- | :-------------------------------------- | :------------- | :---------------------------- | :----------------------------------- | :----------------------------- | :----------- | :--------------- | :----------------- |
 | Thinking Machines | Inkling                      | thinkingmachines/Inkling                | 524288         | \$1.00                        | \$0.17                               | \$4.05                         | NVFP4        | Yes              | Yes                |
 | Minimax           | Minimax M3                   | MiniMaxAI/MiniMax-M3                    | 524288         | \$0.30                        | \$0.06                               | \$1.20                         | FP4          | Yes              | Yes                |
-| Qwen              | Qwen3.8-2.4T-A95B            | Qwen/Qwen3.8-2.4T-A95B                  | -              | \$2.50                        | \$0.50                               | \$6.25                         | FP4          | -                | -                  |
-| Qwen              | Qwen3.7 Max                  | Qwen/Qwen3.7-Max                        | -              | \$2.50                        | -                                    | \$7.50                         | -            | -                | -                  |
+| Qwen              | Qwen3.8-2.4T-A95B            | Qwen/Qwen3.8-2.4T-A95B                  | -              | \$2.00                        | \$0.50                               | \$6.00                         | FP4          | -                | -                  |
+| Qwen              | Qwen3.7 Max                  | Qwen/Qwen3.7-Max                        | -              | \$2.50                        | \$0.50                               | \$7.50                         | -            | -                | -                  |
 | Qwen              | Qwen3.6 Plus                 | Qwen/Qwen3.6-Plus                       | 1000000        | \$0.50                        | -                                    | \$3.00                         | -            | -                | -                  |
 | Qwen              | Qwen3.5 9B                   | Qwen/Qwen3.5-9B                         | 262144         | \$0.17                        | -                                    | \$0.25                         | FP8          | Yes              | Yes                |
 | Moonshot          | Kimi K3                      | moonshotai/Kimi-K3                      | 1048576        | \$3.00                        | \$0.30                               | \$15.00                        | -            | Yes              | Yes                |
-| Z.ai              | GLM-5.3                      | zai-org/GLM-5.3                         | 1000000        | \$1.40                        | \$0.26                               | \$4.40                         | FP4          | Yes              | Yes                |
-| Z.ai              | GLM-5.3 Flash                | zai-org/GLM-5.3-Flash                   | 1000000        | \$0.15                        | \$0.03                               | \$0.50                         | FP8          | Yes              | Yes                |
-| Z.ai              | GLM-5.2                      | zai-org/GLM-5.2                         | 1000000        | \$1.40                        | \$0.26                               | \$4.40                         | FP4          | Yes              | Yes                |
-| OpenAI            | GPT-OSS 120B                 | openai/gpt-oss-120b                     | 128000         | \$0.15                        | -                                    | \$0.60                         | MXFP4        | Yes              | Yes                |
-| DeepSeek          | DeepSeek-V4-Flash-0731       | deepseek-ai/DeepSeek-V4-Flash-0731      | 1000000        | \$0.14                        | \$0.03                               | \$0.28                         | FP4          | Yes              | Yes                |
+| Z.ai              | GLM-5.3                      | zai-org/GLM-5.3                         | 1048575        | \$1.40                        | \$0.26                               | \$4.40                         | FP4          | Yes              | Yes                |
+| Z.ai              | GLM-5.3 Flash                | zai-org/GLM-5.3-Flash                   | 1048575        | \$0.15                        | \$0.03                               | \$0.50                         | FP8          | Yes              | Yes                |
+| Z.ai              | GLM-5.2                      | zai-org/GLM-5.2                         | 1048575        | \$1.40                        | \$0.26                               | \$4.40                         | FP4          | Yes              | Yes                |
+| OpenAI            | GPT-OSS 120B                 | openai/gpt-oss-120b                     | 131072         | \$0.15                        | -                                    | \$0.60                         | MXFP4        | Yes              | Yes                |
+| DeepSeek          | DeepSeek-V4-Flash-0731       | deepseek-ai/DeepSeek-V4-Flash-0731      | 1048576        | \$0.14                        | \$0.03                               | \$0.28                         | FP4          | Yes              | Yes                |
 | DeepSeek          | DeepSeek V4 Pro 0813         | deepseek-ai/DeepSeek-V4-Pro-0813        | 1048576        | \$1.32                        | \$0.13                               | \$3.96                         | NVFP4        | Yes              | Yes                |
 | Meta              | Llama 3.3 70B Instruct Turbo | meta-llama/Llama-3.3-70B-Instruct-Turbo | 131072         | \$1.04                        | -                                    | \$1.04                         | FP8          | Yes              | Yes                |
 | Qwen              | Qwen3.7 Plus                 | Qwen/Qwen3.7-Plus                       | 1000000        | \$0.32                        | -                                    | \$1.28                         | -            | -                | -                  |
@@ -162,44 +162,45 @@ If you're not sure which vision model to use, we currently recommend **Qwen3.5 9
 
 ## Video models
 
-| Organization      | Model name             | Model string for API       | Price per video | Resolution / duration |
-| :---------------- | :--------------------- | :------------------------- | :-------------- | :-------------------- |
-| MiniMax           | MiniMax 01 Director    | minimax/video-01-director  | \$0.28          | 720p / 5s             |
-| MiniMax           | MiniMax Hailuo 02      | minimax/hailuo-02          | \$0.49          | 768p / 10s            |
-| Google            | Veo 2.0                | google/veo-2.0             | \$2.50          | 720p / 5s             |
-| Google            | Veo 3.0                | google/veo-3.0             | \$1.60          | 720p / 8s             |
-| Google            | Veo 3.0 + Audio        | google/veo-3.0-audio       | \$3.20          | 720p / 8s             |
-| Google            | Veo 3.0 Fast           | google/veo-3.0-fast        | \$0.80          | 1080p / 8s            |
-| Google            | Veo 3.0 Fast + Audio   | google/veo-3.0-fast-audio  | \$1.20          | 1080p / 8s            |
-| ByteDance         | Seedance 1.0 Pro       | ByteDance/Seedance-1.0-pro | \$0.57          | 1080p / 5s            |
-| PixVerse          | PixVerse v5            | pixverse/pixverse-v5       | \$0.30          | 1080p / 5s            |
-| Kuaishou          | Kling 2.1 Master       | kwaivgI/kling-2.1-master   | \$0.92          | 1080p / 5s            |
-| Kuaishou          | Kling 2.1 Standard     | kwaivgI/kling-2.1-standard | \$0.18          | 720p / 5s             |
-| Kuaishou          | Kling 2.1 Pro          | kwaivgI/kling-2.1-pro      | \$0.32          | 1080p / 5s            |
-| Kuaishou          | Kling 1.6 Standard     | kwaivgI/kling-1.6-standard | \$0.19          | 720p / 5s             |
-| Vidu              | Vidu 2.0               | vidu/vidu-2.0              | \$0.80          | 720p / 8s             |
-| Vidu              | Vidu Q1                | vidu/vidu-q1               | \$0.22          | 1080p / 5s            |
-| OpenAI            | Sora 2                 | openai/sora-2              | \$0.80          | 720p / 8s             |
-| OpenAI            | Sora 2 Pro             | openai/sora-2-pro          | \$2.40          | 1080p / 8s            |
-| PixVerse          | PixVerse v5.6          | pixverse/pixverse-v5.6     | \$0.1326        | -                     |
-| Wan-AI            | Wan 2.7 T2V            | Wan-AI/wan2.7-t2v          | \$0.10          | -                     |
-| Google            | Veo 3.1 Debug Test     | google/veo-3.1-test-debug  | \$0.08          | -                     |
-| Vidu              | Vidu Q3                | vidu/vidu-q3               | \$0.0975        | -                     |
-| Vidu              | Vidu Q3 Turbo          | vidu/vidu-q3-turbo         | \$0.195         | -                     |
-| Wan-AI            | Wan 2.7 I2V            | Wan-AI/wan2.7-i2v          | \$0.10          | -                     |
-| Wan-AI            | Wan 2.7 R2V            | Wan-AI/wan2.7-r2v          | \$0.10          | -                     |
-| PixVerse          | PixVerse v6            | pixverse/pixverse-v6       | \$0.09          | -                     |
-| Alibaba           | HappyHorse 1.0 T2V     | alibaba/happyhorse-1.0-t2v | \$0.24          | -                     |
-| ByteDance         | ByteDance Seedance 2.0 | ByteDance/Seedance-2.0     | \$0.16          | -                     |
-| Alibaba           | HappyHorse 1.0 I2V     | alibaba/happyhorse-1.0-i2v | \$0.24          | -                     |
-| Alibaba           | HappyHorse 1.0 R2V     | alibaba/happyhorse-1.0-r2v | \$0.24          | -                     |
-| Google            | Veo 3.1                | google/veo-3.1             | \$0.08          | -                     |
-| Google            | Veo 3.1 Lite           | google/veo-3.1-lite        | \$0.05          | -                     |
-| Alibaba           | HappyHorse 1.1 I2V     | alibaba/happyhorse-1.1-i2v | \$0.14          | -                     |
-| Alibaba           | HappyHorse 1.1 R2V     | alibaba/happyhorse-1.1-r2v | \$0.14          | -                     |
-| Alibaba           | HappyHorse 1.1 T2V     | alibaba/happyhorse-1.1-t2v | \$0.14          | -                     |
-| Black Forest Labs | FLUX 3                 | black-forest-labs/FLUX-3   | \$0.17          | -                     |
-| ByteDance         | ByteDance Seedance 2.5 | ByteDance/Seedance-2.5     | \$0.115         | -                     |
+| Organization      | Model name           | Model string for API        | Price per video | Resolution / duration |
+| :---------------- | :------------------- | :-------------------------- | :-------------- | :-------------------- |
+| MiniMax           | MiniMax 01 Director  | minimax/video-01-director   | \$0.28          | 720p / 5s             |
+| MiniMax           | MiniMax Hailuo 02    | minimax/hailuo-02           | \$0.49          | 768p / 10s            |
+| Google            | Veo 2.0              | google/veo-2.0              | \$2.50          | 720p / 5s             |
+| Google            | Veo 3.0              | google/veo-3.0              | \$1.60          | 720p / 8s             |
+| Google            | Veo 3.0 + Audio      | google/veo-3.0-audio        | \$3.20          | 720p / 8s             |
+| Google            | Veo 3.0 Fast         | google/veo-3.0-fast         | \$0.80          | 1080p / 8s            |
+| Google            | Veo 3.0 Fast + Audio | google/veo-3.0-fast-audio   | \$1.20          | 1080p / 8s            |
+| ByteDance         | Seedance 1.0 Pro     | ByteDance/Seedance-1.0-pro  | \$0.57          | 1080p / 5s            |
+| PixVerse          | PixVerse v5          | pixverse/pixverse-v5        | \$0.30          | 1080p / 5s            |
+| Kuaishou          | Kling 2.1 Master     | kwaivgI/kling-2.1-master    | \$0.92          | 1080p / 5s            |
+| Kuaishou          | Kling 2.1 Standard   | kwaivgI/kling-2.1-standard  | \$0.18          | 720p / 5s             |
+| Kuaishou          | Kling 2.1 Pro        | kwaivgI/kling-2.1-pro       | \$0.32          | 1080p / 5s            |
+| Kuaishou          | Kling 1.6 Standard   | kwaivgI/kling-1.6-standard  | \$0.19          | 720p / 5s             |
+| Vidu              | Vidu 2.0             | vidu/vidu-2.0               | \$0.80          | 720p / 8s             |
+| Vidu              | Vidu Q1              | vidu/vidu-q1                | \$0.22          | 1080p / 5s            |
+| OpenAI            | Sora 2               | openai/sora-2               | \$0.80          | 720p / 8s             |
+| OpenAI            | Sora 2 Pro           | openai/sora-2-pro           | \$2.40          | 1080p / 8s            |
+| PixVerse          | PixVerse v5.6        | pixverse/pixverse-v5.6      | \$0.1326        | -                     |
+| Wan-AI            | Wan 2.7 T2V          | Wan-AI/wan2.7-t2v           | \$0.10          | -                     |
+| Google            | Veo 3.1 Debug Test   | google/veo-3.1-test-debug   | \$0.08          | -                     |
+| Vidu              | Vidu Q3              | vidu/vidu-q3                | \$0.0975        | -                     |
+| Vidu              | Vidu Q3 Turbo        | vidu/vidu-q3-turbo          | \$0.195         | -                     |
+| Wan-AI            | Wan 2.7 I2V          | Wan-AI/wan2.7-i2v           | \$0.10          | -                     |
+| Wan-AI            | Wan 2.7 R2V          | Wan-AI/wan2.7-r2v           | \$0.10          | -                     |
+| PixVerse          | PixVerse v6          | pixverse/pixverse-v6        | \$0.09          | -                     |
+| Alibaba           | HappyHorse 1.0 T2V   | alibaba/happyhorse-1.0-t2v  | \$0.24          | -                     |
+| ByteDance         | Seedance 2.0         | ByteDance/Seedance-2.0      | \$0.16          | -                     |
+| Alibaba           | HappyHorse 1.0 I2V   | alibaba/happyhorse-1.0-i2v  | \$0.24          | -                     |
+| Alibaba           | HappyHorse 1.0 R2V   | alibaba/happyhorse-1.0-r2v  | \$0.24          | -                     |
+| Google            | Veo 3.1              | google/veo-3.1              | \$0.08          | -                     |
+| Google            | Veo 3.1 Lite         | google/veo-3.1-lite         | \$0.05          | -                     |
+| Alibaba           | HappyHorse 1.1 I2V   | alibaba/happyhorse-1.1-i2v  | \$0.14          | -                     |
+| Alibaba           | HappyHorse 1.1 R2V   | alibaba/happyhorse-1.1-r2v  | \$0.14          | -                     |
+| Alibaba           | HappyHorse 1.1 T2V   | alibaba/happyhorse-1.1-t2v  | \$0.14          | -                     |
+| Black Forest Labs | FLUX 3               | black-forest-labs/FLUX-3    | \$0.17          | -                     |
+| ByteDance         | Seedance 2.5         | ByteDance/Seedance-2.5      | \$0.115         | -                     |
+| ByteDance         | Seedance 1.0 Lite    | ByteDance/Seedance-1.0-lite | \$0.143         | 720p / 5s             |
 
 ## Audio models
 
