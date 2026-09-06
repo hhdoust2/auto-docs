@@ -12,6 +12,11 @@ https://raw.githubusercontent.com/hhdoust2/auto-docs/main/content/gemini_rate_li
 https://console.groq.com/docs/models.md
 https://console.groq.com/docs/rate-limits.md
 
+[🟤 OpenRouter]
+
+https://openrouter.ai/docs/api_reference/limits.md
+
+
 [🟡 Mistral]
 
 https://raw.githubusercontent.com/hhdoust2/auto-docs/main/content/mistral_api_limits.md
