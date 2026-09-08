@@ -390,7 +390,7 @@ curl -sS https://anymodel.org/v1/messages \
 
 ## Image generation and references
 
-Generate with POST /v1/images/generations. The free am/flux.2-klein-4b and am/flux.1-dev routes return base64 JPEG data. Reference images are sent as data URLs in image or images; do not send a public URL unless the selected model explicitly supports it.
+Generate with POST /v1/images/generations. The free am/flux.2-klein-4b and am/flux.1-dev routes return base64 JPEG data. Reference images are sent as data URLs in image or images; do not send a public URL unless the selected model explicitly supports it. Until an account has topped up its balance once, generated images carry a small anymodel.org mark in the corner and always arrive as b64_json — a provider link would hand over the picture without the mark. Streaming keeps working: the mark is applied to the final done event, and the intermediate partial_image previews are not sent. Topping up removes all of it.
 
 ```bash
 curl -sS https://anymodel.org/v1/images/generations \
