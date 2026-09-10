@@ -146,7 +146,7 @@ Supported dimensions: 1K: 1024×1024 (1:1), 1264×848 (3:2), 848×1264 (2:3), 12
 
 ## Vision models
 
-If you're not sure which vision model to use, we currently recommend **Qwen3.5 9B** (`Qwen/Qwen3.5-9B`) to get started. For model specific rate limits, navigate [here](/docs/serverless/rate-limits).
+If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Qwen3.5-9B`). For model-specific rate limits, see [Rate limits](/docs/serverless/rate-limits).
 
 | Organization | Model name | API model string     | Context length | Input pricing (per 1M tokens) | Output pricing (per 1M tokens) |
 | :----------- | :--------- | :------------------- | :------------- | :---------------------------- | :----------------------------- |
@@ -224,7 +224,7 @@ There are currently no embedding models offered via serverless.
 
 ### **Embedding model examples**
 
-* [Contextual RAG](https://docs.together.ai/docs/how-to-implement-contextual-rag-from-anthropic): An open source implementation of contextual RAG by Anthropic.
+* [Contextual RAG](/docs/how-to-implement-contextual-rag-from-anthropic): An open source implementation of contextual RAG by Anthropic.
 * [Code generation agent](https://github.com/togethercomputer/together-cookbook/blob/main/Agents/Looping_Agent_Workflow.ipynb): An agent workflow to generate and iteratively improve code.
 * [Multimodal search and image generation](https://github.com/togethercomputer/together-cookbook/blob/main/Multimodal_Search_and_Conditional_Image_Generation.ipynb): Search for images and generate more similar ones.
 * [Visualizing embeddings](https://github.com/togethercomputer/together-cookbook/blob/main/Embedding_Visualization.ipynb): Visualizing and clustering vector embeddings.
