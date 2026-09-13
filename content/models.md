@@ -58,6 +58,7 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | Prism ML          | Ternary Bonsai 27B           | Prism-ML/Ternary-Bonsai-27B             | 262144         | Free                          | -                                    | Free                           | -            | -                | -                  |
 | Meta              | Muse Glimmer 30B             | meta-models/Muse-Glimmer-30B            | 131072         | \$0.35                        | \$0.04                               | \$1.50                         | FP8          | -                | -                  |
 | Qwen              | Qwen3.8 Flash                | Qwen/Qwen3.8-Flash                      | 1000000        | \$0.15                        | -                                    | \$0.47                         | -            | -                | -                  |
+| DeepSeek          | DeepSeek V4.1 Flash          | deepseek-ai/DeepSeek-V4.1-Flash         | 1000000        | \$0.30                        | \$0.006                              | \$1.20                         | FP8          | Yes              | Yes                |
 
 **Chat model examples**
 
