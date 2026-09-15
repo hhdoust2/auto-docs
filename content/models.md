@@ -197,6 +197,7 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 | Black Forest Labs | FLUX 3              | black-forest-labs/FLUX-3    | \$0.17          | -                     |
 | ByteDance         | Seedance 2.5        | ByteDance/Seedance-2.5      | \$0.115         | -                     |
 | ByteDance         | Seedance 1.0 Lite   | ByteDance/Seedance-1.0-lite | \$0.143         | 720p / 5s             |
+| MiniMax           | MiniMax H3          | minimax/h3                  | \$0.1391        | -                     |
 
 ## Audio models
 
