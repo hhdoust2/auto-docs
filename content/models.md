@@ -197,7 +197,7 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 | Black Forest Labs | FLUX 3              | black-forest-labs/FLUX-3    | \$0.17          | -                     |
 | ByteDance         | Seedance 2.5        | ByteDance/Seedance-2.5      | \$0.115         | -                     |
 | ByteDance         | Seedance 1.0 Lite   | ByteDance/Seedance-1.0-lite | \$0.143         | 720p / 5s             |
-| MiniMax           | MiniMax H3          | minimax/h3                  | \$0.1391        | -                     |
+| MiniMax           | MiniMax H3          | MiniMaxAI/MiniMax-H3        | \$0.1391        | 2k / 1s               |
 
 ## Audio models
 
@@ -226,7 +226,6 @@ There are currently no embedding models offered via serverless.
 
 ### **Embedding model examples**
 
-* [Contextual RAG](/docs/how-to-implement-contextual-rag-from-anthropic): An open source implementation of contextual RAG by Anthropic.
 * [Code generation agent](https://github.com/togethercomputer/together-cookbook/blob/main/Agents/Looping_Agent_Workflow.ipynb): An agent workflow to generate and iteratively improve code.
 * [Multimodal search and image generation](https://github.com/togethercomputer/together-cookbook/blob/main/Multimodal_Search_and_Conditional_Image_Generation.ipynb): Search for images and generate more similar ones.
 * [Visualizing embeddings](https://github.com/togethercomputer/together-cookbook/blob/main/Embedding_Visualization.ipynb): Visualizing and clustering vector embeddings.

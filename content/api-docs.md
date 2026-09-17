@@ -45,8 +45,9 @@ Get one in the AnyModel cabinet, under API Keys. **Replace `<YOUR_API_KEY>` with
 | POST | /v1/rerank | Document reranking. Detailed below. |
 | POST | /v1/audio/speech | Text to speech. |
 | POST | /v1/audio/transcriptions | Speech to text. |
-| POST | /v1/search | Web search. |
-| POST | /v1/web/fetch | Web page fetch. |
+| POST | /v1/search | Web search. Operator keys only. |
+| POST | /v1/web/fetch | Web page fetch. Operator keys only. |
+| POST | /v1/alpha/search | Codex CLI's built-in web tool (web.run). Called by Codex itself; billed as one search per call, see below. |
 
 ## Models and what they cost
 
@@ -138,7 +139,7 @@ Embeddings and reranking are metered from input token usage (estimated from text
 
 A route priced at coefficient 0 costs nothing; any other charged request costs at least 1 balance token.
 
-Built-in web search is metered on top of the tokens. When the model runs its provider's own web search — a request carrying `{"type": "web_search"}`, Anthropic's dated `web_search_*` tool, or the search the web chat asks for — each search that actually ran is charged a flat 40000 balance tokens (the `/v1/search` rate) with no model coefficient applied. The count comes back as `usage.web_search_requests`, present only when a search ran, so the surcharge is verifiable the same way as the tokens. On the Responses API routes (`cx/…`) the vendor reports no counter in `usage`; there every completed `web_search_call` output item counts as one search, and the same surcharge applies. A model may also be served by borrowed capacity that has no search facility of its own; a request that asks for search is then routed to the model's native pool first, within a rate limit, and past that limit it is answered without a search — and without the surcharge.
+Built-in web search is metered on top of the tokens. When the model runs its provider's own web search — a request carrying `{"type": "web_search"}`, Anthropic's dated `web_search_*` tool, or the search the web chat asks for — each search that actually ran is charged a flat 40000 balance tokens (the `/v1/search` rate) with no model coefficient applied. The count comes back as `usage.web_search_requests`, present only when a search ran, so the surcharge is verifiable the same way as the tokens. On the Responses API routes (`cx/…`) the vendor reports no counter in `usage`; there every completed `web_search_call` output item counts as one search, and the same surcharge applies. Codex CLI on gpt-6-astra and the gpt-5.6 line runs its web tool (`web.run`) itself and posts it to `/v1/alpha/search`; the gateway serves that call from the same Codex pool as the chat, and each call — whatever mix of searches, page opens and finds it carries — is one search at the same flat rate; because the rate is flat, the request body is capped at 256 KiB and a larger one is refused with `413` (Codex's own body is a few KB). A model may also be served by borrowed capacity that has no search facility of its own; a request that asks for search is then routed to the model's native pool first, within a rate limit, and past that limit it is answered without a search — and without the surcharge.
 
 The token counts come back in the response, so the charge is verifiable from the client side:
 
