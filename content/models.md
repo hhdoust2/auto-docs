@@ -43,7 +43,7 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | Thinking Machines | Inkling                      | thinkingmachines/Inkling                | 524288         | \$1.00                        | \$0.17                               | \$4.05                         | NVFP4        | Yes              | Yes                |
 | Minimax           | Minimax M3                   | MiniMaxAI/MiniMax-M3                    | 524288         | \$0.30                        | \$0.06                               | \$1.20                         | FP4          | Yes              | Yes                |
 | Qwen              | Qwen3.8-2.4T-A95B            | Qwen/Qwen3.8-2.4T-A95B                  | -              | \$2.00                        | \$0.50                               | \$6.00                         | FP4          | -                | -                  |
-| Qwen              | Qwen3.7 Max                  | Qwen/Qwen3.7-Max                        | -              | \$2.50                        | \$0.50                               | \$7.50                         | -            | -                | -                  |
+| Qwen              | Qwen3.7 Max                  | Qwen/Qwen3.7-Max                        | -              | \$1.50                        | \$0.50                               | \$4.50                         | -            | -                | -                  |
 | Qwen              | Qwen3.6 Plus                 | Qwen/Qwen3.6-Plus                       | 1000000        | \$0.50                        | -                                    | \$3.00                         | -            | -                | -                  |
 | Qwen              | Qwen3.5 9B                   | Qwen/Qwen3.5-9B                         | 262144         | \$0.17                        | -                                    | \$0.25                         | FP8          | Yes              | Yes                |
 | Moonshot          | Kimi K3                      | moonshotai/Kimi-K3                      | 1048576        | \$3.00                        | \$0.30                               | \$15.00                        | -            | Yes              | Yes                |
@@ -57,7 +57,7 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | Qwen              | Qwen3.7 Plus                 | Qwen/Qwen3.7-Plus                       | 1000000        | \$0.32                        | -                                    | \$1.28                         | -            | -                | -                  |
 | Prism ML          | Ternary Bonsai 27B           | Prism-ML/Ternary-Bonsai-27B             | 262144         | Free                          | -                                    | Free                           | -            | -                | -                  |
 | Meta              | Muse Glimmer 30B             | meta-models/Muse-Glimmer-30B            | 131072         | \$0.35                        | \$0.04                               | \$1.50                         | FP8          | -                | -                  |
-| Qwen              | Qwen3.8 Flash                | Qwen/Qwen3.8-Flash                      | 1000000        | \$0.15                        | -                                    | \$0.47                         | -            | -                | -                  |
+| Qwen              | Qwen3.8 Flash                | Qwen/Qwen3.8-Flash                      | 1000000        | \$0.09                        | -                                    | \$0.282                        | -            | -                | -                  |
 | DeepSeek          | DeepSeek V4.1 Flash          | deepseek-ai/DeepSeek-V4.1-Flash         | 1000000        | \$0.30                        | \$0.006                              | \$1.20                         | FP8          | Yes              | Yes                |
 
 **Chat model examples**
@@ -170,10 +170,7 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 | Google            | Veo 2.0             | google/veo-2.0              | \$2.50          | 720p / 5s             |
 | ByteDance         | Seedance 1.0 Pro    | ByteDance/Seedance-1.0-pro  | \$0.57          | 1080p / 5s            |
 | PixVerse          | PixVerse v5         | pixverse/pixverse-v5        | \$0.30          | 1080p / 5s            |
-| Kuaishou          | Kling 2.1 Master    | kwaivgI/kling-2.1-master    | \$0.92          | 1080p / 5s            |
 | Kuaishou          | Kling 2.1 Standard  | kwaivgI/kling-2.1-standard  | \$0.18          | 720p / 5s             |
-| Kuaishou          | Kling 2.1 Pro       | kwaivgI/kling-2.1-pro       | \$0.32          | 1080p / 5s            |
-| Kuaishou          | Kling 1.6 Standard  | kwaivgI/kling-1.6-standard  | \$0.19          | 720p / 5s             |
 | Vidu              | Vidu Q1             | vidu/vidu-q1                | \$0.22          | 1080p / 5s            |
 | OpenAI            | Sora 2              | openai/sora-2               | \$0.80          | 720p / 8s             |
 | OpenAI            | Sora 2 Pro          | openai/sora-2-pro           | \$2.40          | 1080p / 8s            |
