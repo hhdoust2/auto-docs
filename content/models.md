@@ -59,6 +59,7 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | Meta              | Muse Glimmer 30B             | meta-models/Muse-Glimmer-30B            | 131072         | \$0.35                        | \$0.04                               | \$1.50                         | FP8          | -                | -                  |
 | Qwen              | Qwen3.8 Flash                | Qwen/Qwen3.8-Flash                      | 1000000        | \$0.09                        | -                                    | \$0.282                        | -            | -                | -                  |
 | DeepSeek          | DeepSeek V4.1 Flash          | deepseek-ai/DeepSeek-V4.1-Flash         | 1000000        | \$0.30                        | \$0.006                              | \$1.20                         | FP8          | Yes              | Yes                |
+| Together AI       | Tev1 4B Experimental         | together/Tev1-4B-experimental           | 32768          | \$0.042                       | -                                    | Free                           | -            | -                | -                  |
 
 **Chat model examples**
 
