@@ -65,7 +65,6 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 
 * [PDF to chat app](https://www.pdftochat.com/): Chat with your PDFs (blogs, textbooks, papers).
 * [Open deep research notebook](https://github.com/togethercomputer/together-cookbook/blob/main/Agents/Together_Open_Deep_Research_CookBook.ipynb): Generate long form reports using a single prompt.
-* [RAG with reasoning models notebook](https://github.com/togethercomputer/together-cookbook/blob/main/RAG_with_Reasoning_Models.ipynb): RAG with DeepSeek-R1.
 * [Fine-tuning chat models notebook](https://github.com/togethercomputer/together-cookbook/blob/main/Finetuning/Finetuning_Guide.ipynb): Tune language models for conversation.
 * [Building agents](https://github.com/togethercomputer/together-cookbook/tree/main/Agents): Agent workflows with language models.
 
@@ -114,7 +113,6 @@ Use our [Images](/reference/post-images-generations) endpoint for image models.
 * [Blinkshot.io](https://www.blinkshot.io/): A realtime AI image playground built with Flux Schnell.
 * [Logo creator](https://www.logo-creator.io/): A logo generator that creates professional logos in seconds using Flux Pro 1.1.
 * [PicMenu](https://www.picmenu.co/): A menu visualizer that takes a restaurant menu and generates nice images for each dish.
-* [Flux LoRA inference notebook](https://github.com/togethercomputer/together-cookbook/blob/main/Flux_LoRA_Inference.ipynb): Using LoRA fine-tuned image generations models.
 
 **FLUX pricing**
 
@@ -222,20 +220,9 @@ Use our [Audio](/reference/audio-speech) endpoint for text-to-speech models. For
 
 There are currently no embedding models offered via serverless.
 
-### **Embedding model examples**
-
-* [Code generation agent](https://github.com/togethercomputer/together-cookbook/blob/main/Agents/Looping_Agent_Workflow.ipynb): An agent workflow to generate and iteratively improve code.
-* [Multimodal search and image generation](https://github.com/togethercomputer/together-cookbook/blob/main/Multimodal_Search_and_Conditional_Image_Generation.ipynb): Search for images and generate more similar ones.
-* [Visualizing embeddings](https://github.com/togethercomputer/together-cookbook/blob/main/Embedding_Visualization.ipynb): Visualizing and clustering vector embeddings.
-
 ## Rerank models
 
 There are currently no rerank models offered via serverless. Rerank models like `mixedbread-ai/mxbai-rerank-large-v2` are only available with [dedicated model inference](/docs/dedicated-endpoints/models).
-
-### **Rerank model examples**
-
-* [Search and reranking](https://github.com/togethercomputer/together-cookbook/blob/main/Search_with_Reranking.ipynb): Simple semantic search pipeline improved using a reranker.
-* [Implementing hybrid search notebook](https://github.com/togethercomputer/together-cookbook/blob/main/Open_Contextual_RAG.ipynb): Implementing semantic + lexical search along with reranking.
 
 ## Moderation models
 
