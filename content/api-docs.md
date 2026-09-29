@@ -2,7 +2,7 @@
 
 AnyModel is an OpenAI-compatible gateway: one API key and one base URL for models from many vendors (GPT, Claude, Gemini, DeepSeek, Qwen, Kimi, GLM and more), plus image, video, audio, embedding, reranking and web-search endpoints.
 
-It is meant to be given to a coding assistant as-is — download it from https://anymodel.org/api-docs.md or paste it into the model's context. Chat, reranking, research, image and video are documented in full below. Embeddings, speech, transcription, search and fetch appear in the endpoint table with the rule that prices them; their own rates and parameters come from `GET /v1/models` and `GET /v1/models/info`.
+It is meant to be given to a coding assistant as-is — download it from https://anymodel.org/api-docs.md or paste it into the model's context. Chat, reranking, research, image, video and speech are documented in full below. Embeddings, transcription, search and fetch appear in the endpoint table with the rule that prices them; their own rates and parameters come from `GET /v1/models` and `GET /v1/models/info`.
 
 ## Quick start
 
@@ -43,7 +43,7 @@ Get one in the AnyModel cabinet, under API Keys. **Replace `<YOUR_API_KEY>` with
 | POST | /v1/videos/extensions | Continue an existing clip with a new fragment. See the video section for how it is billed. |
 | POST | /v1/embeddings | Embeddings. |
 | POST | /v1/rerank | Document reranking. Detailed below. |
-| POST | /v1/audio/speech | Text to speech. |
+| POST | /v1/audio/speech | Text to speech. Detailed below. |
 | POST | /v1/audio/transcriptions | Speech to text. |
 | POST | /v1/search | Web search. Operator keys only. |
 | POST | /v1/web/fetch | Web page fetch. Operator keys only. |
@@ -540,6 +540,47 @@ curl -sS "https://anymodel.org/v1/videos/REQUEST_ID/content" \
 | Continuations | A model that declares capabilities (flow/*) prices a continuation by the model, not flat: 7 s on flow/omni-video, 8 s on flow/veo-3.1, 7 s on flow/veo-3.1-lite for one step, at the same per-second rate as a clip of that model. duration is not read on this route: the step is fixed by the model. resolution is not read either — a clip is continued at the quality it was shot in. |
 | Charge | Booked once, when the provider accepts the job. Polling and downloading are free. |
 | Refund | A job that ends without a video is returned in full: automatically for jobs started in Video Studio, and on the poll that first reports the failure for jobs created through this API. Keep polling a job you have given up on — through this API the refund is what that poll triggers. |
+
+## Text to speech
+
+Synthesise speech with POST /v1/audio/speech. The model is a speech model from GET /v1/models/tts, sent exactly as listed: fish-farm/s2.1-pro-free. There is no voice field: a voice or response_format field in the body (OpenAI SDKs always send voice) is ignored. The response body is the audio file itself, MP3 by default (Content-Type names the format).
+
+```bash
+curl -sS https://anymodel.org/v1/audio/speech \
+  -X POST \
+  -H "Authorization: Bearer <YOUR_API_KEY>" \
+  -H "Content-Type: application/json" \
+  -o speech.mp3 \
+  -d '{
+  "model": "fish-farm/s2.1-pro-free",
+  "input": "Hello from AnyModel."
+}'
+```
+
+**Audio as base64 in JSON**
+
+```bash
+curl -sS "https://anymodel.org/v1/audio/speech?response_format=json" \
+  -X POST \
+  -H "Authorization: Bearer <YOUR_API_KEY>" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "model": "fish-farm/s2.1-pro-free",
+  "input": "Hello from AnyModel."
+}' \
+  | jq -r ".audio" | base64 --decode > speech.mp3
+```
+
+| Parameter | Description |
+| --- | --- |
+| model | Required. A speech model from GET /v1/models/tts, exactly as listed: fish-farm/s2.1-pro-free. |
+| input | Required. The text to speak. |
+| response_format | Optional query-string parameter, not a body field: ?response_format=json answers { "audio": base64, "format": "mp3" } instead of the audio bytes. |
+
+| Billing | Description |
+| --- | --- |
+| Price | 50 tokens per input character, times the model's coefficient.output. Characters are counted in input exactly as sent — surrounding spaces included, and an emoji counts as two (UTF-16 length). The catalog shows the rate as billing.unit character with billing.base_tokens 50. |
+| Charge | The price of the whole input is held from the balance before the call and booked only when audio comes back. A failed synthesis costs nothing. |
 
 ## Streaming
 

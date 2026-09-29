@@ -229,10 +229,10 @@ export const Template = ({children, data}) => {
 
 OpenRouter enforces two kinds of limits:
 
-| Limit type                      | What it governs                                                                                  | Error on exceeding                                      | Where to check                                                                             |
-| ------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| [Credit limits](#credit-limits) | How much you can spend (account balance, per-key credit caps, and the in-flight spending budget) | <StatusCode code={HTTPStatus.S402_Payment_Required} />  | `GET /api/v1/key` → `limit_remaining`; `error.metadata.limit_source` on the error response |
-| [Rate limits](#rate-limits)     | How many requests you can make (free-model request caps and DDoS protection)                     | <StatusCode code={HTTPStatus.S429_Too_Many_Requests} /> | `X-RateLimit-*` headers on the error response                                              |
+| Limit type | What it governs | Error on exceeding | Where to check |
+| - | - | - | - |
+| [Credit limits](#credit-limits) | How much you can spend (account balance, per-key credit caps, and the in-flight spending budget) | <StatusCode code={HTTPStatus.S402_Payment_Required} /> | `GET /api/v1/key` → `limit_remaining`; `error.metadata.limit_source` on the error response |
+| [Rate limits](#rate-limits) | How many requests you can make (free-model request caps and DDoS protection) | <StatusCode code={HTTPStatus.S429_Too_Many_Requests} /> | `X-RateLimit-*` headers on the error response |
 
 ## Checking your limits
 
@@ -363,10 +363,10 @@ Rate limits govern how many requests you can make. There are a few rate limits t
 
 1. **Free usage limits**: If you're using a free model variant (with an ID ending in <code>{sep}{Variant.Free}</code>), the following limits apply:
 
-| Credits purchased (all time)             | Requests per minute         | Requests per day             |
-| ---------------------------------------- | --------------------------- | ---------------------------- |
-| Less than {FREE_MODEL_CREDITS_THRESHOLD} | {FREE_MODEL_RATE_LIMIT_RPM} | {FREE_MODEL_NO_CREDITS_RPD}  |
-| At least {FREE_MODEL_CREDITS_THRESHOLD}  | {FREE_MODEL_RATE_LIMIT_RPM} | {FREE_MODEL_HAS_CREDITS_RPD} |
+| Credits purchased (all time) | Requests per minute | Requests per day |
+| - | - | - |
+| Less than {FREE_MODEL_CREDITS_THRESHOLD} | {FREE_MODEL_RATE_LIMIT_RPM} | {FREE_MODEL_NO_CREDITS_RPD} |
+| At least {FREE_MODEL_CREDITS_THRESHOLD} | {FREE_MODEL_RATE_LIMIT_RPM} | {FREE_MODEL_HAS_CREDITS_RPD} |
 
 The `free_model_daily_requests` field in the `GET /api/v1/key` response above reports the daily counter and ceiling that gate your free-model requests when these limits apply to your account. Accounts and endpoints exempt from free-model limits, and BYOK requests, are not gated by it, so `remaining` reflects the tier policy rather than an enforced ceiling for them. The per-minute limit is not reported there. The `limit` tier is selected by all-time credits purchased, independently of `is_free_tier`. To absorb rounding and top-up fees, the higher daily ceiling is granted starting one credit below the table's threshold (currently {FREE_MODEL_CREDITS_THRESHOLD - 1} credits); an account that has purchased fewer credits than that reports `is_free_tier: false` together with the lower daily ceiling.
 
