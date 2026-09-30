@@ -74,9 +74,6 @@ Use our [Images](/reference/post-images-generations) endpoint for image models.
 
 | Organization | Model name | Model string for API | Price per MP | Default steps |
 | :- | :- | :- | :- | :- |
-| Google | Imagen 4.0 Preview | google/imagen-4.0-preview | \$0.04 | - |
-| Google | Imagen 4.0 Fast | google/imagen-4.0-fast | \$0.02 | - |
-| Google | Imagen 4.0 Ultra | google/imagen-4.0-ultra | \$0.06 | - |
 | Google | Flash Image 2.5 (Nano Banana) | google/flash-image-2.5 | \$0.039 | - |
 | Google | Gemini 3 Pro Image (Nano Banana Pro) | google/gemini-3-pro-image | \$0.134 | - |
 | Black Forest Labs | Flux1.1 \[pro] | black-forest-labs/FLUX.1.1-pro | \$0.04 | - |
@@ -166,16 +163,11 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 | :- | :- | :- | :- | :- |
 | MiniMax | MiniMax 01 Director | minimax/video-01-director | \$0.28 | 720p / 5s |
 | MiniMax | MiniMax Hailuo 02 | minimax/hailuo-02 | \$0.49 | 768p / 10s |
-| Google | Veo 2.0 | google/veo-2.0 | \$2.50 | 720p / 5s |
 | ByteDance | Seedance 1.0 Pro | ByteDance/Seedance-1.0-pro | \$0.57 | 1080p / 5s |
 | PixVerse | PixVerse v5 | pixverse/pixverse-v5 | \$0.30 | 1080p / 5s |
-| Kuaishou | Kling 2.1 Standard | kwaivgI/kling-2.1-standard | \$0.18 | 720p / 5s |
 | Vidu | Vidu Q1 | vidu/vidu-q1 | \$0.22 | 1080p / 5s |
-| OpenAI | Sora 2 | openai/sora-2 | \$0.80 | 720p / 8s |
-| OpenAI | Sora 2 Pro | openai/sora-2-pro | \$2.40 | 1080p / 8s |
 | PixVerse | PixVerse v5.6 | pixverse/pixverse-v5.6 | \$0.1326 | - |
 | Wan-AI | Wan 2.7 T2V | Wan-AI/wan2.7-t2v | \$0.10 | - |
-| Google | Veo 3.1 Debug Test | google/veo-3.1-test-debug | \$0.08 | - |
 | Vidu | Vidu Q3 | vidu/vidu-q3 | \$0.0975 | - |
 | Vidu | Vidu Q3 Turbo | vidu/vidu-q3-turbo | \$0.195 | - |
 | Wan-AI | Wan 2.7 I2V | Wan-AI/wan2.7-i2v | \$0.10 | - |

@@ -44,6 +44,7 @@ Get one in the AnyModel cabinet, under API Keys. **Replace `<YOUR_API_KEY>` with
 | POST | /v1/embeddings | Embeddings. |
 | POST | /v1/rerank | Document reranking. Detailed below. |
 | POST | /v1/audio/speech | Text to speech. Detailed below. |
+| GET | /v1/audio/voices?provider=edge-tts | Voices for text to speech, each with the model id to send. Detailed below. |
 | POST | /v1/audio/transcriptions | Speech to text. |
 | POST | /v1/search | Web search. Operator keys only. |
 | POST | /v1/web/fetch | Web page fetch. Operator keys only. |
@@ -543,7 +544,7 @@ curl -sS "https://anymodel.org/v1/videos/REQUEST_ID/content" \
 
 ## Text to speech
 
-Synthesise speech with POST /v1/audio/speech. The model is a speech model from GET /v1/models/tts, sent exactly as listed: fish-farm/s2.1-pro-free. There is no voice field: a voice or response_format field in the body (OpenAI SDKs always send voice) is ignored. The response body is the audio file itself, MP3 by default (Content-Type names the format).
+Synthesise speech with POST /v1/audio/speech. The model is either a speech model from GET /v1/models/tts, sent exactly as listed (fish-farm/s2.1-pro-free), or a voice from GET /v1/audio/voices, sent as the model value of its entry (edge-tts/en-US-AriaNeural). The voice list is read with the same API key and holds several hundred voices; the model catalog does not list them one by one. There is no voice field: the voice is part of the model id, and a voice or response_format field in the body (OpenAI SDKs always send voice) is ignored. The response body is the audio file itself, MP3 by default (Content-Type names the format).
 
 ```bash
 curl -sS https://anymodel.org/v1/audio/speech \
@@ -571,11 +572,39 @@ curl -sS "https://anymodel.org/v1/audio/speech?response_format=json" \
   | jq -r ".audio" | base64 --decode > speech.mp3
 ```
 
+**List voices**
+
+```bash
+curl -sS "https://anymodel.org/v1/audio/voices?provider=edge-tts&lang=en" \
+  -H "Authorization: Bearer <YOUR_API_KEY>" \
+  | jq -r ".data[].model"
+```
+
+**Speak with a listed voice**
+
+```bash
+curl -sS https://anymodel.org/v1/audio/speech \
+  -X POST \
+  -H "Authorization: Bearer <YOUR_API_KEY>" \
+  -H "Content-Type: application/json" \
+  -o speech.mp3 \
+  -d '{
+  "model": "edge-tts/en-US-AriaNeural",
+  "input": "Hello from AnyModel."
+}'
+```
+
 | Parameter | Description |
 | --- | --- |
-| model | Required. A speech model from GET /v1/models/tts, exactly as listed: fish-farm/s2.1-pro-free. |
-| input | Required. The text to speak. |
+| model | Required. A speech model from GET /v1/models/tts, exactly as listed (fish-farm/s2.1-pro-free), or the model value of a voice from GET /v1/audio/voices (edge-tts/en-US-AriaNeural). Take the id from the list as it is: one with a quote, a slash or a tag in it is refused with 400. |
+| input | Required. The text to speak, as plain text. With a voice from GET /v1/audio/voices, markup is not interpreted: SSML or HTML tags in the input are escaped before synthesis, and characters such as & and < are safe to send as they are (Tom & Jerry, 1 < 2). |
 | response_format | Optional query-string parameter, not a body field: ?response_format=json answers { "audio": base64, "format": "mp3" } instead of the audio bytes. |
+
+| Voice list | Description |
+| --- | --- |
+| provider | Required query parameter of GET /v1/audio/voices: edge-tts. A request without it is refused with 400. |
+| lang | Optional query parameter: a language code such as en or ru, to list that language only. Case and a region part are ignored — RU, ru-RU and ru_RU all mean ru, and zh-CN returns every zh voice. A language with no voices answers an empty list; a value that is not a language code is refused with 400. |
+| data | The answer is { "object": "list", "data": [...] } with one entry per voice: { "id": "en-US-AriaNeural", "name": "Aria (English (United States))", "lang": "en", "gender": "Female", "model": "edge-tts/en-US-AriaNeural" }. model is the value to send as model to POST /v1/audio/speech; lang is the code the lang parameter filters by. |
 
 | Billing | Description |
 | --- | --- |
@@ -628,6 +657,7 @@ An error response carries `X-Request-Id` (also repeated as `request_id` in the b
 - `401` — the key is missing, revoked or mistyped.
 - `402` — the balance ran out; top it up in the cabinet. This, not `403`, is the out-of-money answer.
 - `403` — the account behind the key is not active (blocked, or the email is not confirmed yet). Its `code` reads `insufficient_quota` for OpenAI-SDK compatibility; do not map it to "top up".
+- `404` — what the request names is not there; `message` says what. A path under `/v1` that is not an endpoint of this API carries the `code` `unknown_url` instead of the `model_not_found` in the table, and its `message` names the method and the path.
 - `429` — slow down and retry after `Retry-After` seconds.
 - `5xx` — transient; retry with backoff. A request that produced no output is not charged, with one exception: a video job is booked once the provider accepts it, and a job that then ends without a video is reversed by a refund (see the video section).
 
