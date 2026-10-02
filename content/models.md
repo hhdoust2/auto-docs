@@ -64,46 +64,46 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 **Chat model examples**
 
 * [PDF to chat app](https://www.pdftochat.com/): Chat with your PDFs (blogs, textbooks, papers).
-* [Open deep research notebook](https://github.com/togethercomputer/together-cookbook/blob/main/Agents/Together_Open_Deep_Research_CookBook.ipynb): Generate long form reports using a single prompt.
-* [Fine-tuning chat models notebook](https://github.com/togethercomputer/together-cookbook/blob/main/Finetuning/Finetuning_Guide.ipynb): Tune language models for conversation.
-* [Building agents](https://github.com/togethercomputer/together-cookbook/tree/main/Agents): Agent workflows with language models.
+* [Open deep research notebook](https://github.com/togethercomputer/together-cookbook/blob/main/agents/Together_Open_Deep_Research_CookBook.ipynb): Generate long form reports using a single prompt.
+* [Fine-tuning chat models notebook](https://github.com/togethercomputer/together-cookbook/blob/main/fine-tuning/Finetuning_Guide.ipynb): Tune language models for conversation.
+* [Building agents](https://github.com/togethercomputer/together-cookbook/tree/main/agents): Agent workflows with language models.
 
 ## Image models
 
-Use our [Images](/reference/post-images-generations) endpoint for image models.
-
-| Organization | Model name | Model string for API | Price per MP | Default steps |
-| :- | :- | :- | :- | :- |
-| Google | Flash Image 2.5 (Nano Banana) | google/flash-image-2.5 | \$0.039 | - |
-| Google | Gemini 3 Pro Image (Nano Banana Pro) | google/gemini-3-pro-image | \$0.134 | - |
-| Black Forest Labs | Flux1.1 \[pro] | black-forest-labs/FLUX.1.1-pro | \$0.04 | - |
-| Black Forest Labs | Flux.1 Kontext \[pro] | black-forest-labs/FLUX.1-kontext-pro | \$0.04 | 28 |
-| Black Forest Labs | Flux.1 Kontext \[max] | black-forest-labs/FLUX.1-kontext-max | \$0.08 | 28 |
-| Black Forest Labs | FLUX.2 \[pro] | black-forest-labs/FLUX.2-pro | \$0.03 | - |
-| Black Forest Labs | FLUX.2 \[dev] | black-forest-labs/FLUX.2-dev | \$0.0154 | - |
-| Black Forest Labs | FLUX.2 \[flex] | black-forest-labs/FLUX.2-flex | \$0.03 | - |
-| ByteDance | Seedream 3.0 | ByteDance-Seed/Seedream-3.0 | \$0.018 | - |
-| ByteDance | Seedream 4.0 | ByteDance-Seed/Seedream-4.0 | \$0.03 | - |
-| ByteDance | Seedream 5.0 Lite | ByteDance/Seedream-5.0-lite | \$0.035 | - |
-| Qwen | Qwen Image | Qwen/Qwen-Image | \$0.0058 | - |
-| RunDiffusion | Juggernaut Pro Flux | RunDiffusion/Juggernaut-pro-flux | \$0.0049 | - |
-| RunDiffusion | Juggernaut Lightning Flux | Rundiffusion/Juggernaut-Lightning-Flux | \$0.0017 | - |
-| Ideogram | Ideogram 3.0 | ideogram/ideogram-3.0 | \$0.06 | - |
-| Stability AI | SD XL | stabilityai/stable-diffusion-xl-base-1.0 | \$0.0019 | - |
-| Black Forest Labs | FLUX.2 \[max] | black-forest-labs/FLUX.2-max | \$0.07 | 50 |
-| Google | Gemini 3.1 Flash Image (Nano Banana 2) | google/flash-image-3.1 | \$0.05 | - |
-| OpenAI | GPT Image 1.5 | openai/gpt-image-1.5 | \$0.034 | - |
-| Qwen | Qwen Image 2.0 | Qwen/Qwen-Image-2.0 | \$0.035 | - |
-| Qwen | Qwen Image 2.0 Pro | Qwen/Qwen-Image-2.0-Pro | \$0.075 | - |
-| Wan-AI | Wan 2.6 Image | Wan-AI/Wan2.6-image | \$0.03 | - |
-| ideogram | Ideogram 4.0 | ideogram/ideogram-4.0 | \$0.06 | - |
-| OpenAI | GPT Image 2 | openai/gpt-image-2 | \$0.053 | - |
-| Google | Gemini 3.1 Flash-Lite Image (Nano Banana 2 Lite) | google/flash-image-3.1-lite | \$0.069 | - |
-| Pruna AI | P-Image-Ideogram | prunaai/p-image-ideogram | \$0.00225 | - |
+Use our [Images](/reference/post-images-generations) endpoint for image models. Calling image models requires a positive credit balance.
 
 <Note>
-  Calling image models requires a positive credit balance.
+  Prices for models billed by `image` are estimates, not rates. These models pass through the provider's own per-request charge, which varies with the resolution, quality, and other parameters you send. Models billed by `megapixel` use the [formula below](#per-megapixel-cost-formula). For more details, see [How image models bill](/docs/serverless/overview#how-image-models-bill).
 </Note>
+
+| Organization | Model name | Model string for API | Unit | Price | Output per \$1 |
+| :- | :- | :- | :- | :- | :- |
+| Google | Flash Image 2.5 (Nano Banana) | google/flash-image-2.5 | `image` | \$0.039+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 26 images |
+| Google | Gemini 3 Pro Image (Nano Banana Pro) | google/gemini-3-pro-image | `image` | \$0.134 at 1K or 2K ([varies](/docs/serverless/overview#how-image-models-bill)) | 7.5 images |
+| Black Forest Labs | Flux1.1 \[pro] | black-forest-labs/FLUX.1.1-pro | `megapixel` | \$0.04 | 25 megapixels |
+| Black Forest Labs | Flux.1 Kontext \[pro] | black-forest-labs/FLUX.1-kontext-pro | `megapixel` | \$0.04 | 25 megapixels |
+| Black Forest Labs | Flux.1 Kontext \[max] | black-forest-labs/FLUX.1-kontext-max | `megapixel` | \$0.08 | 12 megapixels |
+| Black Forest Labs | FLUX.2 \[pro] | black-forest-labs/FLUX.2-pro | `image` | \$0.03+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 33 images |
+| Black Forest Labs | FLUX.2 \[dev] | black-forest-labs/FLUX.2-dev | `image` | \$0.0154+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 65 images |
+| Black Forest Labs | FLUX.2 \[flex] | black-forest-labs/FLUX.2-flex | `image` | \$0.03+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 33 images |
+| ByteDance | Seedream 3.0 | ByteDance-Seed/Seedream-3.0 | `image` | \$0.018+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 56 images |
+| ByteDance | Seedream 4.0 | ByteDance-Seed/Seedream-4.0 | `image` | \$0.03+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 33 images |
+| ByteDance | Seedream 5.0 Lite | ByteDance/Seedream-5.0-lite | `image` | \$0.035+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 29 images |
+| Qwen | Qwen Image | Qwen/Qwen-Image | `image` | \$0.0058+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 172 images |
+| RunDiffusion | Juggernaut Pro Flux | RunDiffusion/Juggernaut-pro-flux | `image` | \$0.0049+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 204 images |
+| RunDiffusion | Juggernaut Lightning Flux | Rundiffusion/Juggernaut-Lightning-Flux | `image` | \$0.0017+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 588 images |
+| Ideogram | Ideogram 3.0 | ideogram/ideogram-3.0 | `image` | \$0.06+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 17 images |
+| Stability AI | SD XL | stabilityai/stable-diffusion-xl-base-1.0 | `image` | \$0.0019+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 526 images |
+| Black Forest Labs | FLUX.2 \[max] | black-forest-labs/FLUX.2-max | `megapixel` | \$0.07 at 50 steps | 14 megapixels |
+| Google | Gemini 3.1 Flash Image (Nano Banana 2) | google/flash-image-3.1 | `image` | \$0.04657 at 512×512 ([varies](/docs/serverless/overview#how-image-models-bill)) | 21 images |
+| OpenAI | GPT Image 1.5 | openai/gpt-image-1.5 | `image` | \$0.034+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 29 images |
+| Qwen | Qwen Image 2.0 | Qwen/Qwen-Image-2.0 | `image` | \$0.035+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 29 images |
+| Qwen | Qwen Image 2.0 Pro | Qwen/Qwen-Image-2.0-Pro | `image` | \$0.075+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 13 images |
+| Wan-AI | Wan 2.6 Image | Wan-AI/Wan2.6-image | `image` | \$0.03+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 33 images |
+| ideogram | Ideogram 4.0 | ideogram/ideogram-4.0 | `image` | \$0.06+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 17 images |
+| OpenAI | GPT Image 2 | openai/gpt-image-2 | `image` | \$0.053+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 19 images |
+| Google | Gemini 3.1 Flash-Lite Image (Nano Banana 2 Lite) | google/flash-image-3.1-lite | `image` | \$0.069+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 14 images |
+| Pruna AI | P-Image-Ideogram | prunaai/p-image-ideogram | `image` | \$0.00225+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 444 images |
 
 ### **Image model examples**
 
@@ -111,11 +111,13 @@ Use our [Images](/reference/post-images-generations) endpoint for image models.
 * [Logo creator](https://www.logo-creator.io/): A logo generator that creates professional logos in seconds using Flux Pro 1.1.
 * [PicMenu](https://www.picmenu.co/): A menu visualizer that takes a restaurant menu and generates nice images for each dish.
 
-**FLUX pricing**
+### Per-megapixel cost formula
 
-For FLUX models (excluding pro models) pricing is based on the size of generated images in megapixels and the number of steps used (if the number of steps exceeds the default steps).
+This applies only to models whose **Unit** column reads `megapixel`. It does not describe how the others are billed.
 
-* **Default pricing:** The listed per megapixel prices are for the default number of steps.
+For these models, cost depends on the size of the generated image in megapixels and on the number of steps used, if that number exceeds the default steps shown alongside the unit.
+
+* **Default pricing:** The listed price is the rate for one megapixel at the default number of steps.
 * **Using more or fewer steps:** Costs are adjusted based on the number of steps used **only if you go above the default steps**. If you use more steps, the cost increases proportionally using the formula below. If you use fewer steps, the cost *does not* decrease and is based on the default rate.
 
 Here's a formula to calculate cost:
@@ -125,15 +127,14 @@ Cost = MP × Price per MP × (Steps ÷ Default Steps)
 Where:
 
 * MP = (Width × Height ÷ 1,000,000).
-* Price per MP = Cost for generating one megapixel at the default steps.
+* Price per MP = the value in the **Price** column.
 * Steps = The number of steps used for the image generation. This is only factored in if going above default steps.
+
+Resolution dominates that formula. At \$0.04 per megapixel, a 1024×1024 image (1.05 MP) costs about \$0.042, while a 4096×4096 image (16.8 MP) costs about \$0.67.
 
 ### **Gemini 3 Pro Image** pricing
 
-Gemini 3 Pro Image offers pricing based on the resolution of the image.
-
-* 1080p and 2K: \$0.134/image.
-* 4K resolution: \$0.24/image.
+Gemini 3 Pro Image's cost tracks the resolution you request. The catalog above quotes the 1K and 2K estimate of about \$0.134 per image. At 4K it is about \$0.24 per image.
 
 Supported dimensions: 1K: 1024×1024 (1:1), 1264×848 (3:2), 848×1264 (2:3), 1200×896 (4:3), 896×1200 (3:4), 928×1152 (4:5), 1152×928 (5:4), 768×1376 (9:16), 1376×768 (16:9), 1548×672 or 1584×672 (21:9).
 
@@ -155,7 +156,7 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 
 * [LlamaOCR](https://llamaocr.com/): A tool that takes documents (like receipts) and outputs markdown.
 * [Wireframe to code](https://www.napkins.dev/): A wireframe to app tool that takes in a UI mockup of a site and gives you React code.
-* [Extracting structured data from images](https://github.com/togethercomputer/together-cookbook/blob/main/Structured_Text_Extraction_from_Images.ipynb): Extract information from images as JSON.
+* [Extracting structured data from images](https://github.com/togethercomputer/together-cookbook/blob/main/inference/vision/Structured_Text_Extraction_from_Images.ipynb): Extract information from images as JSON.
 
 ## Video models
 
@@ -205,8 +206,8 @@ Use our [Audio](/reference/audio-speech) endpoint for text-to-speech models. For
 
 **Audio model examples**
 
-* [PDF to podcast notebook](https://github.com/togethercomputer/together-cookbook/blob/main/PDF_to_Podcast.ipynb): Generate a NotebookLM style podcast given a PDF.
-* [Audio podcast agent workflow](https://github.com/togethercomputer/together-cookbook/blob/main/Agents/Serial_Chain_Agent_Workflow.ipynb): Agent workflow to generate audio files given input content.
+* [PDF to podcast notebook](https://github.com/togethercomputer/together-cookbook/blob/main/apps/PDF_to_Podcast.ipynb): Generate a NotebookLM style podcast given a PDF.
+* [Audio podcast agent workflow](https://github.com/togethercomputer/together-cookbook/blob/main/agents/Serial_Chain_Agent_Workflow.ipynb): Agent workflow to generate audio files given input content.
 
 ## Embedding models
 
@@ -219,3 +220,6 @@ There are currently no rerank models offered via serverless. Rerank models like 
 ## Moderation models
 
 There are currently no moderation models offered via serverless.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.
