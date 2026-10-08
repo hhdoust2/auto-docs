@@ -6,7 +6,7 @@
 
 > Understand serverless performance, how to handle rate limits during high demand, and options for throughput guarantees.
 
-Most users can expect to use Together AI [serverless inference](/docs/serverless/overview) without encountering rate limits. Rate limiting may occasionally occur with high request volumes or large bursts of traffic.
+In most cases, you can use Together AI [serverless inference](/docs/serverless/overview) without encountering rate limits. Rate limiting may occasionally occur with high request volumes or large bursts of traffic.
 
 ## Demand and performance
 
