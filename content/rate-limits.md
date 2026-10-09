@@ -34,5 +34,10 @@ Limit retries to fit your application's latency needs. For workloads that need c
 
 If your workload needs committed throughput and reliability guarantees, [provisioned throughput](/docs/inference/provisioned-throughput) reserves capacity for a selected model or model family with a defined service level agreement (SLA). [Contact sales](https://www.together.ai/contact-sales-pt) to discuss your workload and capacity requirements.
 
+## Contract and model-specific limits
+
+* **Enterprise and Scale contracts:** If you have an active Enterprise or Scale contract, your purchased rate limits stay in place until the contract expires. Nothing changes during your current term.
+* **Model-specific limits:** When a model is in especially high demand, Together may apply custom rate limits or access restrictions to that model.
+
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

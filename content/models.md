@@ -42,11 +42,11 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 | Thinking Machines | Inkling | thinkingmachines/Inkling | 524288 | \$1.00 | \$0.17 | \$4.05 | NVFP4 | Yes | Yes |
 | Minimax | Minimax M3 | MiniMaxAI/MiniMax-M3 | 524288 | \$0.30 | \$0.06 | \$1.20 | FP4 | Yes | Yes |
-| Qwen | Qwen3.8-2.4T-A95B | Qwen/Qwen3.8-2.4T-A95B | - | \$2.00 | \$0.50 | \$6.00 | FP4 | - | - |
-| Qwen | Qwen3.7 Max | Qwen/Qwen3.7-Max | - | \$1.50 | \$0.50 | \$4.50 | - | - | - |
-| Qwen | Qwen3.6 Plus | Qwen/Qwen3.6-Plus | 1000000 | \$0.50 | - | \$3.00 | - | - | - |
+| Qwen | Qwen3.8-2.4T-A95B | Qwen/Qwen3.8-2.4T-A95B | - | \$2.00 | \$0.50 | \$6.00 | FP4 | Yes | Yes |
+| Qwen | Qwen3.7 Max | Qwen/Qwen3.7-Max | - | \$2.50 | \$0.50 | \$7.50 | - | Yes | Yes |
+| Qwen | Qwen3.6 Plus | Qwen/Qwen3.6-Plus | 1000000 | \$0.50 | - | \$3.00 | - | Yes | Yes |
 | Qwen | Qwen3.5 9B | Qwen/Qwen3.5-9B | 262144 | \$0.17 | - | \$0.25 | FP8 | Yes | Yes |
-| Moonshot | Kimi K3 | moonshotai/Kimi-K3 | 1048576 | \$3.00 | \$0.30 | \$15.00 | - | Yes | Yes |
+| Moonshot | Kimi K3 | moonshotai/Kimi-K3 | 1048576 | \$2.70 | \$0.30 | \$13.50 | - | Yes | Yes |
 | Z.ai | GLM-5.3 | zai-org/GLM-5.3 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
 | Z.ai | GLM-5.3 Flash | zai-org/GLM-5.3-Flash | 1048575 | \$0.15 | \$0.03 | \$0.50 | FP8 | Yes | Yes |
 | Z.ai | GLM-5.2 | zai-org/GLM-5.2 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
@@ -54,10 +54,10 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | DeepSeek | DeepSeek-V4-Flash-0731 | deepseek-ai/DeepSeek-V4-Flash-0731 | 1048576 | \$0.14 | \$0.03 | \$0.28 | FP4 | Yes | Yes |
 | DeepSeek | DeepSeek V4 Pro 0813 | deepseek-ai/DeepSeek-V4-Pro-0813 | 1048576 | \$1.32 | \$0.13 | \$3.96 | NVFP4 | Yes | Yes |
 | Meta | Llama 3.3 70B Instruct Turbo | meta-llama/Llama-3.3-70B-Instruct-Turbo | 131072 | \$1.04 | - | \$1.04 | FP8 | Yes | Yes |
-| Qwen | Qwen3.7 Plus | Qwen/Qwen3.7-Plus | 1000000 | \$0.32 | - | \$1.28 | - | - | - |
-| Prism ML | Ternary Bonsai 27B | Prism-ML/Ternary-Bonsai-27B | 262144 | Free | - | Free | - | - | - |
-| Meta | Muse Glimmer 30B | meta-models/Muse-Glimmer-30B | 131072 | \$0.35 | \$0.04 | \$1.50 | FP8 | - | - |
-| Qwen | Qwen3.8 Flash | Qwen/Qwen3.8-Flash | 1000000 | \$0.09 | - | \$0.282 | - | - | - |
+| Qwen | Qwen3.7 Plus | Qwen/Qwen3.7-Plus | 1000000 | \$0.32 | - | \$1.28 | - | Yes | Yes |
+| Prism ML | Ternary Bonsai 27B | Prism-ML/Ternary-Bonsai-27B | 262144 | Free | - | Free | - | Yes | Yes |
+| Meta | Muse Glimmer 30B | meta-models/Muse-Glimmer-30B | 131072 | \$0.35 | \$0.04 | \$1.50 | FP8 | Yes | Yes |
+| Qwen | Qwen3.8 Flash | Qwen/Qwen3.8-Flash | 1000000 | \$0.15 | - | \$0.47 | - | Yes | Yes |
 | DeepSeek | DeepSeek V4.1 Flash | deepseek-ai/DeepSeek-V4.1-Flash | 1000000 | \$0.30 | \$0.006 | \$1.20 | FP8 | Yes | Yes |
 | Together AI | Tev1 4B Experimental | together/Tev1-4B-experimental | 32768 | \$0.042 | - | Free | - | - | - |
 
@@ -150,7 +150,7 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 | :- | :- | :- | :- | :- | :- |
 | Qwen | Qwen3.5 9B | Qwen/Qwen3.5-9B | 262144 | \$0.17 | \$0.25 |
 | Minimax | Minimax M3 | MiniMaxAI/MiniMax-M3 | 524288 | \$0.30 | \$1.20 |
-| Moonshot | Kimi K3 | moonshotai/Kimi-K3 | 1048576 | \$3.00 | \$15.00 |
+| Moonshot | Kimi K3 | moonshotai/Kimi-K3 | 1048576 | \$2.70 | \$13.50 |
 
 ### **Vision model examples**
 
@@ -196,6 +196,7 @@ Use our [Audio](/reference/audio-speech) endpoint for text-to-speech models. For
 | :- | :- | :- | :- | :- |
 | Canopy Labs | Text-to-Speech | Orpheus 3B | canopylabs/orpheus-3b-0.1-ft | \$15.00 per 1M chars |
 | Kokoro | Text-to-Speech | Kokoro | hexgrad/Kokoro-82M | \$4.00 per 1M chars |
+| Qwen | Text-to-Speech | Qwen3 TTS 12Hz 1.7B CustomVoice | Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice | \$4.00 per 1M chars |
 | Cartesia | Text-to-Speech | Cartesia Sonic 3 | cartesia/sonic-3 | \$65.00 per 1M chars |
 | Cartesia | Text-to-Speech | Cartesia Sonic 2 | cartesia/sonic-2 | \$65.00 per 1M chars |
 | Cartesia | Text-to-Speech | Cartesia Sonic | cartesia/sonic | \$65.00 per 1M chars |
