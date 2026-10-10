@@ -72,8 +72,8 @@ curl -sS https://anymodel.org/v1/models -H "Authorization: Bearer $ANYMODEL_API_
       "billing": {
         "unit": "token",
         "coefficient": {
-          "input": 3,
-          "output": 3
+          "input": 1.5,
+          "output": 1.5
         }
       }
     },
@@ -106,8 +106,8 @@ curl -sS https://anymodel.org/v1/models -H "Authorization: Bearer $ANYMODEL_API_
           }
         },
         "coefficient": {
-          "input": 1.875,
-          "output": 1.875
+          "input": 0.9375,
+          "output": 0.9375
         }
       }
     }
@@ -158,7 +158,7 @@ The token counts come back in the response, so the charge is verifiable from the
 }
 ```
 
-With the coefficient above, that answer costs `ceil(10000 × 3 + 2000 × 3)` = 36 000 balance tokens.
+With the coefficient above, that answer costs `ceil(10000 × 1.5 + 2000 × 1.5)` = 18 000 balance tokens.
 
 Images (`unit: "image"`), counted over the images actually delivered — a batch that comes back short costs what arrived, and a "success" with no image costs nothing:
 
@@ -217,7 +217,7 @@ curl -sS "https://anymodel.org/v1/models/info?id=am/gpt-image-2" -H "Authorizati
 {
   "id": "am/gpt-image-2", "name": "GPT Image 2", "kind": "image", "owned_by": "am",
   "endpoint": "/v1/images/generations", "params": ["n", "size", "quality", "response_format"],
-  "billing": {"unit":"image","base_tokens":100000,"scales":{"quality":{"low":0.25,"medium":1,"auto":1,"standard":1,"high":4,"hd":4},"size":{"256x256":0.4,"512x512":0.6,"1024x1024":1,"auto":1,"1024x1536":1.5,"1536x1024":1.5,"1024x1792":1.75,"1792x1024":1.75}},"coefficient":{"input":1.875,"output":1.875}}
+  "billing": {"unit":"image","base_tokens":100000,"scales":{"quality":{"low":0.25,"medium":1,"auto":1,"standard":1,"high":4,"hd":4},"size":{"256x256":0.4,"512x512":0.6,"1024x1024":1,"auto":1,"1024x1536":1.5,"1536x1024":1.5,"1024x1792":1.75,"1792x1024":1.75}},"coefficient":{"input":0.9375,"output":0.9375}}
 }
 ```
 

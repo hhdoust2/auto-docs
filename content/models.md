@@ -51,9 +51,7 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | Z.ai | GLM-5.3 Flash | zai-org/GLM-5.3-Flash | 1048575 | \$0.15 | \$0.03 | \$0.50 | FP8 | Yes | Yes |
 | Z.ai | GLM-5.2 | zai-org/GLM-5.2 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
 | OpenAI | GPT-OSS 120B | openai/gpt-oss-120b | 131072 | \$0.15 | - | \$0.60 | MXFP4 | Yes | Yes |
-| DeepSeek | DeepSeek-V4-Flash-0731 | deepseek-ai/DeepSeek-V4-Flash-0731 | 1048576 | \$0.14 | \$0.03 | \$0.28 | FP4 | Yes | Yes |
 | DeepSeek | DeepSeek V4 Pro 0813 | deepseek-ai/DeepSeek-V4-Pro-0813 | 1048576 | \$1.32 | \$0.13 | \$3.96 | NVFP4 | Yes | Yes |
-| Meta | Llama 3.3 70B Instruct Turbo | meta-llama/Llama-3.3-70B-Instruct-Turbo | 131072 | \$1.04 | - | \$1.04 | FP8 | Yes | Yes |
 | Qwen | Qwen3.7 Plus | Qwen/Qwen3.7-Plus | 1000000 | \$0.32 | - | \$1.28 | - | Yes | Yes |
 | Prism ML | Ternary Bonsai 27B | Prism-ML/Ternary-Bonsai-27B | 262144 | Free | - | Free | - | Yes | Yes |
 | Meta | Muse Glimmer 30B | meta-models/Muse-Glimmer-30B | 131072 | \$0.35 | \$0.04 | \$1.50 | FP8 | Yes | Yes |
