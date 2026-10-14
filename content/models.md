@@ -194,7 +194,6 @@ Use our [Audio](/reference/audio-speech) endpoint for text-to-speech models. For
 | :- | :- | :- | :- | :- |
 | Canopy Labs | Text-to-Speech | Orpheus 3B | canopylabs/orpheus-3b-0.1-ft | \$15.00 per 1M chars |
 | Kokoro | Text-to-Speech | Kokoro | hexgrad/Kokoro-82M | \$4.00 per 1M chars |
-| Qwen | Text-to-Speech | Qwen3 TTS 12Hz 1.7B CustomVoice | Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice | \$4.00 per 1M chars |
 | Cartesia | Text-to-Speech | Cartesia Sonic 3 | cartesia/sonic-3 | \$65.00 per 1M chars |
 | Cartesia | Text-to-Speech | Cartesia Sonic 2 | cartesia/sonic-2 | \$65.00 per 1M chars |
 | Cartesia | Text-to-Speech | Cartesia Sonic | cartesia/sonic | \$65.00 per 1M chars |
