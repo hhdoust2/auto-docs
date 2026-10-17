@@ -55,6 +55,7 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 | Qwen | Qwen3.7 Plus | Qwen/Qwen3.7-Plus | 1000000 | \$0.32 | - | \$1.28 | - | Yes | Yes |
 | Qwen | Qwen3.8 Flash | Qwen/Qwen3.8-Flash | 1000000 | \$0.15 | - | \$0.47 | - | Yes | Yes |
 | Qwen | Qwen3.8-2.4T-A95B | Qwen/Qwen3.8-2.4T-A95B | - | \$2.00 | \$0.50 | \$6.00 | FP4 | Yes | Yes |
+| Reflection | Beam 1.0 501B A23B | reflection/Beam-1.0-501B-A23B | 1048576 | \$0.40 | \$0.04 | \$1.20 | NVFP4 | Yes | Yes |
 | Thinking Machines | Inkling | thinkingmachines/Inkling | 524288 | \$1.00 | \$0.17 | \$4.05 | NVFP4 | Yes | Yes |
 | Together AI | Tev1 4B Experimental | together/Tev1-4B-experimental | 32768 | \$0.042 | - | Free | - | - | - |
 | Z.ai | GLM-5.2 | zai-org/GLM-5.2 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
