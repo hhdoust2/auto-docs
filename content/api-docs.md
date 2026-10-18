@@ -175,7 +175,7 @@ billed = ceil(round(base_tokens × quality_multiplier × size_multiplier) × del
 | high | ×4 |
 | hd | ×4 |
 
-Models served by an attached subscription (`gpt-image-2.5`, `gpt-image-2`, `gpt-image-1.5`, `gpt-image-1`) use a flatter quality ladder instead — their upstream cost does not fall with the quality knob, so a low-quality image is not a cheaper image:
+Models served by an attached subscription (`gpt-image-2.5`, `gpt-image-2`) use a flatter quality ladder instead — their upstream cost does not fall with the quality knob, so a low-quality image is not a cheaper image:
 
 | Quality (subscription-served models) | Multiplier |
 | --- | --- |
