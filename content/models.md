@@ -12,27 +12,25 @@ Serverless models are the fastest way to run inference on Together. You call any
 
 If you're not sure which model to use, see [Recommended models](/docs/inference/recommended-models) for our picks by use case.
 
-<Columns cols={4}>
-  <Card title="Chat" icon="message-circle" horizontal href="#chat-models" />
+> **[Chat](#chat-models)**
 
-  <Card title="Image" icon="photo" horizontal href="#image-models" />
+> **[Image](#image-models)**
 
-  <Card title="Vision" icon="eye" horizontal href="#vision-models" />
+> **[Vision](#vision-models)**
 
-  <Card title="Video" icon="video" horizontal href="#video-models" />
+> **[Video](#video-models)**
 
-  <Card title="Audio" icon="volume" horizontal href="#audio-models" />
+> **[Audio](#audio-models)**
 
-  <Card title="Embedding" icon="vector-bezier-2" horizontal href="#embedding-models" />
+> **[Embedding](#embedding-models)**
 
-  <Card title="Rerank" icon="arrows-sort" horizontal href="#rerank-models" />
+> **[Rerank](#rerank-models)**
 
-  <Card title="Moderation" icon="shield-check" horizontal href="#moderation-models" />
-</Columns>
+> **[Moderation](#moderation-models)**
 
-<Note>
-  Serverless and dedicated model inference support different sets of models. See the [dedicated model inference catalog](/docs/dedicated-endpoints/models) for details.
-</Note>
+> [!NOTE]
+>
+> Serverless and dedicated model inference support different sets of models. See the [dedicated model inference catalog](/docs/dedicated-endpoints/models) for details.
 
 For rate limits and pricing, see the [Serverless overview](/docs/serverless/overview).
 
@@ -74,9 +72,9 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 
 Use our [Images](/reference/post-images-generations) endpoint for image models. Calling image models requires a positive credit balance.
 
-<Note>
-  Prices for models billed by `image` are estimates, not rates. These models pass through the provider's own per-request charge, which varies with the resolution, quality, and other parameters you send. Models billed by `megapixel` use the [formula below](#per-megapixel-cost-formula). For more details, see [How image models bill](/docs/serverless/overview#how-image-models-bill).
-</Note>
+> [!NOTE]
+>
+> Prices for models billed by `image` are estimates, not rates. These models pass through the provider's own per-request charge, which varies with the resolution, quality, and other parameters you send. Models billed by `megapixel` use the [formula below](#per-megapixel-cost-formula). For more details, see [How image models bill](/docs/serverless/overview#how-image-models-bill).
 
 | Organization | Model name | Model string for API | Unit | Price | Output per \$1 |
 | :- | :- | :- | :- | :- | :- |
