@@ -202,7 +202,6 @@ Use our [Audio](/reference/audio-speech) endpoint for text-to-speech models. For
 | Kokoro | Text-to-Speech | Kokoro | hexgrad/Kokoro-82M | \$4.00 per 1M chars |
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3 ASR Streaming 0.6B | nvidia/nemotron-3-asr-streaming-0.6b | \$0.0015 per audio min |
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3.5 ASR Streaming 0.6B | nvidia/nemotron-3.5-asr-streaming-0.6b | \$0.0015 per audio min |
-| NVIDIA | Speech-to-Text | Parakeet TDT 0.6B v3 | nvidia/parakeet-tdt-0.6b-v3 | \$0.0015 per audio min |
 | OpenAI | Speech-to-Text | Whisper Large v3 | openai/whisper-large-v3 | \$0.0015 per audio min |
 
 **Audio model examples**
