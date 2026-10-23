@@ -10,7 +10,7 @@ Serverless models are the fastest way to run inference on Together. You call any
 
 ## Models
 
-If you're not sure which model to use, see [Recommended models](/docs/inference/recommended-models) for our picks by use case.
+If you're not sure which model to use, see [Recommended models](/docs/inference/recommended-models.md) for our picks by use case.
 
 > **[Chat](#chat-models)**
 
@@ -30,9 +30,9 @@ If you're not sure which model to use, see [Recommended models](/docs/inference/
 
 > [!NOTE]
 >
-> Serverless and dedicated model inference support different sets of models. See the [dedicated model inference catalog](/docs/dedicated-endpoints/models) for details.
+> Serverless and dedicated model inference support different sets of models. See the [dedicated model inference catalog](/docs/dedicated-endpoints/models.md) for details.
 
-For rate limits and pricing, see the [Serverless overview](/docs/serverless/overview).
+For rate limits and pricing, see the [Serverless overview](/docs/serverless/overview.md).
 
 ## Chat models
 
@@ -70,40 +70,40 @@ For rate limits and pricing, see the [Serverless overview](/docs/serverless/over
 
 ## Image models
 
-Use our [Images](/reference/post-images-generations) endpoint for image models. Calling image models requires a positive credit balance.
+Use our [Images](/reference/post-images-generations.md) endpoint for image models. Calling image models requires a positive credit balance.
 
 > [!NOTE]
 >
-> Prices for models billed by `image` are estimates, not rates. These models pass through the provider's own per-request charge, which varies with the resolution, quality, and other parameters you send. Models billed by `megapixel` use the [formula below](#per-megapixel-cost-formula). For more details, see [How image models bill](/docs/serverless/overview#how-image-models-bill).
+> Prices for models billed by `image` are estimates, not rates. These models pass through the provider's own per-request charge, which varies with the resolution, quality, and other parameters you send. Models billed by `megapixel` use the [formula below](#per-megapixel-cost-formula). For more details, see [How image models bill](/docs/serverless/overview.md#how-image-models-bill).
 
 | Organization | Model name | Model string for API | Unit | Price | Output per \$1 |
 | :- | :- | :- | :- | :- | :- |
 | Black Forest Labs | Flux.1 Kontext \[max] | black-forest-labs/FLUX.1-kontext-max | `megapixel` | \$0.08 | 12 megapixels |
 | Black Forest Labs | Flux.1 Kontext \[pro] | black-forest-labs/FLUX.1-kontext-pro | `megapixel` | \$0.04 | 25 megapixels |
 | Black Forest Labs | Flux1.1 \[pro] | black-forest-labs/FLUX.1.1-pro | `megapixel` | \$0.04 | 25 megapixels |
-| Black Forest Labs | FLUX.2 \[dev] | black-forest-labs/FLUX.2-dev | `image` | \$0.0154+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 65 images |
-| Black Forest Labs | FLUX.2 \[flex] | black-forest-labs/FLUX.2-flex | `image` | \$0.03+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 33 images |
+| Black Forest Labs | FLUX.2 \[dev] | black-forest-labs/FLUX.2-dev | `image` | \$0.0154+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 65 images |
+| Black Forest Labs | FLUX.2 \[flex] | black-forest-labs/FLUX.2-flex | `image` | \$0.03+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 33 images |
 | Black Forest Labs | FLUX.2 \[max] | black-forest-labs/FLUX.2-max | `megapixel` | \$0.07 at 50 steps | 14 megapixels |
-| Black Forest Labs | FLUX.2 \[pro] | black-forest-labs/FLUX.2-pro | `image` | \$0.03+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 33 images |
-| ByteDance | Seedream 3.0 | ByteDance-Seed/Seedream-3.0 | `image` | \$0.018+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 56 images |
-| ByteDance | Seedream 4.0 | ByteDance-Seed/Seedream-4.0 | `image` | \$0.03+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 33 images |
-| ByteDance | Seedream 5.0 Lite | ByteDance/Seedream-5.0-lite | `image` | \$0.035+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 29 images |
-| Google | Flash Image 2.5 (Nano Banana) | google/flash-image-2.5 | `image` | \$0.039+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 26 images |
-| Google | Gemini 3 Pro Image (Nano Banana Pro) | google/gemini-3-pro-image | `image` | \$0.134 at 1K or 2K ([varies](/docs/serverless/overview#how-image-models-bill)) | 7.5 images |
-| Google | Gemini 3.1 Flash Image (Nano Banana 2) | google/flash-image-3.1 | `image` | \$0.04657 at 512×512 ([varies](/docs/serverless/overview#how-image-models-bill)) | 21 images |
-| Google | Gemini 3.1 Flash-Lite Image (Nano Banana 2 Lite) | google/flash-image-3.1-lite | `image` | \$0.069+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 14 images |
-| Ideogram | Ideogram 3.0 | ideogram/ideogram-3.0 | `image` | \$0.06+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 17 images |
-| Ideogram | Ideogram 4.0 | ideogram/ideogram-4.0 | `image` | \$0.06+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 17 images |
-| OpenAI | GPT Image 1.5 | openai/gpt-image-1.5 | `image` | \$0.034+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 29 images |
-| OpenAI | GPT Image 2 | openai/gpt-image-2 | `image` | \$0.053+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 19 images |
-| Pruna AI | P-Image-Ideogram | prunaai/p-image-ideogram | `image` | \$0.00225+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 444 images |
-| Qwen | Qwen Image | Qwen/Qwen-Image | `image` | \$0.0058+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 172 images |
-| Qwen | Qwen Image 2.0 | Qwen/Qwen-Image-2.0 | `image` | \$0.035+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 29 images |
-| Qwen | Qwen Image 2.0 Pro | Qwen/Qwen-Image-2.0-Pro | `image` | \$0.075+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 13 images |
-| RunDiffusion | Juggernaut Lightning Flux | Rundiffusion/Juggernaut-Lightning-Flux | `image` | \$0.0017+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 588 images |
-| RunDiffusion | Juggernaut Pro Flux | RunDiffusion/Juggernaut-pro-flux | `image` | \$0.0049+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 204 images |
-| Stability AI | SD XL | stabilityai/stable-diffusion-xl-base-1.0 | `image` | \$0.0019+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 526 images |
-| Wan-AI | Wan 2.6 Image | Wan-AI/Wan2.6-image | `image` | \$0.03+ ([varies](/docs/serverless/overview#how-image-models-bill)) | 33 images |
+| Black Forest Labs | FLUX.2 \[pro] | black-forest-labs/FLUX.2-pro | `image` | \$0.03+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 33 images |
+| ByteDance | Seedream 3.0 | ByteDance-Seed/Seedream-3.0 | `image` | \$0.018+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 56 images |
+| ByteDance | Seedream 4.0 | ByteDance-Seed/Seedream-4.0 | `image` | \$0.03+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 33 images |
+| ByteDance | Seedream 5.0 Lite | ByteDance/Seedream-5.0-lite | `image` | \$0.035+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 29 images |
+| Google | Flash Image 2.5 (Nano Banana) | google/flash-image-2.5 | `image` | \$0.039+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 26 images |
+| Google | Gemini 3 Pro Image (Nano Banana Pro) | google/gemini-3-pro-image | `image` | \$0.134 at 1K or 2K ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 7.5 images |
+| Google | Gemini 3.1 Flash Image (Nano Banana 2) | google/flash-image-3.1 | `image` | \$0.04657 at 512×512 ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 21 images |
+| Google | Gemini 3.1 Flash-Lite Image (Nano Banana 2 Lite) | google/flash-image-3.1-lite | `image` | \$0.069+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 14 images |
+| Ideogram | Ideogram 3.0 | ideogram/ideogram-3.0 | `image` | \$0.06+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 17 images |
+| Ideogram | Ideogram 4.0 | ideogram/ideogram-4.0 | `image` | \$0.06+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 17 images |
+| OpenAI | GPT Image 1.5 | openai/gpt-image-1.5 | `image` | \$0.034+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 29 images |
+| OpenAI | GPT Image 2 | openai/gpt-image-2 | `image` | \$0.053+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 19 images |
+| Pruna AI | P-Image-Ideogram | prunaai/p-image-ideogram | `image` | \$0.00225+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 444 images |
+| Qwen | Qwen Image | Qwen/Qwen-Image | `image` | \$0.0058+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 172 images |
+| Qwen | Qwen Image 2.0 | Qwen/Qwen-Image-2.0 | `image` | \$0.035+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 29 images |
+| Qwen | Qwen Image 2.0 Pro | Qwen/Qwen-Image-2.0-Pro | `image` | \$0.075+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 13 images |
+| RunDiffusion | Juggernaut Lightning Flux | Rundiffusion/Juggernaut-Lightning-Flux | `image` | \$0.0017+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 588 images |
+| RunDiffusion | Juggernaut Pro Flux | RunDiffusion/Juggernaut-pro-flux | `image` | \$0.0049+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 204 images |
+| Stability AI | SD XL | stabilityai/stable-diffusion-xl-base-1.0 | `image` | \$0.0019+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 526 images |
+| Wan-AI | Wan 2.6 Image | Wan-AI/Wan2.6-image | `image` | \$0.03+ ([varies](/docs/serverless/overview.md#how-image-models-bill)) | 33 images |
 
 ### **Image model examples**
 
@@ -144,7 +144,7 @@ Supported dimensions: 1K: 1024×1024 (1:1), 1264×848 (3:2), 848×1264 (2:3), 12
 
 ## Vision models
 
-If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Qwen3.5-9B`). For model-specific rate limits, see [Rate limits](/docs/serverless/rate-limits).
+If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Qwen3.5-9B`). For model-specific rate limits, see [Rate limits](/docs/serverless/rate-limits.md).
 
 | Organization | Model name | API model string | Context length | Input pricing (per 1M tokens) | Output pricing (per 1M tokens) |
 | :- | :- | :- | :- | :- | :- |
@@ -191,7 +191,7 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 
 ## Audio models
 
-Use our [Audio](/reference/audio-speech) endpoint for text-to-speech models. For speech-to-text models see [Transcription](/reference/audio-transcriptions) and [Translations](/reference/audio-translations).
+Use our [Audio](/reference/audio-speech.md) endpoint for text-to-speech models. For speech-to-text models see [Transcription](/reference/audio-transcriptions.md) and [Translations](/reference/audio-translations.md).
 
 | Organization | Modality | Model name | Model string for API | Pricing |
 | :- | :- | :- | :- | :- |
@@ -202,7 +202,6 @@ Use our [Audio](/reference/audio-speech) endpoint for text-to-speech models. For
 | Kokoro | Text-to-Speech | Kokoro | hexgrad/Kokoro-82M | \$4.00 per 1M chars |
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3 ASR Streaming 0.6B | nvidia/nemotron-3-asr-streaming-0.6b | \$0.0015 per audio min |
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3.5 ASR Streaming 0.6B | nvidia/nemotron-3.5-asr-streaming-0.6b | \$0.0015 per audio min |
-| OpenAI | Speech-to-Text | Whisper Large v3 | openai/whisper-large-v3 | \$0.0015 per audio min |
 
 **Audio model examples**
 
@@ -215,7 +214,7 @@ There are currently no embedding models offered via serverless.
 
 ## Rerank models
 
-There are currently no rerank models offered via serverless. Rerank models like `mixedbread-ai/mxbai-rerank-large-v2` are only available with [dedicated model inference](/docs/dedicated-endpoints/models).
+There are currently no rerank models offered via serverless. Rerank models like `mixedbread-ai/mxbai-rerank-large-v2` are only available with [dedicated model inference](/docs/dedicated-endpoints/models.md).
 
 ## Moderation models
 
