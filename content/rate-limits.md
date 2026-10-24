@@ -6,7 +6,7 @@
 
 > Understand serverless performance, how to handle rate limits during high demand, and options for throughput guarantees.
 
-In most cases, you can use Together AI [serverless inference](/docs/serverless/overview.md) without encountering rate limits. Rate limiting may occasionally occur with high request volumes or large bursts of traffic.
+In most cases, you can use Together AI [serverless inference](https://docs.together.ai/docs/serverless/overview.md) without encountering rate limits. Rate limiting may occasionally occur with high request volumes or large bursts of traffic.
 
 ## Demand and performance
 
@@ -19,7 +19,7 @@ Together aims to maintain high performance for serverless requests, including:
 
 When demand is high, Together may limit requests to maintain these performance goals. You may receive a `429 Too Many Requests` or `503 Service Unavailable` response.
 
-Serverless performance is best-effort. For committed throughput and reliability guarantees, see [provisioned throughput](/docs/inference/provisioned-throughput.md).
+Serverless performance is best-effort. For committed throughput and reliability guarantees, see [provisioned throughput](https://docs.together.ai/docs/inference/provisioned-throughput.md).
 
 ## Handle errors during high demand
 
@@ -28,11 +28,11 @@ The response code tells you how to adjust your requests:
 * **`429 Too Many Requests`:** Reduce your request rate. Spread requests out over time and avoid sending large bursts. Use exponential backoff when retrying.
 * **`503 Service Unavailable`:** Wait briefly, then retry. Use exponential backoff if the error continues.
 
-Limit retries to fit your application's latency needs. For workloads that need committed throughput and reliability, consider [provisioned throughput](/docs/inference/provisioned-throughput.md).
+Limit retries to fit your application's latency needs. For workloads that need committed throughput and reliability, consider [provisioned throughput](https://docs.together.ai/docs/inference/provisioned-throughput.md).
 
 ## Get throughput guarantees
 
-If your workload needs committed throughput and reliability guarantees, [provisioned throughput](/docs/inference/provisioned-throughput.md) reserves capacity for a selected model or model family with a defined service level agreement (SLA). [Contact sales](https://www.together.ai/contact-sales-pt) to discuss your workload and capacity requirements.
+If your workload needs committed throughput and reliability guarantees, [provisioned throughput](https://docs.together.ai/docs/inference/provisioned-throughput.md) reserves capacity for a selected model or model family with a defined service level agreement (SLA). [Contact sales](https://www.together.ai/contact-sales-pt) to discuss your workload and capacity requirements.
 
 ## Contract and model-specific limits
 

@@ -104,7 +104,7 @@ Every  whose `metadata` carries `limit_source` also carries `remedy_hint`, a one
 }
 ```
 
-The budget applies to prepaid accounts spending their own credits, and only to a subset of them: accounts whose balance is below a threshold, and, while the mechanism is being rolled out, newer accounts without an established spending history. A larger balance raises the budget up to the ceiling, and a balance at or above the threshold is not subject to it at all. It does not apply to requests to free models, to requests served entirely with your own provider keys (see [BYOK](/docs/guides/overview/auth/byok.md)) that use no paid plugins, or to enterprise, paid-subscription, or invoice-billed accounts.
+The budget applies to prepaid accounts spending their own credits, and only to a subset of them: accounts whose balance is below a threshold, and, while the mechanism is being rolled out, newer accounts without an established spending history. A larger balance raises the budget up to the ceiling, and a balance at or above the threshold is not subject to it at all. It does not apply to requests to free models, to requests served entirely with your own provider keys (see [BYOK](https://openrouter.ai/docs/guides/overview/auth/byok.md)) that use no paid plugins, or to enterprise, paid-subscription, or invoice-billed accounts.
 
 ### Handling 402 errors
 
@@ -120,8 +120,8 @@ To resolve  errors:
 
 Budget limits are spend caps an org admin configures. They come from three places, and OpenRouter checks them in this order on every paid request, so the first one that is spent is the one that blocks:
 
-1. **Guardrail budgets**: a `limit_usd` with a `reset_interval` on the workspace default guardrail (checked against the member's combined spend, then against the key's own spend), on the guardrail assigned to the member, and on the guardrail assigned to the API key. See [Guardrails](/docs/guides/features/guardrails.md).
-2. **Workspace budgets**: caps on the whole workspace's spend per interval. See [Workspace budgets](/docs/guides/features/workspaces/workspace-budgets.md).
+1. **Guardrail budgets**: a `limit_usd` with a `reset_interval` on the workspace default guardrail (checked against the member's combined spend, then against the key's own spend), on the guardrail assigned to the member, and on the guardrail assigned to the API key. See [Guardrails](https://openrouter.ai/docs/guides/features/guardrails.md).
+2. **Workspace budgets**: caps on the whole workspace's spend per interval. See [Workspace budgets](https://openrouter.ai/docs/guides/features/workspaces/workspace-budgets.md).
 3. **The key's own limit**: the `limit` field above, once its window is spent.
 
 Spend windows are UTC: a daily budget resets at 00:00 UTC, a weekly one on Monday 00:00 UTC, a monthly one on the first of the month 00:00 UTC. A lifetime workspace budget never resets.
@@ -217,7 +217,7 @@ The `free_model_daily_requests` field in the `GET /api/v1/key` response above re
 
 ### Handling 429 errors
 
-Requests rejected with  fail with a standard [error response](/docs/api_reference/errors-and-debugging.md):
+Requests rejected with  fail with a standard [error response](https://openrouter.ai/docs/api_reference/errors-and-debugging.md):
 
 ```json lines theme={null}
 {
@@ -234,7 +234,7 @@ Requests rejected with  fail with a standard [error response](/docs/api_referenc
 A  error can come from two places:
 
 1. **OpenRouter**, when you hit one of the platform limits above (free-model requests per minute or per day, or DDoS protection).
-2. **The upstream provider**, when the provider serving your request is rate limiting or at capacity. In this case `error.metadata.provider_code` carries the provider's original error code when available, and [fallback routing](/docs/guides/routing/provider-selection.md) retries other providers for the same model automatically before the error reaches you. You can also specify [fallback models](/docs/guides/routing/model-fallbacks.md) to try a different model when all providers for the first are exhausted.
+2. **The upstream provider**, when the provider serving your request is rate limiting or at capacity. In this case `error.metadata.provider_code` carries the provider's original error code when available, and [fallback routing](https://openrouter.ai/docs/guides/routing/provider-selection.md) retries other providers for the same model automatically before the error reaches you. You can also specify [fallback models](https://openrouter.ai/docs/guides/routing/model-fallbacks.md) to try a different model when all providers for the first are exhausted.
 
 > [!NOTE]
 >
@@ -244,7 +244,7 @@ To resolve  errors:
 
 * **Retry with exponential backoff.** Rate limits are transient; wait and retry rather than immediately re-sending. Honor the `Retry-After` header when present.
 * **On free variants**, purchase at least 10 credits to raise your daily limit, or switch to the paid variant of the model, which has no platform-level request cap.
-* **For provider-side limits**, add [fallback models](/docs/guides/routing/model-fallbacks.md) or relax [provider routing preferences](/docs/guides/routing/provider-selection.md) so more providers are eligible to serve the request.
+* **For provider-side limits**, add [fallback models](https://openrouter.ai/docs/guides/routing/model-fallbacks.md) or relax [provider routing preferences](https://openrouter.ai/docs/guides/routing/provider-selection.md) so more providers are eligible to serve the request.
 
 #### Mid-stream rate limits
 
@@ -254,4 +254,4 @@ If a rate limit is hit after streaming has started, the error arrives as an SSE 
 data: {"id":"cmpl-abc123","object":"chat.completion.chunk","created":1234567890,"model":"openai/gpt-4o","provider":"openai","error":{"code":429,"message":"Rate limit exceeded"},"choices":[{"index":0,"delta":{"content":""},"finish_reason":"error"}]}
 ```
 
-See [Handling Errors During Streaming](/docs/api_reference/streaming.md#handling-errors-during-streaming) for details and code examples.
+See [Handling Errors During Streaming](https://openrouter.ai/docs/api_reference/streaming.md#handling-errors-during-streaming) for details and code examples.
