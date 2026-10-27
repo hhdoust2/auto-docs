@@ -43,7 +43,6 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | DeepSeek | DeepSeek V4.1 Flash 1017 | deepseek-ai/DeepSeek-V4.1-Flash-1017 | 1000000 | \$0.30 | \$0.006 | \$1.20 | FP8 | Yes | Yes |
 | Meta | Muse Glimmer 30B | meta-models/Muse-Glimmer-30B | 131072 | \$0.35 | \$0.04 | \$1.50 | FP8 | Yes | Yes |
 | Meta | Muse Spark Open 816B A42B | meta-models/Muse-Spark-Open-816B-A42B | 1048576 | \$1.25 | \$0.15 | \$4.25 | NVFP4 | Yes | Yes |
-| Minimax | Minimax M3 | MiniMaxAI/MiniMax-M3 | 524288 | \$0.30 | \$0.06 | \$1.20 | FP4 | Yes | Yes |
 | Minimax | Minimax M3.1 Flash | MiniMaxAI/MiniMax-M3.1-Flash | 1048576 | \$0.15 | \$0.015 | \$0.60 | NVFP4 | Yes | Yes |
 | Moonshot | Kimi K3 | moonshotai/Kimi-K3 | 1048576 | \$3.00 | \$0.30 | \$15.00 | - | Yes | Yes |
 | NVIDIA | NVIDIA Nemotron 3.5 Super VL | nvidia/NVIDIA-Nemotron-3.5-Super-VL | 262144 | \$0.15 | \$0.02 | \$0.50 | NVFP4 | Yes | Yes |
@@ -56,7 +55,6 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | Qwen | Qwen3.8 Flash | Qwen/Qwen3.8-Flash | 1000000 | \$0.15 | - | \$0.47 | - | Yes | Yes |
 | Qwen | Qwen3.8-2.4T-A95B | Qwen/Qwen3.8-2.4T-A95B | - | \$2.00 | \$0.50 | \$6.00 | FP4 | Yes | Yes |
 | Reflection | Beam 1.0 501B A23B | reflection/Beam-1.0-501B-A23B | 1048576 | \$0.40 | \$0.04 | \$1.20 | NVFP4 | Yes | Yes |
-| Thinking Machines | Inkling | thinkingmachines/Inkling | 524288 | \$1.00 | \$0.17 | \$4.05 | NVFP4 | Yes | Yes |
 | Together AI | Tev1 4B Experimental | together/Tev1-4B-experimental | 32768 | \$0.042 | - | Free | - | - | - |
 | Z.ai | GLM-5.2 | zai-org/GLM-5.2 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
 | Z.ai | GLM-5.3 | zai-org/GLM-5.3 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
@@ -175,7 +173,6 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 
 | Organization | Model name | API model string | Context length | Input pricing (per 1M tokens) | Output pricing (per 1M tokens) |
 | :- | :- | :- | :- | :- | :- |
-| Minimax | Minimax M3 | MiniMaxAI/MiniMax-M3 | 524288 | \$0.30 | \$1.20 |
 | Moonshot | Kimi K3 | moonshotai/Kimi-K3 | 1048576 | \$3.00 | \$15.00 |
 | NVIDIA | NVIDIA Nemotron 3.5 Super VL | nvidia/NVIDIA-Nemotron-3.5-Super-VL | 262144 | \$0.15 | \$0.50 |
 | Qwen | Qwen3.5 9B | Qwen/Qwen3.5-9B | 262144 | \$0.17 | \$0.25 |
@@ -229,6 +226,7 @@ Use our [Audio](https://docs.together.ai/reference/audio-speech.md) endpoint for
 | Kokoro | Text-to-Speech | Kokoro | hexgrad/Kokoro-82M | \$4.00 per 1M chars |
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3 ASR Streaming 0.6B | nvidia/nemotron-3-asr-streaming-0.6b | \$0.0015 per audio min |
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3.5 ASR Streaming 0.6B | nvidia/nemotron-3.5-asr-streaming-0.6b | \$0.0015 per audio min |
+| NVIDIA | Speech-to-Text | Parakeet TDT 0.6B v3 | nvidia/parakeet-tdt-0.6b-v3 | \$0.0015 per audio min |
 
 **Audio model examples**
 
