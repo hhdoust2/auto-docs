@@ -545,7 +545,7 @@ curl -sS "https://anymodel.org/v1/videos/REQUEST_ID/content" \
 
 ## Text to speech
 
-Synthesise speech with POST /v1/audio/speech. The model is either a speech model from GET /v1/models/tts, sent exactly as listed (fish-farm/s2.1-pro-free), or a voice from GET /v1/audio/voices, sent as the model value of its entry (edge-tts/en-US-AriaNeural). The voice list is read with the same API key and holds several hundred voices; the model catalog does not list them one by one. There is no voice field: the voice is part of the model id, and a voice or response_format field in the body (OpenAI SDKs always send voice) is ignored. The response body is the audio file itself, MP3 by default (Content-Type names the format).
+Synthesise speech with POST /v1/audio/speech. The model is either a speech model from GET /v1/models/tts, sent exactly as listed (fish-farm/s2.1-pro-free), or a voice from GET /v1/audio/voices, sent as the model value of its entry (edge-tts/en-US-AriaNeural). The voice list is read with the same API key and holds several hundred voices; the model catalog does not list them one by one. There is no voice field: the voice is part of the model id, and a voice or response_format field in the body (OpenAI SDKs always send voice) is ignored. The response body is the audio file itself, MP3 by default (Content-Type names the format). AnyVoice presets — the studio voices offered over the API — are listed with GET /v1/audio/voices?provider=anyvoice and sent the same way (anyvoice/builtin-7); voices cloned in the studio are not available over the API. Call the API from your server, not from a web page: a key in the page is a key anyone can copy.
 
 ```bash
 curl -sS https://anymodel.org/v1/audio/speech \
@@ -595,15 +595,37 @@ curl -sS https://anymodel.org/v1/audio/speech \
 }'
 ```
 
+**List AnyVoice voices**
+
+```bash
+curl -sS "https://anymodel.org/v1/audio/voices?provider=anyvoice&lang=ru" \
+  -H "Authorization: Bearer <YOUR_API_KEY>" \
+  | jq -r ".data[] | .model + \"  \" + .name"
+```
+
+**Speak with an AnyVoice voice**
+
+```bash
+curl -sS https://anymodel.org/v1/audio/speech \
+  -X POST \
+  -H "Authorization: Bearer <YOUR_API_KEY>" \
+  -H "Content-Type: application/json" \
+  -o speech.mp3 \
+  -d '{
+  "model": "anyvoice/builtin-7",
+  "input": "Привет! Это голос AnyVoice."
+}'
+```
+
 | Parameter | Description |
 | --- | --- |
-| model | Required. A speech model from GET /v1/models/tts, exactly as listed (fish-farm/s2.1-pro-free), or the model value of a voice from GET /v1/audio/voices (edge-tts/en-US-AriaNeural). Take the id from the list as it is: one with a quote, a slash or a tag in it is refused with 400. |
+| model | Required. A speech model from GET /v1/models/tts, exactly as listed (fish-farm/s2.1-pro-free), or the model value of a voice from GET /v1/audio/voices (edge-tts/en-US-AriaNeural). Take the id from the list as it is: one with a quote, a slash or a tag in it is refused with 400. An AnyVoice preset is anyvoice/<voice id> (anyvoice/builtin-7); an id that is not in GET /v1/audio/voices?provider=anyvoice answers 404. |
 | input | Required. The text to speak, as plain text. With a voice from GET /v1/audio/voices, markup is not interpreted: SSML or HTML tags in the input are escaped before synthesis, and characters such as & and < are safe to send as they are (Tom & Jerry, 1 < 2). |
 | response_format | Optional query-string parameter, not a body field: ?response_format=json answers { "audio": base64, "format": "mp3" } instead of the audio bytes. |
 
 | Voice list | Description |
 | --- | --- |
-| provider | Required query parameter of GET /v1/audio/voices: edge-tts. A request without it is refused with 400. |
+| provider | Required query parameter of GET /v1/audio/voices: edge-tts. For AnyVoice presets: anyvoice, entries such as { "id": "builtin-7", "name": "Спокойный женский", "lang": "ru", "gender": "Female", "model": "anyvoice/builtin-7" }. A request without it is refused with 400. |
 | lang | Optional query parameter: a language code such as en or ru, to list that language only. Case and a region part are ignored — RU, ru-RU and ru_RU all mean ru, and zh-CN returns every zh voice. A language with no voices answers an empty list; a value that is not a language code is refused with 400. |
 | data | The answer is { "object": "list", "data": [...] } with one entry per voice: { "id": "en-US-AriaNeural", "name": "Aria (English (United States))", "lang": "en", "gender": "Female", "model": "edge-tts/en-US-AriaNeural" }. model is the value to send as model to POST /v1/audio/speech; lang is the code the lang parameter filters by. |
 
@@ -611,6 +633,7 @@ curl -sS https://anymodel.org/v1/audio/speech \
 | --- | --- |
 | Price | 50 tokens per input character, times the model's coefficient.output. Characters are counted in input exactly as sent — surrounding spaces included, and an emoji counts as two (UTF-16 length). The catalog shows the rate as billing.unit character with billing.base_tokens 50. |
 | Charge | The price of the whole input is held from the balance before the call and booked only when audio comes back. A failed synthesis costs nothing. |
+| AnyVoice | An AnyVoice preset costs what the same voice costs in the AnyVoice studio, per input character, and shows in usage history as anyvoice-tts. One request speaks up to 50,000 characters (about an hour of audio); a longer input is refused with 400, not cut. A long text is synthesized in pieces and the audio streams back as it is ready — read the body to the end. If synthesis stops part-way, the audio ends there and only the characters spoken are charged. |
 
 ## Long-running image requests
 

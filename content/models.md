@@ -75,23 +75,11 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | :- | -: | -: | -: |
 | Kimi K3 (US-only) | \$3.75 | \$0.375 | \$18.75 |
 | GLM-5.3 (US-only) | \$1.75 | \$0.325 | \$5.50 |
-| GLM-5.2 (US-only) | \$1.75 | \$0.325 | \$5.50 |
+| GLM-5.3 Flash (US-only) | \$0.1875 | \$0.0375 | \$0.625 |
 | DeepSeek V4.1 Flash (US-only) | \$0.375 | \$0.0075 | \$1.50 |
 | DeepSeek V4.1 Flash 1017 (US-only) | \$0.375 | \$0.0075 | \$1.50 |
 | DeepSeek V4 Pro 0813 (US-only) | \$1.65 | \$0.1625 | \$4.95 |
-| MiniMax M3 (US-only) | \$0.375 | \$0.075 | \$1.50 |
-
-## Canada-only inference
-
-[Geo-specific inference](https://docs.together.ai/docs/serverless/geo-specific-inference.md) keeps inference processing in Canada for requests sent to `ca-api.together.ai`. These requests cost 1.25× standard serverless rates (a 25% premium) for input, cached input, and output tokens. All prices are in USD per 1M tokens.
-
-| Model | Input | Cached input | Output |
-| :- | -: | -: | -: |
-| GLM-5.3 (Canada-only) | \$1.75 | \$0.325 | \$5.50 |
-| GLM-5.3 Flash (Canada-only) | \$0.1875 | \$0.0375 | \$0.625 |
-| GLM-5.2 (Canada-only) | \$1.75 | \$0.325 | \$5.50 |
-| DeepSeek V4.1 Flash (Canada-only) | \$0.375 | \$0.0075 | \$1.50 |
-| DeepSeek V4 Pro 0813 (Canada-only) | \$1.65 | \$0.1625 | \$4.95 |
+| MiniMax M3.1 Flash (US-only) | \$0.1875 | \$0.01875 | \$0.75 |
 
 ## Image models
 
