@@ -43,7 +43,7 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | DeepSeek | DeepSeek V4.1 Flash 1017 | deepseek-ai/DeepSeek-V4.1-Flash-1017 | 1000000 | \$0.30 | \$0.006 | \$1.20 | FP8 | Yes | Yes |
 | Meta | Muse Glimmer 30B | meta-models/Muse-Glimmer-30B | 131072 | \$0.35 | \$0.04 | \$1.50 | FP8 | Yes | Yes |
 | Meta | Muse Spark Open 816B A42B | meta-models/Muse-Spark-Open-816B-A42B | 1048576 | \$1.25 | \$0.15 | \$4.25 | NVFP4 | Yes | Yes |
-| Minimax | Minimax M3.1 Flash | MiniMaxAI/MiniMax-M3.1-Flash | 1048576 | \$0.15 | \$0.015 | \$0.60 | NVFP4 | Yes | Yes |
+| MiniMax | MiniMax M3.1 Flash | MiniMaxAI/MiniMax-M3.1-Flash | 1048576 | \$0.15 | \$0.015 | \$0.60 | NVFP4 | Yes | Yes |
 | Moonshot | Kimi K3 | moonshotai/Kimi-K3 | 1048576 | \$3.00 | \$0.30 | \$15.00 | - | Yes | Yes |
 | NVIDIA | NVIDIA Nemotron 3.5 Super VL | nvidia/NVIDIA-Nemotron-3.5-Super-VL | 262144 | \$0.15 | \$0.02 | \$0.50 | NVFP4 | Yes | Yes |
 | OpenAI | GPT-OSS 120B | openai/gpt-oss-120b | 131072 | \$0.15 | - | \$0.60 | MXFP4 | Yes | Yes |
@@ -60,12 +60,12 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | Z.ai | GLM-5.3 | zai-org/GLM-5.3 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
 | Z.ai | GLM-5.3 Flash | zai-org/GLM-5.3-Flash | 1048575 | \$0.15 | \$0.03 | \$0.50 | FP4 | Yes | Yes |
 
-**Chat model examples**
+### Chat model examples
 
-* [PDF to chat app](https://www.pdftochat.com/): Chat with your PDFs (blogs, textbooks, papers).
-* [Open deep research notebook](https://github.com/togethercomputer/together-cookbook/blob/main/agents/Together_Open_Deep_Research_CookBook.ipynb): Generate long form reports using a single prompt.
+* [PDF to chat app](https://www.pdftochat.com/): Chat with your PDFs, such as textbooks, papers, and blog posts.
+* [Open deep research notebook](https://github.com/togethercomputer/together-cookbook/blob/main/agents/Together_Open_Deep_Research_CookBook.ipynb): Generate long-form reports from a single prompt.
 * [Fine-tuning chat models notebook](https://github.com/togethercomputer/together-cookbook/blob/main/fine-tuning/Finetuning_Guide.ipynb): Tune language models for conversation.
-* [Building agents](https://github.com/togethercomputer/together-cookbook/tree/main/agents): Agent workflows with language models.
+* [Agent notebooks](https://github.com/togethercomputer/together-cookbook/tree/main/agents): Build agent workflows with language models.
 
 ## US-only inference
 
@@ -203,7 +203,7 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 
 ## Audio models
 
-Use our [Audio](https://docs.together.ai/reference/audio-speech.md) endpoint for text-to-speech models. For speech-to-text models see [Transcription](https://docs.together.ai/reference/audio-transcriptions.md) and [Translations](https://docs.together.ai/reference/audio-translations.md).
+Use the [speech endpoint](https://docs.together.ai/reference/audio-speech.md) for text-to-speech models, and the [transcriptions](https://docs.together.ai/reference/audio-transcriptions.md) and [translations](https://docs.together.ai/reference/audio-translations.md) endpoints for speech-to-text models.
 
 | Organization | Modality | Model name | Model string for API | Pricing |
 | :- | :- | :- | :- | :- |
@@ -216,10 +216,10 @@ Use our [Audio](https://docs.together.ai/reference/audio-speech.md) endpoint for
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3.5 ASR Streaming 0.6B | nvidia/nemotron-3.5-asr-streaming-0.6b | \$0.0015 per audio min |
 | NVIDIA | Speech-to-Text | Parakeet TDT 0.6B v3 | nvidia/parakeet-tdt-0.6b-v3 | \$0.0015 per audio min |
 
-**Audio model examples**
+### Audio model examples
 
-* [PDF to podcast notebook](https://github.com/togethercomputer/together-cookbook/blob/main/apps/PDF_to_Podcast.ipynb): Generate a NotebookLM style podcast given a PDF.
-* [Audio podcast agent workflow](https://github.com/togethercomputer/together-cookbook/blob/main/agents/Serial_Chain_Agent_Workflow.ipynb): Agent workflow to generate audio files given input content.
+* [PDF to podcast notebook](https://github.com/togethercomputer/together-cookbook/blob/main/apps/PDF_to_Podcast.ipynb): Generate a NotebookLM-style podcast from a PDF.
+* [Audio podcast agent workflow](https://github.com/togethercomputer/together-cookbook/blob/main/agents/Serial_Chain_Agent_Workflow.ipynb): Generate audio files from input content with an agent workflow.
 
 ## Embedding models
 
