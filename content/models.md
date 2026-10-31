@@ -12,21 +12,21 @@ Serverless models are the fastest way to run inference on Together. You call any
 
 If you're not sure which model to use, see [Recommended models](https://docs.together.ai/docs/inference/recommended-models.md) for our picks by use case.
 
-> **[Chat](#chat-models)**
+> [card] [Chat](#chat-models)
 
-> **[Image](#image-models)**
+> [card] [Image](#image-models)
 
-> **[Vision](#vision-models)**
+> [card] [Vision](#vision-models)
 
-> **[Video](#video-models)**
+> [card] [Video](#video-models)
 
-> **[Audio](#audio-models)**
+> [card] [Audio](#audio-models)
 
-> **[Embedding](#embedding-models)**
+> [card] [Embedding](#embedding-models)
 
-> **[Rerank](#rerank-models)**
+> [card] [Rerank](#rerank-models)
 
-> **[Moderation](#moderation-models)**
+> [card] [Moderation](#moderation-models)
 
 > [!NOTE]
 >
@@ -53,7 +53,6 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | Qwen | Qwen3.7 Max | Qwen/Qwen3.7-Max | - | \$2.50 | \$0.50 | \$7.50 | - | Yes | Yes |
 | Qwen | Qwen3.7 Plus | Qwen/Qwen3.7-Plus | 1000000 | \$0.32 | - | \$1.28 | - | Yes | Yes |
 | Qwen | Qwen3.8 Flash | Qwen/Qwen3.8-Flash | 1000000 | \$0.15 | - | \$0.47 | - | Yes | Yes |
-| Qwen | Qwen3.8-2.4T-A95B | Qwen/Qwen3.8-2.4T-A95B | - | \$2.00 | \$0.50 | \$6.00 | FP4 | Yes | Yes |
 | Reflection | Beam 1.0 501B A23B | reflection/Beam-1.0-501B-A23B | 1048576 | \$0.40 | \$0.04 | \$1.20 | NVFP4 | Yes | Yes |
 | Together AI | Tev1 4B Experimental | together/Tev1-4B-experimental | 32768 | \$0.042 | - | Free | - | - | - |
 | Z.ai | GLM-5.2 | zai-org/GLM-5.2 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
@@ -215,6 +214,8 @@ Use the [speech endpoint](https://docs.together.ai/reference/audio-speech.md) fo
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3 ASR Streaming 0.6B | nvidia/nemotron-3-asr-streaming-0.6b | \$0.0015 per audio min |
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3.5 ASR Streaming 0.6B | nvidia/nemotron-3.5-asr-streaming-0.6b | \$0.0015 per audio min |
 | NVIDIA | Speech-to-Text | Parakeet TDT 0.6B v3 | nvidia/parakeet-tdt-0.6b-v3 | \$0.0015 per audio min |
+| OpenAI | Speech-to-Text | Whisper large-v3 | openai/whisper-large-v3 | \$0.0015 per audio min |
+| Qwen | Text-to-Speech | Qwen3 TTS 12Hz 1.7B CustomVoice | Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice | - |
 
 ### Audio model examples
 
