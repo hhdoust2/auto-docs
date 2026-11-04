@@ -106,8 +106,8 @@ curl -sS https://anymodel.org/v1/models -H "Authorization: Bearer $ANYMODEL_API_
           }
         },
         "coefficient": {
-          "input": 0.9375,
-          "output": 0.9375
+          "input": 5.3,
+          "output": 5.3
         }
       }
     }
@@ -175,16 +175,13 @@ billed = ceil(round(base_tokens × quality_multiplier × size_multiplier) × del
 | high | ×4 |
 | hd | ×4 |
 
-Models served by an attached subscription (`gpt-image-2.5`, `gpt-image-2`) use a flatter quality ladder instead — their upstream cost does not fall with the quality knob, so a low-quality image is not a cheaper image:
+The gpt-image models (`gpt-image-2.5`, `gpt-image-2`) scale by a ladder of their own instead: each rung is OpenAI's own list price for that quality relative to medium, read from the media price list the gateway charges from, so `low` is a cheaper image exactly where the vendor sells it cheaper:
 
-| Quality (subscription-served models) | Multiplier |
-| --- | --- |
-| low | ×1 |
-| medium | ×1 |
-| auto | ×1 |
-| standard | ×1 |
-| high | ×2 |
-| hd | ×2 |
+| Quality | `gpt-image-2.5` | `gpt-image-2` |
+| --- | --- | --- |
+| low | ×0.45 | ×0.11 |
+| medium | ×1 | ×1 |
+| high | ×4 | ×3.98 |
 
 | Size | Multiplier |
 | --- | --- |
@@ -201,10 +198,12 @@ Size scales the same way on every route. The ladder that applies to a given mode
 
 Other non-token units (`character` for speech, `minute` for transcription, `request` for search and fetch) charge `ceil(base_tokens × units × coefficient.output)`; a transcription is billed by started minute, so 61 seconds counts as two.
 
+Image and video models are priced by one rule whichever namespace serves them: one price per model and tier — resolution, sound, quality — at 50 % of the vendor's own API list price (Seedance: of the market price, which is above ByteDance's list). The price reaches a client as `billing.base_tokens`, `billing.scales` and `billing.rates`, so the rule never has to be applied by hand.
+
 Video is priced per second by resolution (`billing.rates`), and that rate is multiplied by the model's coefficient like every other unit — the worked example in the video section below is for a model at coefficient 1. Two rules cost real money here:
 
 - **An omitted `duration` or `resolution` is billed at that model's maximum**, not at a cheap default: 15 seconds and its dearest supported resolution. Send both explicitly.
-- **`/v1/videos/edits` and `/v1/videos/extensions` are flat-billed** at the selected model's maximum (2 625 000 raw tokens on the legacy route or 9 375 000 on 1.5), multiplied by the model coefficient, regardless of what the body says: their duration fields describe the input clip, and nothing in the request predicts the cost of the result. This is the xAI shape, where the provider bills a whole clip for either operation.
+- **`/v1/videos/edits` and `/v1/videos/extensions` are flat-billed** at the selected model's maximum (10 500 000 raw tokens on the legacy route or 37 500 000 on 1.5), multiplied by the model coefficient, regardless of what the body says: their duration fields describe the input clip, and nothing in the request predicts the cost of the result. This is the xAI shape, where the provider bills a whole clip for either operation.
 - **A model that publishes `capabilities` prices a continuation by the model instead of flat.** `/v1/videos/extensions` is billed for the seconds the model actually appends — 7 on `flow/omni-video`, 8 on `flow/veo-3.1`, 7 on `flow/veo-3.1-lite` — at the same per-second rate as a clip of that model. The step is fixed by the model, so `duration` in the body changes nothing; pass `aspect_ratio`, though — the appended fragment renders landscape unless the request says otherwise. A clip can only be continued at the quality it was shot in, so `resolution` is not read on this route either.
 
 Metadata for a single model — the same billing block plus what the catalog recorded about it (`kind`, the endpoint to call, `params`, `capabilities`, `contextWindow` where present). `params` lists what the catalog noted for that model, not the full set its endpoint accepts — the parameter tables in the sections below are the reference for that:
@@ -217,7 +216,7 @@ curl -sS "https://anymodel.org/v1/models/info?id=am/gpt-image-2" -H "Authorizati
 {
   "id": "am/gpt-image-2", "name": "GPT Image 2", "kind": "image", "owned_by": "am",
   "endpoint": "/v1/images/generations", "params": ["n", "size", "quality", "response_format"],
-  "billing": {"unit":"image","base_tokens":100000,"scales":{"quality":{"low":0.25,"medium":1,"auto":1,"standard":1,"high":4,"hd":4},"size":{"256x256":0.4,"512x512":0.6,"1024x1024":1,"auto":1,"1024x1536":1.5,"1536x1024":1.5,"1024x1792":1.75,"1792x1024":1.75}},"coefficient":{"input":0.9375,"output":0.9375}}
+  "billing": {"unit":"image","base_tokens":100000,"scales":{"quality":{"low":0.25,"medium":1,"auto":1,"standard":1,"high":4,"hd":4},"size":{"256x256":0.4,"512x512":0.6,"1024x1024":1,"auto":1,"1024x1536":1.5,"1536x1024":1.5,"1024x1792":1.75,"1792x1024":1.75}},"coefficient":{"input":5.3,"output":5.3}}
 }
 ```
 
@@ -258,10 +257,10 @@ curl -sS https://anymodel.org/v1/chat/completions \
 | --- | --- |
 | model | Required. Model ID from the catalog. |
 | messages | Required. Chat history: role user, assistant, or system and content. |
-| stream | Optional boolean. true returns Server-Sent Events. |
+| stream | Optional boolean, false by default: the answer is one JSON object, as in the OpenAI API. true returns Server-Sent Events. |
 | temperature | Optional 0–2. Lower is more deterministic. |
 | max_tokens | Optional maximum response tokens. |
-| reasoning_effort | Optional for GPT reasoning models: none, low, medium, high. |
+| reasoning_effort | Optional for GPT reasoning models: none, low, medium, high; GPT-5.6 and GPT-6 also take minimal, xhigh and max. Those models (sol, terra, luna, astra) run at high when the request sets no level, so answers match the quality of the vendor's own API. A level you send always wins; for faster, cheaper answers send a lower one: "reasoning_effort": "low". |
 
 ## Document reranking
 
@@ -538,8 +537,8 @@ curl -sS "https://anymodel.org/v1/videos/REQUEST_ID/content" \
 
 | Billing | Description |
 | --- | --- |
-| Price | duration × the selected model's resolution rate: grok-imagine-video: 480p — 125,000 tokens per second, 720p — 175,000 tokens per second; grok-imagine-video-1.5: 480p — 200,000 tokens per second, 720p — 350,000 tokens per second, 1080p — 625,000 tokens per second. An 8-second 480p clip on grok-imagine-video costs 1,000,000 tokens. A request that names neither duration nor resolution is billed at that model's maximum (2,625,000 for the legacy route; 9,375,000 for 1.5). |
-| Edits and extensions | On the xAI routes /v1/videos/edits and /v1/videos/extensions are flat-billed at the selected model's maximum (2,625,000 tokens on the legacy route; 9,375,000 on 1.5): their duration fields describe the input clip, so the body cannot price the result. |
+| Price | duration × the selected model's resolution rate: grok-imagine-video: 480p — 500,000 tokens per second, 720p — 700,000 tokens per second; grok-imagine-video-1.5: 480p — 800,000 tokens per second, 720p — 1,400,000 tokens per second, 1080p — 2,500,000 tokens per second — one price per model and tier in every namespace that serves the model, 50 % of the vendor's own API list price per second. An 8-second 480p clip on grok-imagine-video costs 4,000,000 tokens. A request that names neither duration nor resolution is billed at that model's maximum (10,500,000 for the legacy route; 37,500,000 for 1.5). |
+| Edits and extensions | On the xAI routes /v1/videos/edits and /v1/videos/extensions are flat-billed at the selected model's maximum (10,500,000 tokens on the legacy route; 37,500,000 on 1.5): their duration fields describe the input clip, so the body cannot price the result. |
 | Continuations | A model that declares capabilities (flow/*) prices a continuation by the model, not flat: 7 s on flow/omni-video, 8 s on flow/veo-3.1, 7 s on flow/veo-3.1-lite for one step, at the same per-second rate as a clip of that model. duration is not read on this route: the step is fixed by the model. resolution is not read either — a clip is continued at the quality it was shot in. |
 | Reference videos | On Seedance, every reference video adds its length, rounded up to a whole second, to the clip's own: a 4-second clip with a 2-second reference video is billed as 6 seconds at the clip's rate. Reference images and audio do not change the price. |
 | Charge | Booked once, when the provider accepts the job. Polling and downloading are free. |
@@ -687,7 +686,7 @@ Polling works at zero balance, so a picture paid for with the last tokens can st
 
 ## Streaming
 
-Send `"stream": true` to receive Server-Sent Events in the OpenAI chunk format, terminated by `data: [DONE]`:
+`stream` is `false` by default, as in the OpenAI API: a request without it is answered with one JSON object. Send `"stream": true` to receive Server-Sent Events in the OpenAI chunk format, terminated by `data: [DONE]`:
 
 ```
 data: {"id":"chatcmpl-...","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"role":"assistant"}}]}
