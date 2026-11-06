@@ -67,7 +67,7 @@
 
   {% card badge="Stable" description="Low-latency speech-to-text model with utterance-based language detection, speaker diarization, and word timestamps." href="/docs/models/gemini-3.5-transcribe" icon="speech_to_text" title="Gemini 3.5 Transcribe" variant="model" /%}
 
-  {% card badge="Stable" description="Fast video generation, editing, keyframe interpolation, and extension with native audio." href="/docs/models/gemini-omni-flash" icon="movie_filter" title="Gemini Omni Flash" variant="model" /%}
+  {% card badge="New" description="Generate and edit up to 15 seconds of video with native audio, keyframe interpolation, video extension, and character consistency." href="/docs/models/gemini-omni-flash" icon="movie_filter" title="Gemini Omni Flash" variant="model" /%}
 
   {% card badge="Preview" description="Frontier-class performance rivaling larger models at a fraction of the cost." href="/docs/models/gemini-3-flash-preview" icon="spark" title="Gemini 3 Flash" variant="model" /%}
 
@@ -154,7 +154,8 @@
   ---
 
   * [Gemini Omni Flash](/docs/models/gemini-omni-flash)
-  * `gemini-omni-1.1-flash`
+  * `gemini-omni-1.2-flash`   
+    `gemini-omni-1.1-flash`
 
   ---
 
@@ -403,9 +404,10 @@ already be listed in other sections*
   ---
 
   * [Gemini Omni Flash](/docs/models/gemini-omni-flash)
-  * Fast video generation, editing, keyframe interpolation, and extension with
-    native audio.
-  * `gemini-omni-1.1-flash`
+  * Fast video generation and editing up to 15 seconds with native audio,
+    keyframe interpolation, and video extension.
+  * `gemini-omni-1.2-flash`   
+    `gemini-omni-1.1-flash`
 
   ---
 
