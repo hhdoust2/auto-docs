@@ -55,6 +55,7 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | Qwen | Qwen3.7 Plus | Qwen/Qwen3.7-Plus | 1000000 | \$0.32 | - | \$1.28 | - | Yes | Yes |
 | Qwen | Qwen3.8 Flash | Qwen/Qwen3.8-Flash | 1000000 | \$0.15 | - | \$0.47 | - | Yes | Yes |
 | Reflection | Beam 1.0 501B A23B | reflection/Beam-1.0-501B-A23B | 1048576 | \$0.40 | \$0.04 | \$1.20 | NVFP4 | Yes | Yes |
+| Ricursive | Ripple 65B Preview | ricursive-ai/Ripple-65B-Preview | 131072 | \$0.20 | - | \$0.60 | - | - | - |
 | Together AI | Tev1 4B Experimental | together/Tev1-4B-experimental | 32768 | \$0.042 | - | Free | - | - | - |
 | Z.ai | GLM-5.2 | zai-org/GLM-5.2 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
 | Z.ai | GLM-5.3 | zai-org/GLM-5.3 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
