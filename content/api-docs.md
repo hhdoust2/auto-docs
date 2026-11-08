@@ -141,7 +141,7 @@ Embeddings and reranking are metered from input token usage (estimated from text
 
 A route priced at coefficient 0 costs nothing; any other charged request costs at least 1 balance token.
 
-Built-in web search is metered on top of the tokens. When the model runs its provider's own web search — a request carrying `{"type": "web_search"}`, Anthropic's dated `web_search_*` tool, or the search the web chat asks for — each search that actually ran is charged a flat 40000 balance tokens (the `/v1/search` rate) with no model coefficient applied. The count comes back as `usage.web_search_requests`, present only when a search ran, so the surcharge is verifiable the same way as the tokens. On the Responses API routes (`cx/…`) the vendor reports no counter in `usage`; there every completed `web_search_call` output item counts as one search, and the same surcharge applies. Codex CLI on gpt-6-astra and the gpt-5.6 line runs its web tool (`web.run`) itself and posts it to `/v1/alpha/search`; the gateway serves that call from the same Codex pool as the chat, and each call — whatever mix of searches, page opens and finds it carries — is one search at the same flat rate; because the rate is flat, the request body is capped at 256 KiB and a larger one is refused with `413` (Codex's own body is a few KB). A model may also be served by borrowed capacity that has no search facility of its own; a request that asks for search is then routed to the model's native pool first, within a rate limit, and past that limit it is answered without a search — and without the surcharge.
+Built-in web search is metered on top of the tokens. When the model runs its provider's own web search — a request carrying `{"type": "web_search"}`, Anthropic's dated `web_search_*` tool, or the search the web chat asks for — each search that actually ran is charged a flat 40000 balance tokens (the `/v1/search` rate) with no model coefficient applied. The count comes back as `usage.web_search_requests`, present only when a search ran, so the surcharge is verifiable the same way as the tokens. On the Responses API routes (`cx/…`) the vendor reports no counter in `usage`; there every completed `web_search_call` output item counts as one search, and the same surcharge applies. Grok searches are counted the same way: xAI runs its web search only on its Responses API, so a Chat Completions request that carries `{"type": "web_search"}` and is served from xAI's own capacity is sent there for you and answered in the Chat Completions format, sources included. Codex CLI on gpt-6-astra and the gpt-5.6 line runs its web tool (`web.run`) itself and posts it to `/v1/alpha/search`; the gateway serves that call from the same Codex pool as the chat, and each call — whatever mix of searches, page opens and finds it carries — is one search at the same flat rate; because the rate is flat, the request body is capped at 256 KiB and a larger one is refused with `413` (Codex's own body is a few KB). A model may also be served by borrowed capacity that has no search facility of its own; a request that asks for search is then routed to the model's native pool first, within a rate limit, and past that limit it is answered without a search — and without the surcharge. A model whose native pool is gone and that borrowed capacity alone still serves (Gemini 3.1 Pro on `ag/`) is always answered that way.
 
 The token counts come back in the response, so the charge is verifiable from the client side:
 
@@ -175,13 +175,13 @@ billed = ceil(round(base_tokens × quality_multiplier × size_multiplier) × del
 | high | ×4 |
 | hd | ×4 |
 
-The gpt-image models (`gpt-image-2.5`, `gpt-image-2`) scale by a ladder of their own instead: each rung is OpenAI's own list price for that quality relative to medium, read from the media price list the gateway charges from, so `low` is a cheaper image exactly where the vendor sells it cheaper:
+The gpt-image models (`gpt-image-2.6`, `gpt-image-2.5`, `gpt-image-2`) scale by a ladder of their own instead: each rung is OpenAI's own list price for that quality relative to medium, read from the media price list the gateway charges from, so `low` is a cheaper image exactly where the vendor sells it cheaper:
 
-| Quality | `gpt-image-2.5` | `gpt-image-2` |
-| --- | --- | --- |
-| low | ×0.45 | ×0.11 |
-| medium | ×1 | ×1 |
-| high | ×4 | ×3.98 |
+| Quality | `gpt-image-2.6` | `gpt-image-2.5` | `gpt-image-2` |
+| --- | --- | --- | --- |
+| low | ×0.57 | ×0.45 | ×0.11 |
+| medium | ×1 | ×1 | ×1 |
+| high | ×1.21 | ×4 | ×3.98 |
 
 | Size | Multiplier |
 | --- | --- |
@@ -700,7 +700,7 @@ data: [DONE]
 
 The first chunk may carry only the role, and a chunk may carry an empty `delta` — read `choices[0].delta.content` and skip what is absent. Streaming is charged exactly like a non-streamed call, by the same formula: the whole prompt plus the completion tokens actually produced, so a stream cut short pays for the answer it delivered rather than the one it was going to.
 
-A stream carries no `usage` by default. Send `"stream_options": {"include_usage": true}` to ask for a final chunk that has one — most routes pass it upstream, but a provider that does not support the parameter simply drops it, so treat the usage chunk as optional and fall back to comparing `GET /v1/balance` before and after when you need the exact figure.
+Send `"stream_options": {"include_usage": true}` to ask for a final chunk with the counted usage — most routes pass it upstream, but a provider that does not support the parameter simply drops it, so treat the usage chunk as optional and fall back to comparing `GET /v1/balance` before and after when you need the exact figure. Without the option the chunk with `finish_reason` may still carry a `usage` object, but where the provider reports nothing in a stream that object is our estimate, not the charged figure.
 
 ## Errors
 
