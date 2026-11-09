@@ -727,7 +727,7 @@ An error response carries `X-Request-Id` (also repeated as `request_id` in the b
 | 503 | server_error | service_unavailable |
 | 503 | server_error | gateway_timeout |
 
-- `400` — the request itself is at fault and will fail the same way again; `message` says what to change. The `code` `output_budget_exhausted` means a reasoning model spent the whole output budget before it could answer: raise `max_tokens`, or compact a long conversation so the model has room to reply. The tokens the model did consume are charged.
+- `400` — the request itself is at fault and will fail the same way again; `message` says what to change. The `code` `output_budget_exhausted` means a reasoning model spent the whole output budget before it could answer: raise `max_tokens`, or compact a long conversation so the model has room to reply. The tokens the model did consume are charged. The `code` `not_a_chat_model` means a chat endpoint was called with a model served only on another endpoint — an image combo such as `nano-banana`, or an image or video model of a provider that has no chat models: `message` names the endpoint that serves it. Nothing is charged.
 - `401` — the key is missing, revoked or mistyped.
 - `402` — the balance ran out; top it up in the cabinet. This, not `403`, is the out-of-money answer.
 - `403` — the account behind the key is not active (blocked, or the email is not confirmed yet). Its `code` reads `insufficient_quota` for OpenAI-SDK compatibility; do not map it to "top up".
