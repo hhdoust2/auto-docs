@@ -444,7 +444,7 @@ jq -r ".data[0].b64_json" result.json | base64 --decode > image.png
 | n | Optional number of images, at most 10 — a larger value is clamped to that. Each delivered image is billed separately, from 100,000 tokens for a medium square one, scaled by quality and size. |
 | size | Optional. Common values: 1024x1024, 1792x1024, 1024x1792. Availability depends on the model. |
 | quality | Optional: low, medium, high, or auto where supported. The DALL·E-3 names standard and hd are accepted too, and are billed as medium and high. |
-| image / images | Optional one or several base64 data URLs for references. Up to four references in Image Studio. |
+| image / images | Optional one or several base64 data URLs for references. Up to four references in Image Studio. A model that draws from the prompt alone refuses them with 400 reference_images_unsupported; while the route that takes them is down, an edit is answered 503 reference_images_unavailable. |
 | output_format | Optional png, jpeg, or webp where supported. |
 | response_format | Use b64_json to receive base64 in JSON. Save it as a file locally. What a model returns without this parameter depends on the model, so pass it when you need one shape. |
 
@@ -727,13 +727,13 @@ An error response carries `X-Request-Id` (also repeated as `request_id` in the b
 | 503 | server_error | service_unavailable |
 | 503 | server_error | gateway_timeout |
 
-- `400` — the request itself is at fault and will fail the same way again; `message` says what to change. The `code` `output_budget_exhausted` means a reasoning model spent the whole output budget before it could answer: raise `max_tokens`, or compact a long conversation so the model has room to reply. The tokens the model did consume are charged. The `code` `not_a_chat_model` means a chat endpoint was called with a model served only on another endpoint — an image combo such as `nano-banana`, or an image or video model of a provider that has no chat models: `message` names the endpoint that serves it. Nothing is charged.
+- `400` — the request itself is at fault and will fail the same way again; `message` says what to change. The `code` `output_budget_exhausted` means a reasoning model spent the whole output budget before it could answer: raise `max_tokens`, or compact a long conversation so the model has room to reply. The tokens the model did consume are charged. The `code` `not_a_chat_model` means a chat endpoint was called with a model served only on another endpoint — an image combo such as `nano-banana`, or an image or video model of a provider that has no chat models: `message` names the endpoint that serves it. Nothing is charged. The `code` `reference_images_unsupported` means an image model that draws from the prompt alone was sent reference images or a mask (`image`, `images`, `mask`): send the prompt without them, or use a model that edits images. Nothing is charged.
 - `401` — the key is missing, revoked or mistyped.
 - `402` — the balance ran out; top it up in the cabinet. This, not `403`, is the out-of-money answer.
 - `403` — the account behind the key is not active (blocked, or the email is not confirmed yet). Its `code` reads `insufficient_quota` for OpenAI-SDK compatibility; do not map it to "top up".
 - `404` — what the request names is not there; `message` says what. A path under `/v1` that is not an endpoint of this API carries the `code` `unknown_url` instead of the `model_not_found` in the table, and its `message` names the method and the path.
 - `429` — slow down and retry after `Retry-After` seconds.
 - `503` — more than one failure arrives with this status; `code` says which. The API never answers `502` or `504`: an upstream failure and an upstream timeout are sent as `503` with the codes `bad_gateway` and `gateway_timeout`, because the CDN in front of the API replaces the body of those two statuses with a page of its own.
-- `5xx` — transient; retry with backoff. A request that produced no output is not charged, with one exception: a video job is booked once the provider accepts it, and a job that then ends without a video is reversed by a refund (see the video section).
+- `5xx` — transient; retry with backoff. A request that produced no output is not charged, with one exception: a video job is booked once the provider accepts it, and a job that then ends without a video is reversed by a refund (see the video section). A `503` with the `code` `reference_images_unavailable` refuses an edit — reference images in `image`, `images` or a mask — while the route that takes them is down; the same model still draws from a prompt alone.
 
 This is the shape on every endpoint, including the Anthropic-format `/v1/messages`; only the Gemini-compatible `/v1beta` routes answer in Google's error shape.
