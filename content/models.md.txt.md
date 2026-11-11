@@ -8,7 +8,23 @@
 ## Gemini 4  {% id="gemini-4" %}
 
 {% card-grid columns="2" %}
-  {% card description="Our flagship reasoning model with a shared 1M context window and long decodes up to 1M tokens." title="Gemini 4 Argon" variant="model-card" %}
+  {% card description="Our strongest reasoning model, built for complex software engineering, multimodal knowledge work, scientific reasoning, and cybersecurity defense." title="Gemini 4 Carbon" variant="model-card" %}
+  {% section class="model-specs" %}
+  *   *Model code* **gemini-4-carbon**
+  *   *Context* **1M tokens**
+  *   *Max output* **65K / 1M tokens**
+  *   *Modalities* **Text, Image, Audio, Video, PDF**
+
+  {% /section %}
+
+  {% section class="card-actions" %}
+  {% button href="https://aistudio.google.com/prompts/new_chat?model=gemini-4-carbon" variant="primary" %}Try in AI Studio{% /button %} {% button href="/docs/models/gemini-4-carbon" icon="arrow_forward" tooltip="View models" variant="icon-primary" /%}
+
+  {% /section %}
+
+  {% /card %}
+
+  {% card description="Our efficient Gemini 4 frontier reasoning model, delivering faster responses and lower token spend per turn compared to Gemini 4 Carbon across complex coding, agentic, math, and science tasks." title="Gemini 4 Argon" variant="model-card" %}
   {% section class="model-specs" %}
   *   *Model code* **gemini-4-argon**
   *   *Context* **1M tokens**
@@ -31,6 +47,11 @@
 {% table variant="model" %}
   * Model
   * Endpoint
+
+  ---
+
+  * [Gemini 4 Carbon](/docs/models/gemini-4-carbon)
+  * `gemini-4-carbon`
 
   ---
 

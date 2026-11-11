@@ -47,13 +47,13 @@ Get one in the AnyModel cabinet, under API Keys. **Replace `<YOUR_API_KEY>` with
 | POST | /v1/audio/speech | Text to speech. Detailed below. |
 | GET | /v1/audio/voices?provider=edge-tts | Voices for text to speech, each with the model id to send. Detailed below. |
 | POST | /v1/audio/transcriptions | Speech to text. |
-| POST | /v1/search | Web search. Operator keys only. |
+| POST | /v1/search | Web search, for any API key with a balance: 40000 balance tokens per 10 results asked for (`max_results`, up to 50), at most 120 requests an hour per key. |
 | POST | /v1/web/fetch | Web page fetch. Operator keys only. |
 | POST | /v1/alpha/search | Codex CLI's built-in web tool (web.run). Called by Codex itself; billed as one search per call, see below. |
 
 ## Models and what they cost
 
-Balance is denominated in **balance tokens**. Every model except a combo carries a **coefficient**: how many balance tokens one raw token of that model burns. A cheap model can cost ×0.05 and a flagship ×16, so the coefficient — not the raw token count — decides how fast a balance drains.
+Balance is denominated in **balance tokens**. Every model carries a **coefficient**: how many balance tokens one raw token of that model burns. A cheap model can cost ×0.05 and a flagship ×16, so the coefficient — not the raw token count — decides how fast a balance drains.
 
 `GET /v1/models` returns the callable catalog with that coefficient attached:
 
@@ -120,7 +120,6 @@ curl -sS https://anymodel.org/v1/models -H "Authorization: Bearer $ANYMODEL_API_
 - `billing.scales` — further multipliers that unit is scaled by before the coefficient (images: `quality` and `size`). `base_tokens` alone is the cheapest variant, not the price of an arbitrary request.
 - `billing.rates` — per-unit charge that depends on a request parameter rather than one fixed number (video: balance tokens per second for each resolution).
 - `billing.coefficient` — whenever a `billing` block is present, it is `{ "input": number, "output": number }`, never a bare number. A flat-rate model reports the same value in both directions; partner routes priced per direction report two. Outside chat there is no direction: both numbers are equal and the charge uses `output`.
-- Combo models (`"owned_by": "combo"`) carry no `billing` block: the id names a fallback chain, and the charge belongs to whichever member actually answered. Their cost cannot be predicted from the catalog — compare `GET /v1/balance` before and after if you need the figure.
 - Text models carry no `kind` field — `kind` appears only on image, video, tts, stt, embedding, rerank, imageToText and web entries. There is no `/v1/models/{kind}` slug for text: list them from `GET /v1/models` and keep the entries without a `kind`. (`imageToText` models are vision chat models: they are called on `/v1/chat/completions` like text ones and are metered per token.)
 
 ### Use the id exactly as the catalog returns it
@@ -444,7 +443,7 @@ jq -r ".data[0].b64_json" result.json | base64 --decode > image.png
 | n | Optional number of images, at most 10 — a larger value is clamped to that. Each delivered image is billed separately, from 100,000 tokens for a medium square one, scaled by quality and size. |
 | size | Optional. Common values: 1024x1024, 1792x1024, 1024x1792. Availability depends on the model. |
 | quality | Optional: low, medium, high, or auto where supported. The DALL·E-3 names standard and hd are accepted too, and are billed as medium and high. |
-| image / images | Optional one or several base64 data URLs for references. Up to four references in Image Studio. A model that draws from the prompt alone refuses them with 400 reference_images_unsupported; while the route that takes them is down, an edit is answered 503 reference_images_unavailable. |
+| image / images | Optional one or several base64 data URLs for references. Up to four references in Image Studio. Grok Imagine (xai/grok-imagine-image, -2.0, -quality) edits with up to five, as PNG, JPEG or WebP, and also takes public https links; it takes no mask. An edit is billed as one image of the model. A model that draws from the prompt alone refuses them with 400 reference_images_unsupported, and so does a model that edits when sent more references than it takes or a mask it takes none of; nothing is charged. While the route that takes them is down, an edit is answered 503 reference_images_unavailable. |
 | output_format | Optional png, jpeg, or webp where supported. |
 | response_format | Use b64_json to receive base64 in JSON. Save it as a file locally. What a model returns without this parameter depends on the model, so pass it when you need one shape. |
 
@@ -727,7 +726,7 @@ An error response carries `X-Request-Id` (also repeated as `request_id` in the b
 | 503 | server_error | service_unavailable |
 | 503 | server_error | gateway_timeout |
 
-- `400` — the request itself is at fault and will fail the same way again; `message` says what to change. The `code` `output_budget_exhausted` means a reasoning model spent the whole output budget before it could answer: raise `max_tokens`, or compact a long conversation so the model has room to reply. The tokens the model did consume are charged. The `code` `not_a_chat_model` means a chat endpoint was called with a model served only on another endpoint — an image combo such as `nano-banana`, or an image or video model of a provider that has no chat models: `message` names the endpoint that serves it. Nothing is charged. The `code` `reference_images_unsupported` means an image model that draws from the prompt alone was sent reference images or a mask (`image`, `images`, `mask`): send the prompt without them, or use a model that edits images. Nothing is charged.
+- `400` — the request itself is at fault and will fail the same way again; `message` says what to change. The `code` `output_budget_exhausted` means a reasoning model spent the whole output budget before it could answer: raise `max_tokens`, or compact a long conversation so the model has room to reply. The tokens the model did consume are charged. The `code` `not_a_chat_model` means a chat endpoint was called with a model served only on another endpoint, such as an image or video model of a provider that has no chat models: `message` names the endpoint that serves it. Nothing is charged. The `code` `reference_images_unsupported` means the image model cannot use the references sent: a model that draws from the prompt alone was sent reference images or a mask (`image`, `images`, `mask`), or a model that edits was sent a mask it takes none of or more references than it takes — `message` says which. Send the request without them (or with fewer), or use a model that edits images. Nothing is charged. The `code` `reference_images_too_large` means the reference images together are over 24 MiB — the images behind links count too, once downloaded: send smaller or fewer images. Nothing is charged.
 - `401` — the key is missing, revoked or mistyped.
 - `402` — the balance ran out; top it up in the cabinet. This, not `403`, is the out-of-money answer.
 - `403` — the account behind the key is not active (blocked, or the email is not confirmed yet). Its `code` reads `insufficient_quota` for OpenAI-SDK compatibility; do not map it to "top up".
