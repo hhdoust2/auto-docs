@@ -520,6 +520,13 @@ already be listed in other sections*
 
   ---
 
+  * [Gemini Decision](/docs/models/gemini-decision-1)
+  * Fast, calibrated multimodal yes/no, choice, and score decisions with zero
+    output tokens using the [Decisions API](/docs/decisions-api).
+  * `gemini-decision-1`
+
+  ---
+
   * [Gemini Embedding 2](/docs/models/gemini-embedding-2)
   * Our first multimodal embedding model, mapping text, images, video, audio,
     and PDFs into a unified embedding space for advanced semantic search and RAG
