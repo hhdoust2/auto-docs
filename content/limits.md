@@ -22,6 +22,43 @@ OpenRouter enforces three kinds of limits:
 
 To check the rate limit or credits left on an API key, make a GET request to `https://openrouter.ai/api/v1/key`.
 
+```typescript title="TypeScript SDK" lines theme={null}
+import { OpenRouter } from '@openrouter/sdk';
+
+const openRouter = new OpenRouter({
+  apiKey: '<OPENROUTER_API_KEY>',
+});
+
+const keyInfo = await openRouter.apiKeys.getCurrent();
+console.log(keyInfo);
+```
+
+```python title="Python" lines theme={null}
+import requests
+import json
+
+response = requests.get(
+  url="https://openrouter.ai/api/v1/key",
+  headers={
+    "Authorization": f"Bearer <OPENROUTER_API_KEY>"
+  }
+)
+
+print(json.dumps(response.json(), indent=2))
+```
+
+```typescript title="TypeScript (Raw API)" lines theme={null}
+const response = await fetch('https://openrouter.ai/api/v1/key', {
+  method: 'GET',
+  headers: {
+    Authorization: 'Bearer <OPENROUTER_API_KEY>',
+  },
+});
+
+const keyInfo = await response.json();
+console.log(keyInfo);
+```
+
 If you submit a valid API key, you should get a response of the form:
 
 ```typescript title="TypeScript" expandable lines theme={null}

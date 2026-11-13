@@ -12,7 +12,7 @@ image: https://developers.cloudflare.com/workers-ai/platform/pricing/og.png?v=c0
 
 # Pricing
 
-Last updated Oct 20, 2026|Copy as Markdown| [View as Markdown](https://developers.cloudflare.com/workers-ai/platform/pricing/index.md)| [Agent setup](https://developers.cloudflare.com/agent-setup/)
+Last updated Nov 12, 2026|Copy as Markdown| [View as Markdown](https://developers.cloudflare.com/workers-ai/platform/pricing/index.md)| [Agent setup](https://developers.cloudflare.com/agent-setup/)
 
 Note
 
@@ -33,7 +33,7 @@ All limits reset daily at 00:00 UTC. If you exceed any one of the above limits, 
 
 Note
 
-Some models require a paid billing method. This applies to `@cf/moonshotai/kimi-k2.6`, `@cf/moonshotai/kimi-k2.7-code`, `@cf/zai-org/glm-5.2`, `@cf/zai-org/glm-5.3`, `@cf/zai-org/glm-5.3-flash`, `@cf/deepseek-ai/deepseek-v4-flash-0731`, `@cf/deepseek-ai/deepseek-v4.1-flash-1017`, and `@cf/deepseek-ai/deepseek-v4-pro-0813`. You can access these models with either the [Workers Paid plan](https://developers.cloudflare.com/workers/platform/pricing/#workers) or prepaid [AI Gateway credits](https://developers.cloudflare.com/ai-gateway/features/unified-billing/).
+Some models require a paid billing method. This applies to `@cf/moonshotai/kimi-k2.6`, `@cf/moonshotai/kimi-k2.7-code`, `@cf/zai-org/glm-5.2`, `@cf/zai-org/glm-5.3`, `@cf/zai-org/glm-5.3-flash`, `@cf/deepseek-ai/deepseek-v4-flash-0731`, `@cf/deepseek-ai/deepseek-v4.1-flash-1017`, `@cf/deepseek-ai/deepseek-v4-pro-0813`, and `@cf/thinkingmachines/inkling-2-small`. You can access these models with either the [Workers Paid plan](https://developers.cloudflare.com/workers/platform/pricing/#workers) or prepaid [AI Gateway credits](https://developers.cloudflare.com/ai-gateway/features/unified-billing/).
 
 ## Pay with AI Gateway credits
 
@@ -92,6 +92,7 @@ The Price in Tokens column is equivalent to the Price in Neurons column - the di
 | @cf/moonshotai/kimi-k2.7-code | $0.950 per M input tokens <br> $0.190 per M cached input tokens <br> $4.000 per M output tokens | 86364 neurons per M input tokens <br> 17273 neurons per M cached input tokens <br> 363636 neurons per M output tokens |
 | @cf/google/gemma-4-26b-a4b-it | $0.100 per M input tokens <br> $0.300 per M output tokens | 9091 neurons per M input tokens <br> 27273 neurons per M output tokens |
 | @cf/daily-co/phonellm-mini-alpha-2 | $0.060 per M input tokens <br> $0.240 per M output tokens | 5455 neurons per M input tokens <br> 21818 neurons per M output tokens |
+| @cf/thinkingmachines/inkling-2-small | $0.300 per M input tokens <br> $0.100 per M cached input tokens <br> $1.000 per M output tokens | 27273 neurons per M input tokens <br> 9091 neurons per M cached input tokens <br> 90909 neurons per M output tokens |
 
 ## Embeddings model pricing
 
@@ -103,6 +104,7 @@ The Price in Tokens column is equivalent to the Price in Neurons column - the di
 | @cf/baai/bge-m3 | $0.012 per M input tokens | 1075 neurons per M input tokens |
 | @cf/pfnet/plamo-embedding-1b | $0.019 per M input tokens | 1689 neurons per M input tokens |
 | @cf/qwen/qwen3-embedding-0.6b | $0.012 per M input tokens | 1075 neurons per M input tokens |
+| @cf/google/embeddinggemma-2 | $0.0017 per M input tokens | 154 neurons per M input tokens |
 
 ## Image model pricing
 
@@ -154,5 +156,5 @@ YesNo
 [![](https://developers.cloudflare.com/_astro/logo.te5VL_aD.svg)Docs](https://developers.cloudflare.com/)
 
 ```json
-{"@context":"https://schema.org","@type":"TechArticle","@id":"https://developers.cloudflare.com/workers-ai/platform/pricing/#page","headline":"Pricing","description":"Workers AI pricing is based on Neurons, with a free daily allocation and per-model rates.","url":"https://developers.cloudflare.com/workers-ai/platform/pricing/","inLanguage":"en","image":"https://developers.cloudflare.com/workers-ai/platform/pricing/og.png?v=c0f09dd6cf3238d9","dateModified":"2026-10-20","publisher":{"@type":"Organization","name":"Cloudflare","description":"One platform for your apps, agents, and workforce. Build, secure, and scale without managing infrastructure","url":"https://www.cloudflare.com/","sameAs":["https://github.com/cloudflare","https://www.linkedin.com/company/cloudflare","https://x.com/cloudflare"],"logo":{"@type":"ImageObject","url":"https://developers.cloudflare.com/logo.svg"},"address":{"@type":"PostalAddress","streetAddress":"101 Townsend St","addressLocality":"San Francisco","addressRegion":"CA","postalCode":"94107","addressCountry":"US"},"contactPoint":[{"@type":"ContactPoint","contactType":"Customer Support","url":"https://support.cloudflare.com/","availableLanguage":["English"]},{"@type":"ContactPoint","contactType":"Sales","url":"https://www.cloudflare.com/contact/","availableLanguage":["English"]}]},"isPartOf":{"@type":"WebSite","@id":"https://developers.cloudflare.com/#website","name":"Cloudflare Docs","url":"https://developers.cloudflare.com/"}}
+{"@context":"https://schema.org","@type":"TechArticle","@id":"https://developers.cloudflare.com/workers-ai/platform/pricing/#page","headline":"Pricing","description":"Workers AI pricing is based on Neurons, with a free daily allocation and per-model rates.","url":"https://developers.cloudflare.com/workers-ai/platform/pricing/","inLanguage":"en","image":"https://developers.cloudflare.com/workers-ai/platform/pricing/og.png?v=c0f09dd6cf3238d9","dateModified":"2026-11-12","publisher":{"@type":"Organization","name":"Cloudflare","description":"One platform for your apps, agents, and workforce. Build, secure, and scale without managing infrastructure","url":"https://www.cloudflare.com/","sameAs":["https://github.com/cloudflare","https://www.linkedin.com/company/cloudflare","https://x.com/cloudflare"],"logo":{"@type":"ImageObject","url":"https://developers.cloudflare.com/logo.svg"},"address":{"@type":"PostalAddress","streetAddress":"101 Townsend St","addressLocality":"San Francisco","addressRegion":"CA","postalCode":"94107","addressCountry":"US"},"contactPoint":[{"@type":"ContactPoint","contactType":"Customer Support","url":"https://support.cloudflare.com/","availableLanguage":["English"]},{"@type":"ContactPoint","contactType":"Sales","url":"https://www.cloudflare.com/contact/","availableLanguage":["English"]}]},"isPartOf":{"@type":"WebSite","@id":"https://developers.cloudflare.com/#website","name":"Cloudflare Docs","url":"https://developers.cloudflare.com/"}}
 ```

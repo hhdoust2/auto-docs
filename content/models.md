@@ -41,6 +41,7 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | DeepSeek | DeepSeek V4 Pro 0813 | deepseek-ai/DeepSeek-V4-Pro-0813 | 1048576 | \$1.32 | \$0.13 | \$3.96 | NVFP4 | Yes | Yes |
 | DeepSeek | DeepSeek V4.1 Flash | deepseek-ai/DeepSeek-V4.1-Flash | 1000000 | \$0.30 | \$0.006 | \$1.20 | FP8 | Yes | Yes |
 | DeepSeek | DeepSeek V4.1 Flash 1017 | deepseek-ai/DeepSeek-V4.1-Flash-1017 | 1000000 | \$0.30 | \$0.006 | \$1.20 | FP8 | Yes | Yes |
+| Elorian Labs | Glimpse 1.0 | elorian-labs/glimpse-1.0 | 262144 | \$0.60 | \$0.06 | \$3.00 | FP8 | Yes | Yes |
 | Meta | Muse Glimmer 30B | meta-models/Muse-Glimmer-30B | 131072 | \$0.35 | \$0.04 | \$1.50 | FP8 | Yes | Yes |
 | Meta | Muse Spark Open 816B A42B | meta-models/Muse-Spark-Open-816B-A42B | 1048576 | \$1.25 | \$0.15 | \$4.25 | NVFP4 | Yes | Yes |
 | MiniMax | MiniMax M3.1 Flash | MiniMaxAI/MiniMax-M3.1-Flash | 1048576 | \$0.15 | \$0.015 | \$0.60 | NVFP4 | Yes | Yes |
@@ -56,6 +57,7 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | Qwen | Qwen3.8 Flash | Qwen/Qwen3.8-Flash | 1000000 | \$0.15 | - | \$0.47 | - | Yes | Yes |
 | Reflection | Beam 1.0 501B A23B | reflection/Beam-1.0-501B-A23B | 1048576 | \$0.40 | \$0.04 | \$1.20 | NVFP4 | Yes | Yes |
 | Ricursive | Ripple 65B Preview | ricursive-ai/Ripple-65B-Preview | 131072 | \$0.20 | - | \$0.60 | - | - | - |
+| Thinking Machines | Inkling 2 Small | thinkingmachines/Inkling-2-Small | 1048576 | \$0.30 | \$0.03 | \$1.00 | NVFP4 | Yes | Yes |
 | Together AI | Tev1 4B Experimental | together/Tev1-4B-experimental | 32768 | \$0.042 | - | Free | - | - | - |
 | Z.ai | GLM-5.2 | zai-org/GLM-5.2 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
 | Z.ai | GLM-5.3 | zai-org/GLM-5.3 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
@@ -166,6 +168,7 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 | Moonshot | Kimi K3.1 Pro | moonshotai/Kimi-K3.1-Pro | 1048576 | \$2.00 | \$10.00 |
 | NVIDIA | NVIDIA Nemotron 3.5 Super VL | nvidia/NVIDIA-Nemotron-3.5-Super-VL | 262144 | \$0.15 | \$0.50 |
 | Qwen | Qwen3.5 9B | Qwen/Qwen3.5-9B | 262144 | \$0.17 | \$0.25 |
+| Thinking Machines | Inkling 2 Small | thinkingmachines/Inkling-2-Small | 1048576 | \$0.30 | \$1.00 |
 
 ### **Vision model examples**
 
