@@ -221,6 +221,7 @@ Use the [speech endpoint](https://docs.together.ai/reference/audio-speech.md) fo
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3.5 ASR Streaming 0.6B | nvidia/nemotron-3.5-asr-streaming-0.6b | \$0.0015 per audio min |
 | NVIDIA | Speech-to-Text | Parakeet TDT 0.6B v3 | nvidia/parakeet-tdt-0.6b-v3 | \$0.0015 per audio min |
 | OpenAI | Speech-to-Text | Whisper large-v3 | openai/whisper-large-v3 | \$0.0015 per audio min |
+| Qwen | Text-to-Speech | Qwen3 TTS 12Hz 1.7B | Qwen/Qwen3-TTS-12Hz-1.7B | \$20.00 per 1M chars |
 | Qwen | Text-to-Speech | Qwen3 TTS 12Hz 1.7B CustomVoice | Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice | - |
 
 ### Audio model examples

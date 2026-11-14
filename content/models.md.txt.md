@@ -7,12 +7,12 @@
 
 ## Gemini 4  {% id="gemini-4" %}
 
-{% card-grid columns="2" %}
+{% card-grid columns="3" %}
   {% card description="Our strongest reasoning model, built for complex software engineering, multimodal knowledge work, scientific reasoning, and cybersecurity defense." title="Gemini 4 Carbon" variant="model-card" %}
   {% section class="model-specs" %}
   *   *Model code* **gemini-4-carbon**
   *   *Context* **1M tokens**
-  *   *Max output* **65K / 1M tokens**
+  *   *Max output* **64K / 1M tokens**
   *   *Modalities* **Text, Image, Audio, Video, PDF**
 
   {% /section %}
@@ -28,7 +28,7 @@
   {% section class="model-specs" %}
   *   *Model code* **gemini-4-argon**
   *   *Context* **1M tokens**
-  *   *Max output* **65K / 1M tokens**
+  *   *Max output* **64K / 1M tokens**
   *   *Modalities* **Text, Image, Audio, Video, PDF**
 
   {% /section %}
@@ -44,7 +44,7 @@
   {% section class="model-specs" %}
   *   *Model code* **gemini-4-hydrogen**
   *   *Context* **1M tokens**
-  *   *Max output* **65K / 1M tokens**
+  *   *Max output* **64K / 1M tokens**
   *   *Modalities* **Text, Image, Audio, Video, PDF**
 
   {% /section %}
