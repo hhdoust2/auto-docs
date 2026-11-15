@@ -2,7 +2,7 @@
 
 AnyModel is an OpenAI-compatible gateway: one API key and one base URL for models from many vendors (GPT, Claude, Gemini, DeepSeek, Qwen, Kimi, GLM and more), plus image, video, audio, embedding, reranking and web-search endpoints.
 
-It is meant to be given to a coding assistant as-is — download it from https://anymodel.org/api-docs.md or paste it into the model's context. Chat, reranking, research, image, video and speech are documented in full below. Embeddings, transcription, search and fetch appear in the endpoint table with the rule that prices them; their own rates and parameters come from `GET /v1/models` and `GET /v1/models/info`.
+It is meant to be given to a coding assistant as-is — download it from https://anymodel.org/api-docs.md or paste it into the model's context. Chat, embeddings, reranking, research, image, video and speech are documented in full below. Transcription, search and fetch appear in the endpoint table with the rule that prices them; their own rates and parameters come from `GET /v1/models` and `GET /v1/models/info`.
 
 ## Quick start
 
@@ -42,7 +42,7 @@ Get one in the AnyModel cabinet, under API Keys. **Replace `<YOUR_API_KEY>` with
 | GET | /v1/videos/{request_id}/content | Download the finished video through the gateway. |
 | POST | /v1/videos/edits | Edit an existing clip. Flat-billed — see the video section. |
 | POST | /v1/videos/extensions | Continue an existing clip with a new fragment. See the video section for how it is billed. |
-| POST | /v1/embeddings | Embeddings. |
+| POST | /v1/embeddings | Embeddings. Detailed below. |
 | POST | /v1/rerank | Document reranking. Detailed below. |
 | POST | /v1/audio/speech | Text to speech. Detailed below. |
 | GET | /v1/audio/voices?provider=edge-tts | Voices for text to speech, each with the model id to send. Detailed below. |
@@ -261,6 +261,38 @@ curl -sS https://anymodel.org/v1/chat/completions \
 | max_tokens | Optional maximum response tokens. |
 | reasoning_effort | Optional for GPT reasoning models: none, low, medium, high; GPT-5.6 and GPT-6 also take minimal, xhigh and max. Those models (sol, terra, luna, astra) run at high when the request sets no level, so answers match the quality of the vendor's own API. A level you send always wins; for faster, cheaper answers send a lower one: "reasoning_effort": "low". |
 
+## Embeddings
+
+OpenAI-compatible POST /v1/embeddings: send a string or an array of strings and get one vector per input, in order, in data[].embedding; usage.prompt_tokens is what was counted. Vectors of different models live in different spaces and cannot be compared: embed your documents and your queries with the same model, and re-embed the whole index when you switch models.
+
+```bash
+curl -sS https://anymodel.org/v1/embeddings \
+  -X POST \
+  -H "Authorization: Bearer <YOUR_API_KEY>" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "model": "am/nemotron-3.5-embed-8b",
+  "input": [
+    "Saturn is the sixth planet from the Sun.",
+    "A violin normally has four strings."
+  ],
+  "input_type": "passage"
+}'
+```
+
+| Parameter | Description |
+| --- | --- |
+| model | Required. Free models: am/nemotron-3.5-embed-8b (4,096-dimensional vectors, shortened with dimensions); am/nemotron-3-embed-1b (2,048-dimensional vectors, input up to 4,096 tokens). |
+| input | Required. A string or an array of strings; the answer has one vector per string, in the same order. |
+| input_type | Optional: query (default) for search queries, passage for the documents you index. The model encodes the two differently, so send passage when you build the index and query when you search it. |
+| truncate | Optional: NONE (default) rejects an input longer than the model accepts with an error; END or START cuts the input to fit instead. Limits: am/nemotron-3-embed-1b — 4,096 tokens. |
+| dimensions | Optional, am/nemotron-3.5-embed-8b only: a shorter vector, e.g. 512 or 1024 instead of 4,096. Index and queries must use the same size. |
+| encoding_format | Optional: float (default). |
+
+| Billing | Description |
+| --- | --- |
+| Price | Free: am/nemotron-3.5-embed-8b, am/nemotron-3-embed-1b are charged 0 balance tokens per request. |
+
 ## Document reranking
 
 Rank candidate passages by relevance to a query with POST /v1/rerank. The public response follows the common results/index/relevance_score shape; the model's original unbounded logit is also retained as logit.
@@ -271,7 +303,7 @@ curl -sS https://anymodel.org/v1/rerank \
   -H "Authorization: Bearer <YOUR_API_KEY>" \
   -H "Content-Type: application/json" \
   -d '{
-  "model": "am/llama-nemotron-rerank-vl-1b-v2",
+  "model": "am/nemotron-3.5-rerank-8b",
   "query": "Which passage is about astronomy?",
   "documents": [
     "Tomatoes grow best in warm weather.",
@@ -286,7 +318,7 @@ curl -sS https://anymodel.org/v1/rerank \
 
 | Parameter | Description |
 | --- | --- |
-| model | Required. Free models: am/llama-nemotron-rerank-vl-1b-v2. |
+| model | Required. Free models: am/nemotron-3.5-rerank-8b. |
 | query | Required string, or an object with a text field. |
 | documents | Required array of strings or objects with a text field. Up to 1,000 passages. |
 | top_n | Optional number of highest-ranked results to return; defaults to every document. |
