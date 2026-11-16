@@ -37,6 +37,7 @@ Get one in the AnyModel cabinet, under API Keys. **Replace `<YOUR_API_KEY>` with
 | GET | /v1/balance | Balance tokens left on the key. |
 | POST | /v1/images/generations | Image generation. Detailed below. |
 | GET | /v1/images/generations/{id} | Poll an image request accepted with background: true or Prefer: respond-async. See "Long-running image requests". |
+| GET | /v1/images/jobs/{id} | The same request as a job object: its state, and the status and code of a failure. See "Long-running image requests". |
 | POST | /v1/videos/generations | Video generation (asynchronous). Detailed below. |
 | GET | /v1/videos/{request_id} | Poll a video job. |
 | GET | /v1/videos/{request_id}/content | Download the finished video through the gateway. |
@@ -259,7 +260,7 @@ curl -sS https://anymodel.org/v1/chat/completions \
 | stream | Optional boolean, false by default: the answer is one JSON object, as in the OpenAI API. true returns Server-Sent Events. |
 | temperature | Optional 0–2. Lower is more deterministic. |
 | max_tokens | Optional maximum response tokens. |
-| reasoning_effort | Optional for GPT reasoning models: none, low, medium, high; GPT-5.6 and GPT-6 also take minimal, xhigh and max. Those models (sol, terra, luna, astra) run at high when the request sets no level, so answers match the quality of the vendor's own API. A level you send always wins; for faster, cheaper answers send a lower one: "reasoning_effort": "low". |
+| reasoning_effort | Optional for GPT reasoning models: none, low, medium, high; GPT-5.6 and GPT-6 also take minimal, xhigh and max. Those models (sol, terra, luna, astra) run at medium when the request sets no level. A level you send always wins: for the hardest reasoning tasks send "reasoning_effort": "high", for faster, cheaper answers a lower one: "reasoning_effort": "low". |
 
 ## Embeddings
 
@@ -471,7 +472,7 @@ jq -r ".data[0].b64_json" result.json | base64 --decode > image.png
 | Parameter | Description |
 | --- | --- |
 | model | Required. Image-capable model ID, for example am/flux.2-klein-4b (free) or gpt-image-2. |
-| prompt | Required. Describe the result and how a reference should be used. |
+| prompt | Required. Describe the result and how a reference should be used. Each model takes a prompt of up to maxPromptChars characters, listed in GET /v1/models/info?id=<model> (for example 7000 on anymedia/gpt-image-2.5, 4000 on anymedia/seedream-4.5, 2500 on anymedia/nano-banana-2); a longer prompt is refused with 400 prompt_too_long before anything is held or charged. |
 | n | Optional number of images, at most 10 — a larger value is clamped to that. Each delivered image is billed separately, from 100,000 tokens for a medium square one, scaled by quality and size. |
 | size | Optional. Common values: 1024x1024, 1792x1024, 1024x1792. Availability depends on the model. |
 | quality | Optional: low, medium, high, or auto where supported. The DALL·E-3 names standard and hd are accepted too, and are billed as medium and high. |
@@ -552,7 +553,7 @@ curl -sS "https://anymodel.org/v1/videos/REQUEST_ID/content" \
 | Parameter | Description |
 | --- | --- |
 | model | Use xai/grok-imagine-video or xai/grok-imagine-video-1.5. Version 1.5 supports native 1080p for text-to-video and image-to-video. |
-| prompt | Required. Describe motion, camera, subject, lighting and style. |
+| prompt | Required. Describe motion, camera, subject, lighting and style. Each model takes a prompt of up to maxPromptChars characters, listed in GET /v1/models/info?id=<model> (4096 on Grok Imagine, 4000 on Seedance 2.0, 15000 on Seedance 2.5); a longer prompt is refused with 400 prompt_too_long before anything is held or charged. |
 | image | Optional for image-to-video: { url: "https://..." } or a supported data URL containing the source frame. |
 | duration | 1–15 seconds. Billed per started second. Omit it and the request is billed for the full 15 seconds — send it explicitly. |
 | resolution | 480p or 720p on grok-imagine-video; 480p, 720p, or 1080p on grok-imagine-video-1.5. Omit it and the request is billed at that model's dearest rate. |
@@ -700,7 +701,7 @@ The answer is `202 Accepted`, with `Location` naming the poll URL and `Retry-Aft
 }
 ```
 
-The request is checked before it is accepted as a synchronous one would be: a missing or malformed `model`, a missing `prompt`, and a balance that does not cover one image at the requested quality and size are refused on the spot with the same `400` and `402`. A key may have 16 requests queued or running and 200 kept at a time; past that the answer is `429` with `Retry-After`.
+The request is checked before it is accepted as a synchronous one would be: a missing or malformed `model`, a missing `prompt`, a model that has been withdrawn, and a balance that does not cover one image at the requested quality and size are refused on the spot with the same `400`, `404` and `402`. A key may have 16 requests queued or running and 200 kept at a time; past that the answer is `429` with `Retry-After`.
 
 ### Collecting the result
 
@@ -710,8 +711,10 @@ curl -sS https://anymodel.org/v1/images/generations/$JOB_ID -H "Authorization: B
 
 - `202` with the object above while the request is `queued` or `in_progress`; `Retry-After` says when to ask again.
 - `200` with the image response once it is done — the same `{ "created": …, "data": [ … ] }` the synchronous call returns, decoded the same way. The result is kept for 24 hours.
-- The error, with its status, once it has failed: `503` `gateway_timeout` when the model did not answer within the worker's deadline; `402` when the balance ran out before the request was run; `400` when the model is not served here, the provider's filter refused the prompt, or the model does not take the prompt, a parameter or a reference image as sent (a prompt over its length limit, a size it does not draw); `422` when the model answered in text instead of drawing; `404` when the model was withdrawn after the request was accepted; `503` for an upstream failure. A failed request is not charged; a charge for a picture that could not be delivered is refunded.
+- The error, with its status and `code`, once it has failed: `503` `gateway_timeout` when the model did not answer within the worker's deadline; `402` when the balance ran out before the request was run; `400` when the model is not served here, the provider's filter refused the prompt, or the model does not take the prompt, a parameter or a reference image as sent (a prompt over its length limit, a size it does not draw); `422` `image_no_output` when the model answered in text instead of drawing, or with no image at all; `404` when the model was withdrawn after the request was accepted; `503` for an upstream failure, and `503` with the `code` of the rate limit (`rate_limit_exceeded`) when one refused the request — every account of the model resting, or too many prompts in a row that drew nothing; the synchronous call answers that one `429`; `500` for a failure on our side. The failure is final: the answer carries `X-Should-Retry: false` and no `Retry-After`, and asking again returns the same error — a new request is a new job. A failed request is not charged; a charge for a picture that could not be delivered is refunded.
 - `404` for an id that does not exist, has expired, or was queued by another API key.
+
+The same request can also be read as a job object: `GET /v1/images/jobs/{id}` answers `200` whatever state the job is in, with `{ "id", "status", "result", "error", "errorStatus", "errorCode", "createdAt", "startedAt", "finishedAt", "expiresAt" }` — `status` in the job's own words (`pending`, `running`, `completed`, `failed`), `result` the image response once it is done, times in Unix milliseconds — and `404` as above. On a failed job `error` is the reason, a sentence, and `errorStatus` and `errorCode` are the status and the `code` the poll above answers it with, `503` with `rate_limit_exceeded` included. Both are `null` while the job has not failed, and can be `null` on a failure recorded without them; `error` is there either way.
 
 Polling works at zero balance, so a picture paid for with the last tokens can still be collected. The charge is that of a synchronous call, booked when the picture arrives rather than when the request is accepted.
 
@@ -758,7 +761,7 @@ An error response carries `X-Request-Id` (also repeated as `request_id` in the b
 | 503 | server_error | service_unavailable |
 | 503 | server_error | gateway_timeout |
 
-- `400` — the request itself is at fault and will fail the same way again; `message` says what to change. The `code` `output_budget_exhausted` means a reasoning model spent the whole output budget before it could answer: raise `max_tokens`, or compact a long conversation so the model has room to reply. The tokens the model did consume are charged. The `code` `not_a_chat_model` means a chat endpoint was called with a model served only on another endpoint, such as an image or video model of a provider that has no chat models: `message` names the endpoint that serves it. Nothing is charged. The `code` `model_not_served` means the model is not served here, and sending the request again will not change that: choose another model — `GET /v1/models` lists the chat and image models, `GET /v1/models/{kind}` the others. Nothing is charged. The `code` `reference_images_unsupported` means the image model cannot use the references sent: a model that draws from the prompt alone was sent reference images or a mask (`image`, `images`, `mask`), or a model that edits was sent a mask it takes none of or more references than it takes — `message` says which. Send the request without them (or with fewer), or use a model that edits images. Nothing is charged. The `code` `reference_images_too_large` means the reference images together are over 24 MiB — the images behind links count too, once downloaded: send smaller or fewer images. Nothing is charged.
+- `400` — the request itself is at fault and will fail the same way again; `message` says what to change. The `code` `output_budget_exhausted` means a reasoning model spent the whole output budget before it could answer: raise `max_tokens`, or compact a long conversation so the model has room to reply. The tokens the model did consume are charged. The `code` `client_attestation_refused` means Meta Muse (`muse/*`) refused the request: the Muse Code subscription behind those models serves only Meta's own Muse Code client, and Meta took this request for another client's — mostly an agent request with a system prompt and tools. The same request is refused again: send it to another model. Nothing is charged. The `code` `not_a_chat_model` means a chat endpoint was called with a model served only on another endpoint, such as an image or video model of a provider that has no chat models: `message` names the endpoint that serves it. Nothing is charged. The `code` `model_not_served` means the model is not served here, and sending the request again will not change that: choose another model — `GET /v1/models` lists the chat and image models, `GET /v1/models/{kind}` the others. Nothing is charged. The `code` `reference_images_unsupported` means the image model cannot use the references sent: a model that draws from the prompt alone was sent reference images or a mask (`image`, `images`, `mask`), or a model that edits was sent a mask it takes none of or more references than it takes — `message` says which. Send the request without them (or with fewer), or use a model that edits images. Nothing is charged. The `code` `reference_images_too_large` means the reference images together are over 24 MiB — the images behind links count too, once downloaded: send smaller or fewer images. Nothing is charged.
 - `401` — the key is missing, revoked or mistyped.
 - `402` — the balance ran out; top it up in the cabinet. This, not `403`, is the out-of-money answer.
 - `403` — the account behind the key is not active (blocked, or the email is not confirmed yet). Its `code` reads `insufficient_quota` for OpenAI-SDK compatibility; do not map it to "top up".
