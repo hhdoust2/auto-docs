@@ -55,8 +55,9 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | Qwen | Qwen3.7 Max | Qwen/Qwen3.7-Max | - | \$2.50 | \$0.50 | \$7.50 | - | Yes | Yes |
 | Qwen | Qwen3.7 Plus | Qwen/Qwen3.7-Plus | 1000000 | \$0.32 | - | \$1.28 | - | Yes | Yes |
 | Qwen | Qwen3.8 Flash | Qwen/Qwen3.8-Flash | 1000000 | \$0.15 | - | \$0.47 | - | Yes | Yes |
+| Qwen | Qwen4 Max | Qwen/Qwen4-Max | 1000000 | \$1.425 | \$0.07125 | \$4.275 | - | Yes | Yes |
 | Reflection | Beam 1.0 501B A23B | reflection/Beam-1.0-501B-A23B | 1048576 | \$0.40 | \$0.04 | \$1.20 | NVFP4 | Yes | Yes |
-| Ricursive | Ripple 65B Preview | ricursive-ai/Ripple-65B-Preview | 131072 | \$0.20 | - | \$0.60 | - | - | - |
+| Ricursive | Ripple 65B Preview | ricursive-ai/Ripple-65B-Preview | 131072 | \$0.20 | \$0.02 | \$0.60 | NVFP4 | Yes | Yes |
 | Thinking Machines | Inkling 2 Small | thinkingmachines/Inkling-2-Small | 1048576 | \$0.30 | \$0.03 | \$1.00 | NVFP4 | Yes | Yes |
 | Together AI | Tev1 4B Experimental | together/Tev1-4B-experimental | 32768 | \$0.042 | - | Free | - | - | - |
 | Z.ai | GLM-5.2 | zai-org/GLM-5.2 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
@@ -77,6 +78,7 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | Model | Input | Cached input | Output |
 | :- | -: | -: | -: |
 | Kimi K3 (US-only) | \$3.75 | \$0.375 | \$18.75 |
+| Kimi K3.1 Pro (US-only) | \$2.50 | \$0.25 | \$12.50 |
 | GLM-5.3 (US-only) | \$1.75 | \$0.325 | \$5.50 |
 | GLM-5.3 Flash (US-only) | \$0.1875 | \$0.0375 | \$0.625 |
 | DeepSeek V4.1 Flash (US-only) | \$0.375 | \$0.0075 | \$1.50 |
@@ -168,6 +170,7 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 | Moonshot | Kimi K3.1 Pro | moonshotai/Kimi-K3.1-Pro | 1048576 | \$2.00 | \$10.00 |
 | NVIDIA | NVIDIA Nemotron 3.5 Super VL | nvidia/NVIDIA-Nemotron-3.5-Super-VL | 262144 | \$0.15 | \$0.50 |
 | Qwen | Qwen3.5 9B | Qwen/Qwen3.5-9B | 262144 | \$0.17 | \$0.25 |
+| Qwen | Qwen4 Max | Qwen/Qwen4-Max | 1000000 | \$1.425 | \$4.275 |
 | Thinking Machines | Inkling 2 Small | thinkingmachines/Inkling-2-Small | 1048576 | \$0.30 | \$1.00 |
 
 ### **Vision model examples**

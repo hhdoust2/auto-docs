@@ -5,6 +5,8 @@
 
 # Models
 
+Not sure where to start? Read [Choosing a model](/docs/choosing-a-model) to compare reasoning depth, speed, and cost across Gemini models, or see [Latest Gemini models](/docs/latest-model).
+
 ## Gemini 4  {% id="gemini-4" %}
 
 {% card-grid columns="3" %}
@@ -19,6 +21,38 @@
 
   {% section class="card-actions" %}
   {% button href="https://aistudio.google.com/prompts/new_chat?model=gemini-4-carbon" variant="primary" %}Try in AI Studio{% /button %} {% button href="/docs/models/gemini-4-carbon" icon="arrow_forward" tooltip="View models" variant="icon-primary" /%}
+
+  {% /section %}
+
+  {% /card %}
+
+  {% card description="Frontier-level intelligence with fast end-to-end task completion across complex software engineering, knowledge work, and science workflows." title="Gemini 4 Neon" variant="model-card" %}
+  {% section class="model-specs" %}
+  *   *Model code* **gemini-4-neon**
+  *   *Context* **1M tokens**
+  *   *Max output* **64K / 1M tokens**
+  *   *Modalities* **Text, Image, Audio, Video, PDF**
+
+  {% /section %}
+
+  {% section class="card-actions" %}
+  {% button href="https://aistudio.google.com/prompts/new_chat?model=gemini-4-neon" variant="primary" %}Try in AI Studio{% /button %} {% button href="/docs/models/gemini-4-neon" icon="arrow_forward" tooltip="View models" variant="icon-primary" /%}
+
+  {% /section %}
+
+  {% /card %}
+
+  {% card description="Brings cutting-edge intelligence to everyone, with speed and efficiency for everyday coding and agentic workflows." title="Gemini 4 Hydrogen" variant="model-card" %}
+  {% section class="model-specs" %}
+  *   *Model code* **gemini-4-hydrogen**
+  *   *Context* **1M tokens**
+  *   *Max output* **64K / 1M tokens**
+  *   *Modalities* **Text, Image, Audio, Video, PDF**
+
+  {% /section %}
+
+  {% section class="card-actions" %}
+  {% button href="https://aistudio.google.com/prompts/new_chat?model=gemini-4-hydrogen" variant="primary" %}Try in AI Studio{% /button %} {% button href="/docs/models/gemini-4-hydrogen" icon="arrow_forward" tooltip="View models" variant="icon-primary" /%}
 
   {% /section %}
 
@@ -40,22 +74,6 @@
 
   {% /card %}
 
-  {% card description="Brings cutting-edge intelligence to everyone, with speed and efficiency for everyday coding and agentic workflows, featuring a shared 1M context window and long decodes up to 1M tokens." title="Gemini 4 Hydrogen" variant="model-card" %}
-  {% section class="model-specs" %}
-  *   *Model code* **gemini-4-hydrogen**
-  *   *Context* **1M tokens**
-  *   *Max output* **64K / 1M tokens**
-  *   *Modalities* **Text, Image, Audio, Video, PDF**
-
-  {% /section %}
-
-  {% section class="card-actions" %}
-  {% button href="https://aistudio.google.com/prompts/new_chat?model=gemini-4-hydrogen" variant="primary" %}Try in AI Studio{% /button %} {% button href="/docs/models/gemini-4-hydrogen" icon="arrow_forward" tooltip="View models" variant="icon-primary" /%}
-
-  {% /section %}
-
-  {% /card %}
-
 {% /card-grid %}
 
 ## All Gemini 4 models  {% id="all-gemini-4-models" %}
@@ -71,13 +89,18 @@
 
   ---
 
-  * [Gemini 4 Argon](/docs/models/gemini-4-argon)
-  * `gemini-4-argon`
+  * [Gemini 4 Neon](/docs/models/gemini-4-neon)
+  * `gemini-4-neon`
 
   ---
 
   * [Gemini 4 Hydrogen](/docs/models/gemini-4-hydrogen)
   * `gemini-4-hydrogen`
+
+  ---
+
+  * [Gemini 4 Argon](/docs/models/gemini-4-argon)
+  * `gemini-4-argon`
 {% /table %}
 
 ## Gemini 3  {% id="gemini-3" %}
