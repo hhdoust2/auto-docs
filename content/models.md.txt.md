@@ -134,6 +134,8 @@ Not sure where to start? Read [Choosing a model](/docs/choosing-a-model) to comp
 
   {% card badge="New" description="Generate and edit up to 15 seconds of video with native audio, keyframe interpolation, video extension, and character consistency." href="/docs/models/gemini-omni-flash" icon="movie_filter" title="Gemini Omni Flash" variant="model" /%}
 
+  {% card badge="New" description="Stream real-time, steerable 24 fps interactive worlds with synchronized 48 kHz stereo audio over WebRTC and WebSockets." href="/docs/models/genie-4" icon="movie_filter" title="Genie 4" variant="model" /%}
+
   {% card badge="Preview" description="Frontier-class performance rivaling larger models at a fraction of the cost." href="/docs/models/gemini-3-flash-preview" icon="spark" title="Gemini 3 Flash" variant="model" /%}
 
   {% card badge="Preview" description="Low-latency, real-time speech to speech translation model that supports 70+ languages." href="/docs/models/gemini-3.5-live-translate-preview" icon="translate" title="Gemini 3.5 Live Translate" variant="model" /%}
@@ -465,6 +467,13 @@ already be listed in other sections*
   * A professional design engine with a reasoning core for studio-quality 4K
     visuals, complex layouts, and precise text rendering.
   * `gemini-3-pro-image`
+
+  ---
+
+  * [Genie 4](/docs/models/genie-4)
+  * Real-time interactive world generation streaming 24 fps 16:9 video with
+    synchronized 48 kHz stereo audio over WebRTC and WebSockets.
+  * `models/genie-4`
 
   ---
 
