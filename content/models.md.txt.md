@@ -473,7 +473,7 @@ already be listed in other sections*
   * [Genie 4](/docs/models/genie-4)
   * Real-time interactive world generation streaming 24 fps 16:9 video with
     synchronized 48 kHz stereo audio over WebRTC and WebSockets.
-  * `models/genie-4`
+  * `genie-4`
 
   ---
 

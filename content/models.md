@@ -218,16 +218,13 @@ Use the [speech endpoint](https://docs.together.ai/reference/audio-speech.md) fo
 | Organization | Modality | Model name | Model string for API | Pricing |
 | :- | :- | :- | :- | :- |
 | Canopy Labs | Text-to-Speech | Orpheus 3B | canopylabs/orpheus-3b-0.1-ft | \$15.00 per 1M chars |
-| Cartesia | Text-to-Speech | Cartesia Sonic | cartesia/sonic | \$65.00 per 1M chars |
-| Cartesia | Text-to-Speech | Cartesia Sonic 2 | cartesia/sonic-2 | \$65.00 per 1M chars |
 | Cartesia | Text-to-Speech | Cartesia Sonic 3 | cartesia/sonic-3 | \$65.00 per 1M chars |
 | Kokoro | Text-to-Speech | Kokoro | hexgrad/Kokoro-82M | \$4.00 per 1M chars |
-| NVIDIA | Speech-to-Text | NVIDIA Nemotron 3 ASR Streaming 0.6B | nvidia/nemotron-3-asr-streaming-0.6b | \$0.0015 per audio min |
-| NVIDIA | Speech-to-Text | NVIDIA Nemotron 3.5 ASR Streaming 0.6B | nvidia/nemotron-3.5-asr-streaming-0.6b | \$0.0015 per audio min |
-| NVIDIA | Speech-to-Text | Parakeet TDT 0.6B v3 | nvidia/parakeet-tdt-0.6b-v3 | \$0.0015 per audio min |
-| OpenAI | Speech-to-Text | Whisper large-v3 | openai/whisper-large-v3 | \$0.0015 per audio min |
 | Qwen | Text-to-Speech | Qwen3 TTS 12Hz 1.7B | Qwen/Qwen3-TTS-12Hz-1.7B | \$20.00 per 1M chars |
-| Qwen | Text-to-Speech | Qwen3 TTS 12Hz 1.7B CustomVoice | Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice | - |
+| NVIDIA | Speech-to-Text | NVIDIA Nemotron 3 ASR Streaming 0.6B | nvidia/nemotron-3-asr-streaming-0.6b | \$0.0045 per audio min (realtime only) |
+| NVIDIA | Speech-to-Text | NVIDIA Nemotron 3.5 ASR Streaming 0.6B | nvidia/nemotron-3.5-asr-streaming-0.6b | \$0.0045 per audio min (realtime only) |
+| NVIDIA | Speech-to-Text | Parakeet TDT 0.6B v3 | nvidia/parakeet-tdt-0.6b-v3 | \$0.0015 per audio min (standard), \$0.0035 per audio min (realtime) |
+| OpenAI | Speech-to-Text | Whisper large-v3 | openai/whisper-large-v3 | \$0.0015 per audio min (standard), \$0.0035 per audio min (realtime) |
 
 ### Audio model examples
 
