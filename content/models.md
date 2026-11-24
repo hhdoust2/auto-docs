@@ -41,6 +41,7 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | DeepSeek | DeepSeek V4 Pro 0813 | deepseek-ai/DeepSeek-V4-Pro-0813 | 1048576 | \$1.32 | \$0.13 | \$3.96 | NVFP4 | Yes | Yes |
 | DeepSeek | DeepSeek V4.1 Flash | deepseek-ai/DeepSeek-V4.1-Flash | 1000000 | \$0.30 | \$0.006 | \$1.20 | FP8 | Yes | Yes |
 | DeepSeek | DeepSeek V4.1 Flash 1017 | deepseek-ai/DeepSeek-V4.1-Flash-1017 | 1000000 | \$0.30 | \$0.006 | \$1.20 | FP8 | Yes | Yes |
+| DeepSeek | DeepSeek V4.1 Flash 1017 Fast | deepseek-ai/DeepSeek-V4.1-Flash-1017-fast | 1000000 | \$0.60 | \$0.012 | \$2.40 | FP8 | Yes | Yes |
 | Elorian Labs | Glimpse 1.0 | elorian-labs/glimpse-1.0 | 262144 | \$0.60 | \$0.06 | \$3.00 | FP8 | Yes | Yes |
 | Meta | Muse Glimmer 30B | meta-models/Muse-Glimmer-30B | 131072 | \$0.35 | \$0.04 | \$1.50 | FP8 | Yes | Yes |
 | Meta | Muse Spark Open 816B A42B | meta-models/Muse-Spark-Open-816B-A42B | 1048576 | \$1.25 | \$0.15 | \$4.25 | NVFP4 | Yes | Yes |
@@ -218,13 +219,15 @@ Use the [speech endpoint](https://docs.together.ai/reference/audio-speech.md) fo
 | Organization | Modality | Model name | Model string for API | Pricing |
 | :- | :- | :- | :- | :- |
 | Canopy Labs | Text-to-Speech | Orpheus 3B | canopylabs/orpheus-3b-0.1-ft | \$15.00 per 1M chars |
+| Cartesia | Text-to-Speech | Cartesia Sonic | cartesia/sonic | \$65.00 per 1M chars |
+| Cartesia | Text-to-Speech | Cartesia Sonic 2 | cartesia/sonic-2 | \$65.00 per 1M chars |
 | Cartesia | Text-to-Speech | Cartesia Sonic 3 | cartesia/sonic-3 | \$65.00 per 1M chars |
 | Kokoro | Text-to-Speech | Kokoro | hexgrad/Kokoro-82M | \$4.00 per 1M chars |
-| Qwen | Text-to-Speech | Qwen3 TTS 12Hz 1.7B | Qwen/Qwen3-TTS-12Hz-1.7B | \$20.00 per 1M chars |
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3 ASR Streaming 0.6B | nvidia/nemotron-3-asr-streaming-0.6b | \$0.0045 per audio min (realtime only) |
 | NVIDIA | Speech-to-Text | NVIDIA Nemotron 3.5 ASR Streaming 0.6B | nvidia/nemotron-3.5-asr-streaming-0.6b | \$0.0045 per audio min (realtime only) |
 | NVIDIA | Speech-to-Text | Parakeet TDT 0.6B v3 | nvidia/parakeet-tdt-0.6b-v3 | \$0.0015 per audio min (standard), \$0.0035 per audio min (realtime) |
 | OpenAI | Speech-to-Text | Whisper large-v3 | openai/whisper-large-v3 | \$0.0015 per audio min (standard), \$0.0035 per audio min (realtime) |
+| Qwen | Text-to-Speech | Qwen3 TTS 12Hz 1.7B | Qwen/Qwen3-TTS-12Hz-1.7B | \$20.00 per 1M chars |
 
 ### Audio model examples
 

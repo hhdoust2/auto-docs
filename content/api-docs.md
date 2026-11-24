@@ -35,6 +35,7 @@ Get one in the AnyModel cabinet, under API Keys. **Replace `<YOUR_API_KEY>` with
 | GET | /v1/models/{kind} | Same list filtered: image, video, tts, stt, embedding, rerank, image-to-text, web. |
 | GET | /v1/models/info?id={id} | Metadata for one model: kind, endpoint, parameters, billing. |
 | GET | /v1/balance | Balance tokens left on the key. |
+| GET | /v1/dashboard/billing/subscription | The same balance in USD, in the shape one-api / new-api panels poll (hard_limit_usd; /v1/dashboard/billing/usage answers total_usage 0). Also /v1/dashboard/billing/credit_grants (total_available) and new-api's /v1/api/user/self (data.quota, 500000 per USD). Answered at zero balance. |
 | POST | /v1/images/generations | Image generation. Detailed below. |
 | POST | /v1/images/edits | Image edit in the form of the OpenAI SDK's images.edit: the pictures as image (or image[]) files and an optional mask file in multipart/form-data, or as images: [{image_url}] in JSON. Answered and priced like image generation. stream=true is answered with OpenAI's streaming events (image_edit.partial_image, image_edit.completed); Accept: text/event-stream gives this API's own event stream instead. See "Long-running image requests". |
 | GET | /v1/images/generations/{id} | Poll an image request accepted with background: true or Prefer: respond-async. See "Long-running image requests". |
