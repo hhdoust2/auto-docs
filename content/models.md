@@ -38,7 +38,6 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 
 | Organization | Model name | API model string | Context length | Input pricing (per 1M tokens) | Cached input pricing (per 1M tokens) | Output pricing (per 1M tokens) | Quantization | Function calling | Structured outputs |
 | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-| DeepSeek | DeepSeek V4 Pro 0813 | deepseek-ai/DeepSeek-V4-Pro-0813 | 1048576 | \$1.32 | \$0.13 | \$3.96 | NVFP4 | Yes | Yes |
 | DeepSeek | DeepSeek V4.1 Flash | deepseek-ai/DeepSeek-V4.1-Flash | 1000000 | \$0.30 | \$0.006 | \$1.20 | FP8 | Yes | Yes |
 | DeepSeek | DeepSeek V4.1 Flash 1017 | deepseek-ai/DeepSeek-V4.1-Flash-1017 | 1000000 | \$0.30 | \$0.006 | \$1.20 | FP8 | Yes | Yes |
 | DeepSeek | DeepSeek V4.1 Flash 1017 Fast | deepseek-ai/DeepSeek-V4.1-Flash-1017-fast | 1000000 | \$0.60 | \$0.012 | \$2.40 | FP8 | Yes | Yes |
@@ -49,19 +48,17 @@ For rate limits and pricing, see the [Serverless overview](https://docs.together
 | Moonshot | Kimi K3 | moonshotai/Kimi-K3 | 1048576 | \$3.00 | \$0.30 | \$15.00 | - | Yes | Yes |
 | Moonshot | Kimi K3.1 Pro | moonshotai/Kimi-K3.1-Pro | 1048576 | \$2.00 | \$0.20 | \$10.00 | NVFP4 | Yes | Yes |
 | NVIDIA | NVIDIA Nemotron 3.5 Super VL | nvidia/NVIDIA-Nemotron-3.5-Super-VL | 262144 | \$0.15 | \$0.02 | \$0.50 | NVFP4 | Yes | Yes |
-| OpenAI | GPT-OSS 120B | openai/gpt-oss-120b | 131072 | \$0.15 | - | \$0.60 | MXFP4 | Yes | Yes |
 | Prism ML | Ternary Bonsai 27B | Prism-ML/Ternary-Bonsai-27B | 262144 | Free | - | Free | - | Yes | Yes |
 | Qwen | Qwen3.5 9B | Qwen/Qwen3.5-9B | 262144 | \$0.17 | - | \$0.25 | FP8 | Yes | Yes |
 | Qwen | Qwen3.6 Plus | Qwen/Qwen3.6-Plus | 1000000 | \$0.50 | - | \$3.00 | - | Yes | Yes |
 | Qwen | Qwen3.7 Max | Qwen/Qwen3.7-Max | - | \$2.50 | \$0.50 | \$7.50 | - | Yes | Yes |
 | Qwen | Qwen3.7 Plus | Qwen/Qwen3.7-Plus | 1000000 | \$0.32 | - | \$1.28 | - | Yes | Yes |
 | Qwen | Qwen3.8 Flash | Qwen/Qwen3.8-Flash | 1000000 | \$0.15 | - | \$0.47 | - | Yes | Yes |
-| Qwen | Qwen4 Max | Qwen/Qwen4-Max | 1000000 | \$1.425 | \$0.07125 | \$4.275 | - | Yes | Yes |
+| Qwen | Qwen4 Max | Qwen/Qwen4-Max | 1000000 | \$1.50 | \$0.075 | \$4.50 | - | Yes | Yes |
 | Reflection | Beam 1.0 501B A23B | reflection/Beam-1.0-501B-A23B | 1048576 | \$0.40 | \$0.04 | \$1.20 | NVFP4 | Yes | Yes |
 | Ricursive | Ripple 65B Preview | ricursive-ai/Ripple-65B-Preview | 131072 | \$0.20 | \$0.02 | \$0.60 | NVFP4 | Yes | Yes |
 | Tencent | Hy4 | tencent/Hy4 | 1048576 | \$0.834 | \$0.042 | \$2.501 | NVFP4 | Yes | Yes |
 | Thinking Machines | Inkling 2 Small | thinkingmachines/Inkling-2-Small | 1048576 | \$0.30 | \$0.03 | \$1.00 | NVFP4 | Yes | Yes |
-| Together AI | Tev1 4B Experimental | together/Tev1-4B-experimental | 32768 | \$0.042 | - | Free | - | - | - |
 | Z.ai | GLM-5.2 | zai-org/GLM-5.2 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
 | Z.ai | GLM-5.3 | zai-org/GLM-5.3 | 1048575 | \$1.40 | \$0.26 | \$4.40 | FP4 | Yes | Yes |
 | Z.ai | GLM-5.3 Flash | zai-org/GLM-5.3-Flash | 1048575 | \$0.15 | \$0.03 | \$0.50 | FP4 | Yes | Yes |
@@ -172,7 +169,7 @@ If you're not sure which vision model to use, start with **Qwen3.5 9B** (`Qwen/Q
 | Moonshot | Kimi K3.1 Pro | moonshotai/Kimi-K3.1-Pro | 1048576 | \$2.00 | \$10.00 |
 | NVIDIA | NVIDIA Nemotron 3.5 Super VL | nvidia/NVIDIA-Nemotron-3.5-Super-VL | 262144 | \$0.15 | \$0.50 |
 | Qwen | Qwen3.5 9B | Qwen/Qwen3.5-9B | 262144 | \$0.17 | \$0.25 |
-| Qwen | Qwen4 Max | Qwen/Qwen4-Max | 1000000 | \$1.425 | \$4.275 |
+| Qwen | Qwen4 Max | Qwen/Qwen4-Max | 1000000 | \$1.50 | \$4.50 |
 | Tencent | Hy4 | tencent/Hy4 | 1048576 | \$0.834 | \$2.501 |
 | Thinking Machines | Inkling 2 Small | thinkingmachines/Inkling-2-Small | 1048576 | \$0.30 | \$1.00 |
 
