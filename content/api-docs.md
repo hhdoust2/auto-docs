@@ -262,7 +262,7 @@ curl -sS https://anymodel.org/v1/chat/completions \
 | stream | Optional boolean, false by default: the answer is one JSON object, as in the OpenAI API. true returns Server-Sent Events. |
 | temperature | Optional 0–2. Lower is more deterministic. |
 | max_tokens | Optional maximum response tokens. |
-| reasoning_effort | Optional for GPT reasoning models: none, low, medium, high; GPT-5.6 and GPT-6 also take minimal, xhigh and max. Those models (sol, terra, luna, astra) run at medium when the request sets no level. A level you send always wins: for the hardest reasoning tasks send "reasoning_effort": "high", for faster, cheaper answers a lower one: "reasoning_effort": "low". |
+| reasoning_effort | Optional for GPT reasoning models: none, low, medium, high; GPT-5.6 and GPT-6 also take xhigh and max, and run minimal as low. Those models (sol, terra, luna, astra) run at medium when the request sets no level. A level you send always wins: for the hardest reasoning tasks send "reasoning_effort": "high", for faster, cheaper answers a lower one: "reasoning_effort": "low". |
 
 ## Embeddings
 
